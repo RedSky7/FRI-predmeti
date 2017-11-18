@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">FRIpredmeti</string>
+    <string name="app_name">FRI predmeti</string>
+
+    <string-array name="sort">
+        <item>A-Ž</item>
+        <item>Ocena komentarja</item>
+        <item>Ocena predmeta</item>
+    </string-array>
 </resources>
