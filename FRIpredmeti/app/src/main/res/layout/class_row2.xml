@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="3dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="startClassActivity">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_height="74dp"
+                    app:srcCompat="@drawable/ic_square"
+                    android:id="@+id/imageView11"
+                    android:foreground="@color/colorAccent"
+                    android:layout_width="135dp" />
+
+                <TextView
+                    android:text="Grafika in umetna inteligenca"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView17"
+                    android:layout_weight="0"
+                    android:maxLines="3"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12sp"
+                    android:layout_width="95dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="214dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/graphics"
+                android:id="@+id/imageView12" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

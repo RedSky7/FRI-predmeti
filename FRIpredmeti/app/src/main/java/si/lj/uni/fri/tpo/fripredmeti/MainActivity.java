@@ -1,9 +1,11 @@
 package si.lj.uni.fri.tpo.fripredmeti;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -19,34 +21,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Računalniška grafika");
-
-        ScrollView sv = (ScrollView) findViewById(R.id.sw);
-        sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Rect scrollBounds = new Rect();
-                v.getHitRect(scrollBounds);
-                FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl2);
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-                if (tv15.getLocalVisibleRect(scrollBounds)) {
-                    fab.animate().translationY(0).setInterpolator(new LinearInterpolator()).start();
-                } else {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab.getLayoutParams();
-                    int fab_bottomMargin = layoutParams.bottomMargin;
-                    fab.animate().translationY(fab.getHeight() + fab_bottomMargin).setInterpolator(new LinearInterpolator()).start();
-                }
-            }
-        });
-
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("Področja");
     }
 
 
-    public void showDialog(View v)
+    public void startClassActivity(View v)
     {
-        CommentDialog cd = new CommentDialog(this);
-        cd.showDialog(this);
+        Intent intent = new Intent(this, ClassOverview.class);
+        startActivity(intent);
     }
+
 }
