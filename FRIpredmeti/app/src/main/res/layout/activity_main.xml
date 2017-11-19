@@ -18,11 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            android:theme="?attr/actionBarTheme"
+            app:theme="@style/ToolbarThemeWhite"
             android:minHeight="?attr/actionBarSize"
             android:id="@+id/toolbar"
             android:layout_weight="1"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="@android:color/white"
+             />
 
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
@@ -44,6 +45,18 @@
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/appbar"
+        android:gravity="right|center_vertical"
+        android:layout_alignParentEnd="true"
+        android:entries="@array/podrocje"
+        style="@android:style/Widget.Material.Light.Spinner"
+        android:layout_marginTop="16dp" />
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -273,11 +286,21 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/kdsa"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/ss">
     <include layout="@layout/class_row"></include>
         </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ss"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <include layout="@layout/class_row"></include>
+    </RelativeLayout>
 </RelativeLayout>

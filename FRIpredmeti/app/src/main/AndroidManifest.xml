@@ -16,7 +16,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClassOverview"
-            android:theme="@style/AppTheme2"></activity>
+            android:theme="@style/AppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+                android:value=".Main2Activity" />
+        </activity>
     </application>
 
 </manifest>

@@ -61,10 +61,11 @@ android:layout_height="match_parent"
                 android:layout_height="64dp"
                 app:circle_progress="36"
                 app:circle_text_size="16sp"
-                app:circle_finished_color="@color/colorPrimary" />
+                app:circle_finished_color="@color/colorPrimary"
+                app:circle_unfinished_color="@color/lightGray" />
 
             <TextView
-                android:text="Izdelalo"
+                android:text="Zanimivost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView"
@@ -88,7 +89,8 @@ android:layout_height="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center_horizontal"
                 app:circle_finished_color="@color/colorAccent"
-                app:circle_text_size="16sp" />
+                app:circle_text_size="16sp"
+                app:circle_unfinished_color="@color/lightGray" />
 
 
             <TextView
@@ -116,7 +118,8 @@ android:layout_height="match_parent"
                 android:layout_height="64dp"
                 app:circle_progress="98"
                 app:circle_text_size="16sp"
-                app:circle_finished_color="@color/colorPrimary" />
+                app:circle_finished_color="@color/colorPrimary"
+                app:circle_unfinished_color="@color/lightGray" />
 
             <TextView
                 android:text="Težavnost"
@@ -139,7 +142,6 @@ android:layout_height="match_parent"
         android:layout_below="@+id/cv_three"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin">
 
         <TextView
@@ -200,8 +202,7 @@ android:layout_height="match_parent"
         android:layout_below="@+id/pre"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
         <TextView
             android:text="Izvajalci"
@@ -261,7 +262,6 @@ android:layout_height="match_parent"
         android:id="@+id/desc"
         android:layout_below="@+id/staff"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
@@ -283,15 +283,97 @@ android:layout_height="match_parent"
             android:layout_below="@+id/textView13"
             android:layout_marginTop="16dp"
             android:maxLines="8" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/desc"
+        android:id="@+id/tech"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:text="Tehnologije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <ImageView
+            android:layout_width="6dp"
+            app:srcCompat="@drawable/ic_square"
+            android:id="@+id/imageView3"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/textView4"
+            android:layout_height="22dp" />
+
+        <TextView
+            android:text="webGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:layout_weight="1"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@+id/imageView3"
+            android:layout_below="@+id/textView4" />
+
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="16dp"
+            app:srcCompat="@drawable/ic_square"
+            android:id="@+id/imageView4"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/imageView3"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:text="JavaScript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10"
+            android:layout_weight="1"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/textView9"
+            android:layout_toRightOf="@+id/imageView4"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="15dp" />
+
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="16dp"
+            app:srcCompat="@drawable/ic_square"
+            android:id="@+id/imageView42"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/imageView4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:text="HTML"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView102"
+            android:layout_weight="1"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/textView10"
+            android:layout_toRightOf="@+id/imageView4"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="15dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/comm"
-        android:layout_below="@+id/desc"
+        android:layout_below="@+id/tech"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 

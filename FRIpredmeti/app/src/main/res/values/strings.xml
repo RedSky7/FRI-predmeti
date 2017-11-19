@@ -6,4 +6,10 @@
         <item>Ocena komentarja</item>
         <item>Ocena predmeta</item>
     </string-array>
+
+    <string-array name="podrocje">
+        <item>Zanimivost</item>
+        <item>Priljubljenost</item>
+        <item>Težavnost</item>
+    </string-array>
 </resources>
