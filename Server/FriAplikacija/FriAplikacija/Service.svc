@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FriAplikacija.Service" CodeBehind="Service.svc.cs" %>

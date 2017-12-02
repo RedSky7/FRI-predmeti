@@ -1,0 +1,10 @@
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll.config
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\FriAplikacija.pdb
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\Newtonsoft.Json.dll
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csprojResolveAssemblyReference.cache
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csproj.CoreCompileInputs.cache
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.dll
+C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.pdb
