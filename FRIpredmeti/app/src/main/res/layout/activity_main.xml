@@ -284,23 +284,35 @@
         <include layout="@layout/class_row2"></include>
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/ss">
-    <include layout="@layout/class_row"></include>
-        </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ss"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/jh"
+        android:layout_below="@+id/spinner"
+        android:background="@color/cardview_shadow_end_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/ss">
         <include layout="@layout/class_row"></include>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ss"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <include layout="@layout/class_row"></include>
+        </RelativeLayout>
     </RelativeLayout>
+
 </RelativeLayout>

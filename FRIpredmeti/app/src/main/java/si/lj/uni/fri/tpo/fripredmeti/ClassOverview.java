@@ -1,5 +1,6 @@
 package si.lj.uni.fri.tpo.fripredmeti;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -53,5 +54,11 @@ public class ClassOverview extends AppCompatActivity {
         cd.showDialog(this);
     }
 
+
+    public void showPrimer(View v)
+    {
+        Intent intent = new Intent(this, TeacherOverview.class);
+        startActivity(intent);
+    }
 
 }

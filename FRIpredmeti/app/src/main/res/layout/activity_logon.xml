@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_shadow_start_color"
+    tools:context="si.lj.uni.fri.tpo.fripredmeti.Logon">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center"
+        android:id="@+id/fullscreen_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/til1"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:layout_below="@+id/editText"
+                android:layout_alignParentStart="true"
+                android:id="@+id/editText1"
+                android:hint="Uporabniško ime"
+                android:enabled="true"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:ems="10" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/til2"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp"
+            android:layout_below="@+id/til1">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:layout_below="@+id/editText"
+                android:layout_alignParentStart="true"
+                android:id="@+id/editText1"
+                android:hint="Geslo"
+                android:enabled="true"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:ems="10" />
+
+        </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummy_button"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="preskoči"
+                android:onClick="skip" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>
