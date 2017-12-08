@@ -8,3 +8,11 @@ C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriApli
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csproj.CoreCompileInputs.cache
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.dll
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.pdb
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll.config
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.pdb
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csprojResolveAssemblyReference.cache
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.pdb
