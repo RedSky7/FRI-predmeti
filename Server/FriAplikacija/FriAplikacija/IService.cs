@@ -16,10 +16,14 @@ namespace FriAplikacija
     {
         [OperationContract]
         [WebGet(UriTemplate = "Login", ResponseFormat = WebMessageFormat.Json)]
-        String Login();
+        Uporabnik Login();
 
         [OperationContract]
         [WebGet(UriTemplate = "Register", ResponseFormat = WebMessageFormat.Json)]
-         Uporabink Register();
+        Uporabnik Register();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "Verify", ResponseFormat = WebMessageFormat.Json)]
+        Uporabnik Verify();
     }
 }

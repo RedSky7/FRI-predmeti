@@ -8,9 +8,12 @@ using System.Runtime.Serialization;
 namespace FriAplikacija.Table {
 
     [DataContract]
-    public class Uporabink
+    public class Uporabnik
     {
-        public Uporabink(string email, string username, String geslo, string verificationCode) {
+        public Uporabnik() {
+        }
+
+        public Uporabnik(string email, string username, String geslo, string verificationCode) {
             this.email = email;
             this.username = username;
             this.geslo = geslo;
