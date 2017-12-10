@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using FriAplikacija.Table;
 
 namespace FriAplikacija
 {
@@ -16,5 +17,9 @@ namespace FriAplikacija
         [OperationContract]
         [WebGet(UriTemplate = "Login", ResponseFormat = WebMessageFormat.Json)]
         String Login();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "Register", ResponseFormat = WebMessageFormat.Json)]
+         Uporabink Register();
     }
 }

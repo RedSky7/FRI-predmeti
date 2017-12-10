@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -82,19 +85,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FriAplikacijaDB.mdf" />
-    <Content Include="App_Data\FriAplikacijaDB_log.ldf">
-      <DependentUpon>FriAplikacijaDB.mdf</DependentUpon>
-    </Content>
+    <Content Include="LICENSE.txt" />
     <Content Include="Service.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\UporabinkDataAccess.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
+    <Compile Include="Table\Encrypt.cs" />
+    <Compile Include="Table\Izvaja.cs" />
+    <Compile Include="Table\Izvajalec.cs" />
+    <Compile Include="Table\Komentar.cs" />
+    <Compile Include="Table\OcenaIzvajalca.cs" />
+    <Compile Include="Table\OcenaKomentar.cs" />
+    <Compile Include="Table\OcenaPredmeta.cs" />
+    <Compile Include="Table\Oznaka.cs" />
+    <Compile Include="Table\Podrocje.cs" />
+    <Compile Include="Table\Predmet.cs" />
+    <Compile Include="Table\Uporabink.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,3 +8,16 @@ C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Debug\FriAplika
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.dll
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.pdb
 C:\Users\SimonTusar\source\repos\FriAplikacija\FriAplikacija\bin\Newtonsoft.Json.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.csprojResolveAssemblyReference.cache
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.csproj.CoreCompileInputs.cache
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll.config
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Newtonsoft.Json.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.xml

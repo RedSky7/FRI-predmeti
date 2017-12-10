@@ -16,3 +16,16 @@ D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriApl
 D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csprojResolveAssemblyReference.cache
 D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.dll
 D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll.config
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Newtonsoft.Json.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.pdb
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.xml
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csprojResolveAssemblyReference.cache
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.csproj.CoreCompileInputs.cache
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.dll
+D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\obj\Release\FriAplikacija.pdb
