@@ -18,9 +18,8 @@ namespace FriAplikacija.DataAccess
             DataTable data = new DataTable("Uporabnik");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Uporabnik Where email = @email and geslo = @geslo and VerCode = \"\"", connection)) {
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Uporabnik Where email = @email and VerCode = ''", connection)) {
                     command.Parameters.Add(new SqlParameter("email", email));
-                    command.Parameters.Add(new SqlParameter("geslo", geslo));
                     using (SqlDataAdapter da = new SqlDataAdapter(command))
                         da.Fill(data);
                 }
@@ -28,10 +27,11 @@ namespace FriAplikacija.DataAccess
             }
             if (data.Rows.Count == 1) {
                 Uporabnik uporabnik = rowToUporabnik(data.Rows[0]);
-                return uporabnik;
-            } else {
-                return null;
+                if (BCrypt.Net.BCrypt.Verify(geslo + "^Y8~JJ", uporabnik.geslo)) {
+                    return uporabnik;
+                }
             }
+            return null;
         }
 
         public static Uporabnik register(String email, String geslo, String uporabniskoIme) {
@@ -69,7 +69,7 @@ namespace FriAplikacija.DataAccess
             try {
                 using (SqlConnection connection = new SqlConnection(SOURCE)) {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("Update Uporabnik SET VerCode = \"\" WHERE email = @email", connection)) {
+                    using (SqlCommand command = new SqlCommand("Update Uporabnik SET VerCode = '' WHERE email = @email", connection)) {
                         command.Parameters.Add(new SqlParameter("email", email));
                         command.ExecuteNonQuery();
                     }
@@ -125,7 +125,7 @@ namespace FriAplikacija.DataAccess
             DataTable data = new DataTable("Uporabnik");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Uporabnik Where Email = @email and VerCode = \"\"", connection)) {
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Uporabnik Where Email = @email and VerCode = ''", connection)) {
                     command.Parameters.Add(new SqlParameter("email", email));
                     using (SqlDataAdapter da = new SqlDataAdapter(command))
                         da.Fill(data);
@@ -142,6 +142,7 @@ namespace FriAplikacija.DataAccess
             Uporabnik uporabnik = new Uporabnik();
             uporabnik.email = row["Email"].ToString();
             uporabnik.username = row["Username"].ToString();
+            uporabnik.geslo = row["Geslo"].ToString();
             uporabnik.verificationCode = row["VerCode"].ToString();
             return uporabnik;
         }

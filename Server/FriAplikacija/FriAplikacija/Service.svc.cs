@@ -19,10 +19,7 @@ namespace FriAplikacija
             String email = ctx.IncomingRequest.Headers["email"]; ;
             String geslo = ctx.IncomingRequest.Headers["geslo"];
             Uporabnik uporabnik = UporabinkDataAccess.login(email, geslo);
-            if (uporabnik.verificationCode.Length == 0) {
-                return uporabnik;
-            }
-            return null;
+            return uporabnik;
         }
 
         public Uporabnik Register() {
