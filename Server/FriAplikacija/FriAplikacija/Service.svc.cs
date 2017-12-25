@@ -38,5 +38,12 @@ namespace FriAplikacija
             Uporabnik uporanik = UporabinkDataAccess.accountVerification(email, verCode);
             return uporanik;
         }
+
+        public Izvajalec GetIzvajalec() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
+            Izvajalec uporanik = IzvajalecDataAccess.getIzvajalec(izvajalecID);
+            return uporanik;
+        }
     }
 }

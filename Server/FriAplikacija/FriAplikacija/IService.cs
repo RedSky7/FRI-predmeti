@@ -14,6 +14,7 @@ namespace FriAplikacija
     [ServiceContract]
     public interface IService
     {
+        //Uporabnik
         [OperationContract]
         [WebGet(UriTemplate = "Login", ResponseFormat = WebMessageFormat.Json)]
         Uporabnik Login();
@@ -25,5 +26,10 @@ namespace FriAplikacija
         [OperationContract]
         [WebGet(UriTemplate = "Verify", ResponseFormat = WebMessageFormat.Json)]
         Uporabnik Verify();
+
+        //Izvajalec
+        [OperationContract]
+        [WebGet(UriTemplate = "Izvajalec", ResponseFormat = WebMessageFormat.Json)]
+        Izvajalec GetIzvajalec();
     }
 }
