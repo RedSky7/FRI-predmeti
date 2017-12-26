@@ -7,6 +7,19 @@ namespace FriAplikacija.Table
 {
     public class OcenaIzvajalca
     {
-        public byte splosnaOcena { get; set; }
+        public OcenaIzvajalca(int izvajalec, string email, int splosnaOcena, Komentar komentar) {
+            this.izvajalec.izvajalecID = izvajalec;
+            this.uporabnik.email = email;
+            this.splosnaOcena = splosnaOcena;
+            this.komentar = komentar;
+        }
+
+        public int splosnaOcena { get; set; }
+
+        public Komentar komentar { get; set; }
+
+        public Uporabnik uporabnik { get; set; }
+
+        public Izvajalec izvajalec { get; set; }
     }
 }

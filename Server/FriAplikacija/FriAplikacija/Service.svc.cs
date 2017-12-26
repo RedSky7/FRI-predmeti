@@ -45,5 +45,23 @@ namespace FriAplikacija
             Izvajalec uporanik = IzvajalecDataAccess.getIzvajalec(izvajalecID);
             return uporanik;
         }
+
+        
+        public List<OcenaIzvajalca> GetKomentarIzvajalec() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
+            List<OcenaIzvajalca> ocene = OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID);
+            return ocene;
+        }
+
+        public OcenaIzvajalca SetKomentarIzvajalec() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
+            String komentar = ctx.IncomingRequest.Headers["komentar"];
+            int splosnaOcena = Int32.Parse(ctx.IncomingRequest.Headers["splosnaOcena"]);
+            String email = ctx.IncomingRequest.Headers["email"];
+            
+            return ocene;
+        }
     }
 }
