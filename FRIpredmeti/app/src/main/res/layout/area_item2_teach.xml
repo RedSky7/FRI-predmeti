@@ -7,7 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/favorites"
-    android:onClick="startMainActivity">
+    android:onClick="startTeacherOverview">
 
 
     <!--
@@ -48,31 +48,38 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/fl">
+                android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/imageViewTOANIMATE"
-                    android:layout_weight="0"
+                <TextView
+                    android:text="1%"
+                    android:id="@+id/textView55"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_circle"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center_horizontal"
+                    android:textColorLink="@color/colorPrimary"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_height="64dp"
                     android:layout_width="64dp"
-                    android:layout_gravity="center" />
+                    android:textSize="16sp" />
 
-                <ImageView
-                    app:srcCompat="@drawable/ic_polygonal_chart_of_triangles"
-                    android:id="@+id/imageView14"
-                    android:tint="@android:color/white"
-                    android:layout_gravity="center"
-                    android:layout_height="46dp"
-                    android:layout_width="46dp" />
-
+                <TextView
+                    android:text="(61)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/te"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp" />
             </FrameLayout>
 
-
             <TextView
-                android:text="Računalniška grafika"
+                android:text="Luka Kadunc"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
                 android:gravity="center_horizontal"
@@ -82,7 +89,6 @@
                 android:layout_weight="0" />
 
         </LinearLayout>
-
 
     </android.support.v7.widget.CardView>
 
