@@ -182,7 +182,7 @@
                 <TextView
                     android:text="Umetna inteligenca"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView6"
+                    android:id="@+id/textView62"
                     android:layout_below="@+id/imageView7"
                     android:layout_marginTop="16dp"
                     android:layout_centerHorizontal="true"
@@ -212,7 +212,7 @@
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView6"
+                    android:id="@+id/textView61"
                     android:layout_below="@+id/imageView9" />
             </RelativeLayout>
 
@@ -239,7 +239,7 @@
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView20"
+                    android:id="@+id/textView22"
                     android:layout_below="@+id/imageView10" />
             </RelativeLayout>
 
@@ -266,7 +266,7 @@
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView20"
+                    android:id="@+id/textView23"
                     android:layout_below="@+id/imageView8" />
             </RelativeLayout>
 
@@ -281,38 +281,38 @@
         android:id="@+id/kdsa"
         android:visibility="gone">
 
-        <include layout="@layout/class_row2"></include>
+        <include layout="@layout/class_row3"></include>
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/jh"
         android:layout_below="@+id/spinner"
-        android:background="@color/cardview_shadow_end_color">
+        android:background="@color/cardview_shadow_end_color"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
-            android:layout_marginLeft="10dp"
+
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:id="@+id/ss">
-        <include layout="@layout/class_row"></include>
+        <include layout="@layout/area_item"></include>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ss"
-            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
-            <include layout="@layout/class_row"></include>
+            <include layout="@layout/area_item2"></include>
         </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

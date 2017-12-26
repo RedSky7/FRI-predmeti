@@ -88,6 +88,24 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             }
         });
 
+
+        Button add = (Button) dialog.findViewById(R.id.button2);
+        add.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: save to DB
+                dialog.dismiss();
+            }
+        });
+
+        Button cancel = (Button) dialog.findViewById(R.id.button3);
+        cancel.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
         return dialog;
     }

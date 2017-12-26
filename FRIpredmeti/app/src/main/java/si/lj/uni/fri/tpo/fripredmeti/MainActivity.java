@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements  SearchView.OnQue
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setTitle("Grafika in umetna inteligenca");
+        getSupportActionBar().setTitle("Strojna oprema");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
     }
@@ -36,6 +36,18 @@ public class MainActivity extends AppCompatActivity implements  SearchView.OnQue
     {
         Intent intent = new Intent(this, ClassOverview.class);
         startActivity(intent);
+    }
+
+    public void startMainActivity(View v)
+    {
+        Intent intent = new Intent(this, ClassOverview.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
