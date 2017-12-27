@@ -67,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -88,20 +87,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-
-                //testno poganjaj samo moj activity
-                Intent myIntent = new Intent(LoginActivity.this, TeacherOverview.class);
-                myIntent.putExtra("teacherID", 1);
-                LoginActivity.this.startActivity(myIntent);
+                attemptLogin();
             }
         });
 
         //mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
-
     }
 
     private void populateAutoComplete() {

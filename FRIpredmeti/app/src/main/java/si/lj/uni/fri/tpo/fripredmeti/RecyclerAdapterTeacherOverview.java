@@ -72,17 +72,13 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
 
     }
 
-    public void addData(String data){
-        dataSource.add(data);
-    }
-
     public void fillData(int type)
     {
         switch (type)
         {
             case 0: //filamo PREDMETI
-                //dataSource.add("Računalniška arhitektura");
-                //dataSource.add("Organizacija računalnikov");
+                dataSource.add("Računalniška arhitektura");
+                dataSource.add("Organizacija računalnikov");
                 break;
             case 1:    //filamo TEHNOLOGIJE
                 dataSource.add("webGL");

@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -42,14 +41,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
-
-import si.lj.uni.fri.tpo.fripredmeti.REST.SendComment;
 
 /**
  * Created by timko on 6. 09. 2017.
@@ -57,10 +52,6 @@ import si.lj.uni.fri.tpo.fripredmeti.REST.SendComment;
 
 public class CommentDialog  implements DialogInterface.OnDismissListener{
     private Activity mActivity;
-    private SeekBar splosnaOcena;
-    private SeekBar tezavnost;
-    private SeekBar zanimivost;
-    private EditText komentar;
 
     public CommentDialog(Activity a)
     {
@@ -74,11 +65,6 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.comment_dialog);
-
-        splosnaOcena = (SeekBar)dialog.findViewById(R.id.seekBar2);
-        tezavnost    = (SeekBar)dialog.findViewById(R.id.seekBar22);
-        zanimivost   = (SeekBar)dialog.findViewById(R.id.seekBar23);
-        komentar     = (EditText)dialog.findViewById(R.id.editText);
 
         CardView cv = (CardView) dialog.findViewById(R.id.card_more);
         cv.setOnClickListener(new View.OnClickListener()
@@ -103,31 +89,15 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         });
 
 
-        //dodajanje komentarja
         Button add = (Button) dialog.findViewById(R.id.button2);
         add.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: save to DB
-                //String ocena = splosnaOcena.toString();
-                //String k = komentar.getText().toString();
-
-                try {
-                    String odgovor = new SendComment().execute().get();
-                    //Toast.makeText(TeacherOverview.this, t.toString(), Toast.LENGTH_SHORT).show();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-
                 dialog.dismiss();
-
             }
         });
 
-
-        //preklic dodajanje komentarja
         Button cancel = (Button) dialog.findViewById(R.id.button3);
         cancel.setOnClickListener(new Button.OnClickListener() {
             @Override

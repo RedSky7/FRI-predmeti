@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FRIpredmeti.iml" filepath="$PROJECT_DIR$/FRIpredmeti.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Blaz\Documents\Sola\Faks\3. Letnik\TPO\FRI-predmeti-master\FRIpredmeti\app\app.iml" filepath="C:\Users\Blaz\Documents\Sola\Faks\3. Letnik\TPO\FRI-predmeti-master\FRIpredmeti\app\app.iml" />
     </modules>
   </component>
 </project>
