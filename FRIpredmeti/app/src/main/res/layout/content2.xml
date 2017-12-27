@@ -39,6 +39,7 @@ android:layout_height="match_parent"
             android:id="@+id/success">
 
 
+            <!--
             <TextView
                 android:id="@+id/textView4"
                 android:layout_weight="1"
@@ -52,19 +53,37 @@ android:layout_height="match_parent"
                 android:layout_width="64dp"
                 android:textSize="16sp"
                 android:text="slika"
-                android:backgroundTint="@color/colorPrimary" />
+                android:backgroundTint="@color/colorPrimary" />-->
 
+            <ImageView
+
+                android:id="@+id/imSlika"
+                android:layout_weight="1"
+                android:background="@drawable/ic_circle"
+                android:gravity="center"
+                android:layout_above="@+id/textView12"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView5"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium"
+                android:layout_gravity="center_horizontal"
+                android:textColorLink="@color/colorPrimary"
+                android:layout_height="64dp"
+                android:layout_width="64dp"
+                android:textSize="16sp"
+                android:text="slika"
+                />
 
 
             <TextView
-                android:text="izr. prof. dr."
+                android:id="@+id/tvNaziv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="izr. prof. dr." />
         </LinearLayout>
 
         <LinearLayout
@@ -88,18 +107,18 @@ android:layout_height="match_parent"
 
 -->
             <TextView
-                android:text="70%"
-                android:id="@+id/textView77"
+                android:id="@+id/tvPriljbuljenost"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="@drawable/ic_circle"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-medium"
-                android:layout_gravity="center_horizontal"
-                android:textColorLink="@color/colorPrimary"
                 android:backgroundTint="@color/colorAccent"
-                android:layout_height="64dp"
-                android:layout_width="64dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="70%"
+                android:textColor="@android:color/white"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="16sp" />
             <TextView
                 android:text="Priljubljenost"
