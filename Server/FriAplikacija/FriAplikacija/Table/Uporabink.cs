@@ -13,6 +13,10 @@ namespace FriAplikacija.Table {
         public Uporabnik() {
         }
 
+        public Uporabnik(String email) {
+            this.email = email;
+        }
+
         public Uporabnik(string email, string username, String geslo, string verificationCode) {
             this.email = email;
             this.username = username;

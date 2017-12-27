@@ -38,7 +38,7 @@ namespace FriAplikacija
         List<OcenaIzvajalca> GetKomentarIzvajalec();
 
         [OperationContract]
-        [WebGet(UriTemplate = "SetKomentarIzvajalec", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = "KomentirajIzvaj", ResponseFormat = WebMessageFormat.Json)]
         OcenaIzvajalca SetKomentarIzvajalec();
     }
 }

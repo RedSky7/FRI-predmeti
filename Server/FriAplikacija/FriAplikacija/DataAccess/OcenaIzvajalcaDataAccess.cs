@@ -30,29 +30,35 @@ namespace FriAplikacija.DataAccess {
         }
 
         public static OcenaIzvajalca addOcenaIzvajalca(int izvajalecID, String email, String komentar, int splosnaOcena) {
-            if (UporabinkDataAccess.getEmail(email)) {
+            if (!UporabinkDataAccess.getEmail(email)) {
                 return null;
             }
             try {
-
                 using (SqlConnection connection = new SqlConnection(SOURCE)) {
                     connection.Open();
-                    OcenaIzvajalca ocenaIzvajalca = new OcenaIzvajalca(izvajalecID, email, splosnaOcena, null);
+                    DateTime dateTime = DateTime.UtcNow;
+                    OcenaIzvajalca ocenaIzvajalca = new OcenaIzvajalca(izvajalecID, email, splosnaOcena, dateTime);
                     if (komentar.Length > 0) {
-                        Komentar komentarS = new Komentar(komentar, 0, DateTime.Now);
-                        using (SqlCommand command = new SqlCommand("INSERT INTO Komentar (Komentar,OcenaKomentar,Datum) VALUES (@komentar,@ocenaKomentar,@date)", connection)) {
+                        Komentar komentarS = new Komentar(komentar, 0, dateTime);
+                        using (SqlCommand command = new SqlCommand("INSERT INTO Komentar (Komentar,OcenaKomentarja,Datum) VALUES (@komentar,@ocenaKomentar,@date)", connection)) {
                             command.Parameters.Add(new SqlParameter("komentar", komentarS.komentar));
                             command.Parameters.Add(new SqlParameter("ocenaKomentar", komentarS.ocenaKomentar));
-                            command.Parameters.Add(new SqlParameter("date", komentarS.datum));
+                            command.Parameters.Add(new SqlParameter("date", komentarS.datum.ToString()));
                             command.ExecuteNonQuery();
+                            komentarS.komentarID = getKomentarID(komentar, dateTime);
                             ocenaIzvajalca.komentar = komentarS;
                         }
                     }
-                    using (SqlCommand command = new SqlCommand("INSERT INTO OcenaIzvajalca (Email,SplosnaOcena,IzvajalecID,komentar) VALUES (@email,@splosnaOcena,@izvajalecID,@komentar)", connection)) {
+                    using (SqlCommand command = new SqlCommand("INSERT INTO OcenaIzvajalca (Email,SplosnaOcena,IzvajalecID,komentarID,datum) VALUES (@email,@splosnaOcena,@izvajalecID,@komentar,@date)", connection)) {
                         command.Parameters.Add(new SqlParameter("email", email));
                         command.Parameters.Add(new SqlParameter("splosnaOcena", ocenaIzvajalca.splosnaOcena));
-                        command.Parameters.Add(new SqlParameter("izvajalecID", ocenaIzvajalca.izvajalec));
-                        command.Parameters.Add(new SqlParameter("komentar", ocenaIzvajalca.komentar != null));
+                        command.Parameters.Add(new SqlParameter("izvajalecID", ocenaIzvajalca.izvajalec.izvajalecID));
+                        command.Parameters.Add(new SqlParameter("date", ocenaIzvajalca.date.ToString()));
+                        if (ocenaIzvajalca.komentar != null) {
+                            command.Parameters.Add(new SqlParameter("komentar", ocenaIzvajalca.komentar.komentarID));
+                        } else {
+                            command.Parameters.Add(new SqlParameter("komentar", DBNull.Value));
+                        }
                         command.ExecuteNonQuery();
                     }
                     connection.Close();
@@ -62,6 +68,24 @@ namespace FriAplikacija.DataAccess {
                 Console.WriteLine(e.Message);
             }
             return null;
+        }
+
+        private static int getKomentarID(String komentar, DateTime date) {
+            DataTable data = new DataTable("Komentar");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT KomentarID FROM Komentar WHERE Datum=@date and komentar=@komentar", connection)) {
+                    command.Parameters.Add(new SqlParameter("komentar", komentar));
+                    command.Parameters.Add(new SqlParameter("date", date.ToString()));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count > 0) {
+                return Int32.Parse(data.Rows[0][0].ToString());
+            }
+            return -1;
         }
 
         private static List<OcenaIzvajalca> rowsToOcene(DataTable data) {
@@ -81,7 +105,7 @@ namespace FriAplikacija.DataAccess {
             uporabnik.email = row["Email"].ToString();
             uporabnik.username = row["Username"].ToString();
             komentar.komentar = row["Komentar"].ToString();
-            komentar.datum = DateTime.Parse(row["Datum"].ToString());
+            komentar.datum = row["Datum"].ToString();
             ocena.splosnaOcena = Int32.Parse(row["SplosnaOcena"].ToString());
             ocena.uporabnik = uporabnik;
             ocena.komentar = komentar;

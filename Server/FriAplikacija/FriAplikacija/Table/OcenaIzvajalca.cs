@@ -7,14 +7,19 @@ namespace FriAplikacija.Table
 {
     public class OcenaIzvajalca
     {
-        public OcenaIzvajalca(int izvajalec, string email, int splosnaOcena, Komentar komentar) {
-            this.izvajalec.izvajalecID = izvajalec;
-            this.uporabnik.email = email;
+        public OcenaIzvajalca() {
+        }
+
+        public OcenaIzvajalca(int izvajalec, string email, int splosnaOcena, DateTime date) {
+            this.izvajalec = new Izvajalec(izvajalec);
+            this.uporabnik = new Uporabnik(email);
             this.splosnaOcena = splosnaOcena;
-            this.komentar = komentar;
+            this.date = date.ToString();
         }
 
         public int splosnaOcena { get; set; }
+
+        public String date { get; set; }
 
         public Komentar komentar { get; set; }
 

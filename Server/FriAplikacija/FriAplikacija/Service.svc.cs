@@ -16,52 +16,49 @@ namespace FriAplikacija
     public class Service : IService {
         public Uporabnik Login() {
             WebOperationContext ctx = WebOperationContext.Current;
-            String email = ctx.IncomingRequest.Headers["email"]; ;
-            String geslo = ctx.IncomingRequest.Headers["geslo"];
-            Uporabnik uporabnik = UporabinkDataAccess.login(email, geslo);
-            return uporabnik;
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            String geslo = ctx.IncomingRequest.Headers["geslo"].ToString();
+            return UporabinkDataAccess.login(email, geslo);
         }
 
         public Uporabnik Register() {
             WebOperationContext ctx = WebOperationContext.Current;
-            String email = ctx.IncomingRequest.Headers["email"]; ;
-            String geslo = ctx.IncomingRequest.Headers["geslo"];
-            String uporabniskoIme = ctx.IncomingRequest.Headers["uporabniskoIme"];
-            Uporabnik uporanik = UporabinkDataAccess.register(email,geslo,uporabniskoIme);
-            return uporanik;
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            String geslo = ctx.IncomingRequest.Headers["geslo"].ToString();
+            String uporabniskoIme = ctx.IncomingRequest.Headers["uporabniskoIme"].ToString();
+            return UporabinkDataAccess.register(email,geslo,uporabniskoIme);
         }
     
         public Uporabnik Verify() {
             WebOperationContext ctx = WebOperationContext.Current;
-            String email = ctx.IncomingRequest.Headers["email"]; ;
-            String verCode = ctx.IncomingRequest.Headers["verCode"];
-            Uporabnik uporanik = UporabinkDataAccess.accountVerification(email, verCode);
-            return uporanik;
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            String verCode = ctx.IncomingRequest.Headers["verCode"].ToString();
+            return UporabinkDataAccess.accountVerification(email, verCode);
         }
 
         public Izvajalec GetIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
-            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
-            Izvajalec uporanik = IzvajalecDataAccess.getIzvajalec(izvajalecID);
-            return uporanik;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
+            return IzvajalecDataAccess.getIzvajalec(izvajalecID);
         }
 
         
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
-            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
-            List<OcenaIzvajalca> ocene = OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID);
-            return ocene;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
+            return OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID);
         }
 
         public OcenaIzvajalca SetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
-            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
-            String komentar = ctx.IncomingRequest.Headers["komentar"];
-            int splosnaOcena = Int32.Parse(ctx.IncomingRequest.Headers["splosnaOcena"]);
-            String email = ctx.IncomingRequest.Headers["email"];
-            
-            return ocene;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
+            String komentar = "";
+            if (ctx.IncomingRequest.Headers["komentar"] != null) {
+                komentar = ctx.IncomingRequest.Headers["komentar"].ToString();
+            }
+            int splosnaOcena = Int32.Parse(ctx.IncomingRequest.Headers["splosnaOcena"].ToString());
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            return OcenaIzvajalcaDataAccess.addOcenaIzvajalca(izvajalecID, email, komentar, splosnaOcena);
         }
     }
 }
