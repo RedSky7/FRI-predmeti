@@ -39,6 +39,7 @@ namespace FriAplikacija.DataAccess {
                     DateTime dateTime = DateTime.UtcNow;
                     OcenaIzvajalca ocenaIzvajalca = new OcenaIzvajalca(izvajalecID, email, splosnaOcena, dateTime);
                     if (komentar.Length > 0) {
+                        komentar = komentar.Replace('|', ' ');
                         Komentar komentarS = new Komentar(komentar, 0, dateTime);
                         using (SqlCommand command = new SqlCommand("INSERT INTO Komentar (Komentar,OcenaKomentarja,Datum) VALUES (@komentar,@ocenaKomentar,@date)", connection)) {
                             command.Parameters.Add(new SqlParameter("komentar", komentarS.komentar));
