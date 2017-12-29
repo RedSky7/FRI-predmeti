@@ -22,14 +22,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
-import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeacherData;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeacher;
 import si.lj.uni.fri.tpo.fripredmeti.REST.ImageDownloader;
 
 public class TeacherOverview extends AppCompatActivity {
 
     private TextView tvPriljubljenost;
-    //private TextView tvSlika;
     private TextView tvNaziv;
+    private TextView tvEmail;
     private ImageView imSlika;
 
     private Teacher t;
@@ -50,6 +50,7 @@ public class TeacherOverview extends AppCompatActivity {
         tvPriljubljenost  = (TextView)findViewById(R.id.tvPriljbuljenost);
         tvNaziv           = (TextView)findViewById(R.id.tvNaziv);
         imSlika           = (ImageView)findViewById(R.id.imSlika);
+        tvEmail           = (TextView)findViewById(R.id.teacherContact);
 
         //dinamično dodaj seznam predmetov
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view_teacher_overview_PREDMETI);
@@ -74,13 +75,24 @@ public class TeacherOverview extends AppCompatActivity {
         recyclerView2.setAdapter(adapter2);
 
 
+        //dinamično dodaj predmete
+        RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.recycler_view_teacher_overview_COMMENTS);
+        recyclerView3.setHasFixedSize(true);
+        recyclerView3.setNestedScrollingEnabled(false);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(this);
+        recyclerView3.setLayoutManager(layoutManager3);
+        RecyclerAdapterCommentOverview adapter3 = new RecyclerAdapterCommentOverview(this, 0);
+        recyclerView3.setAdapter(adapter3);
+
+
+        //prikaži ikono za komentiraje, na koncu scrollanja
         ScrollView sv = (ScrollView) findViewById(R.id.sw);
         sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Rect scrollBounds = new Rect();
                 v.getHitRect(scrollBounds);
-                FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl2);
+                FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl);
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
                 if (tv15.getLocalVisibleRect(scrollBounds)) {
                     fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
@@ -100,13 +112,12 @@ public class TeacherOverview extends AppCompatActivity {
 
         //pridobi podatke o predavatelju
         try {
-            t = new GetTeacherData().execute(izvajalecID).get();
-
+            t = new GetTeacher().execute(izvajalecID).get();
             Bitmap image = new ImageDownloader().execute(t.getSlika()).get();
             imSlika.setBackground(new BitmapDrawable(getResources(), image));
-
             Toast.makeText(TeacherOverview.this, t.toString(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
+            Toast.makeText(TeacherOverview.this, "There was error connecting to server!", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
@@ -114,6 +125,7 @@ public class TeacherOverview extends AppCompatActivity {
         getSupportActionBar().setTitle(t.toString());
         tvPriljubljenost.setText(Double.toString(t.splosnaOcena()));
         tvNaziv.setText(t.getNaziv());
+        tvEmail.setText(t.getEmail());
     }
 
     @Override
@@ -127,6 +139,7 @@ public class TeacherOverview extends AppCompatActivity {
     {
         CommentDialog cd = new CommentDialog(this);
         cd.showDialog(this);
+
     }
 
 

@@ -2,6 +2,7 @@ package si.lj.uni.fri.tpo.fripredmeti.REST;
 
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -12,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
+import si.lj.uni.fri.tpo.fripredmeti.TeacherOverview;
 
 /**
  * Created by Blaz on 27-Dec-17.
@@ -33,10 +35,10 @@ public class SendComment extends AsyncTask<String, Void, String> {
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
             //KomentirajIzvajalca|izvajalecID|komentar|splosnaOcena|email
-            connection.setRequestProperty("komentar", "Komentiranje presledek");
-            connection.setRequestProperty("izvajalecID", "1");
-            connection.setRequestProperty("splosnaOcena", "1");
-            connection.setRequestProperty("email", "blaz");
+            connection.setRequestProperty("komentar", params[0]);
+            connection.setRequestProperty("izvajalecID", params[1]);
+            connection.setRequestProperty("splosnaOcena", params[2]);
+            connection.setRequestProperty("email", params[3]);
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();
@@ -48,11 +50,10 @@ public class SendComment extends AsyncTask<String, Void, String> {
             }
 
             JSONObject jsonObject = new JSONObject(resultT.toString());
-            if(jsonObject != null)
-                result = "Success";
+            result = jsonObject.getString("date");
+
         }
         catch (Exception e) {
-            // Writing exception to log
             e.printStackTrace();
         }
 
@@ -61,7 +62,7 @@ public class SendComment extends AsyncTask<String, Void, String> {
 
 
     @Override
-    protected void onPostExecute(String t) {
+    protected void onPostExecute(String s) {
 
     }
 }

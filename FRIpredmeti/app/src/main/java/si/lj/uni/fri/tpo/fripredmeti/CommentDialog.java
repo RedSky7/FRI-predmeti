@@ -60,7 +60,7 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
     private SeekBar splosnaOcena;
     private SeekBar tezavnost;
     private SeekBar zanimivost;
-    private EditText komentar;
+    private EditText mnenje;
 
     public CommentDialog(Activity a)
     {
@@ -78,7 +78,7 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         splosnaOcena = (SeekBar)dialog.findViewById(R.id.seekBar2);
         tezavnost    = (SeekBar)dialog.findViewById(R.id.seekBar22);
         zanimivost   = (SeekBar)dialog.findViewById(R.id.seekBar23);
-        komentar     = (EditText)dialog.findViewById(R.id.editText);
+        mnenje     = (EditText)dialog.findViewById(R.id.comment);
 
         CardView cv = (CardView) dialog.findViewById(R.id.card_more);
         cv.setOnClickListener(new View.OnClickListener()
@@ -109,12 +109,12 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             @Override
             public void onClick(View v) {
                 //TODO: save to DB
-                //String ocena = splosnaOcena.toString();
-                //String k = komentar.getText().toString();
+                String ocena = Integer.toString(splosnaOcena.getProgress());
 
                 try {
-                    String odgovor = new SendComment().execute().get();
-                    //Toast.makeText(TeacherOverview.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    //komentar, izvajalecID, splosnaOcena, email
+                    new SendComment().execute(mnenje.getText().toString(), "1", ocena, "blaz").get();
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

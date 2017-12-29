@@ -90,6 +90,11 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
                 dataSource.add("CSS");
                 dataSource.add("JavaScript");
                 break;
+
+            case 2:    //filamo TEHNOLOGIJE
+                dataSource.add("Komenta1");
+
+                break;
         }
 
     }

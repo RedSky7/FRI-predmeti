@@ -29,9 +29,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
+import si.lj.uni.fri.tpo.fripredmeti.Model.User;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeacher;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetUser;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -100,6 +107,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+
+        String email = "blaz";
+        String password = "blaz";
+        try {
+            //User u = new GetUser().execute(email, password).get();
+            User u = new GetUser().execute(email, password).get();
+            Toast.makeText(LoginActivity.this, "Hello " + u.getUsername(), Toast.LENGTH_SHORT).show();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
 
     }

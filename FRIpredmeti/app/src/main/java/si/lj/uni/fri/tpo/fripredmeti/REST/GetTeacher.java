@@ -20,7 +20,7 @@ import si.lj.uni.fri.tpo.fripredmeti.TeacherOverview;
  * Created by Blaz on 27-Dec-17.
  */
 
-public class GetTeacherData extends AsyncTask<Integer, Void, Teacher> {
+public class GetTeacher extends AsyncTask<Integer, Void, Teacher> {
 
     @Override
     protected Teacher doInBackground(Integer... params)
@@ -49,7 +49,8 @@ public class GetTeacherData extends AsyncTask<Integer, Void, Teacher> {
                     jsonObj.getString("opis"),
                     jsonObj.getString("priimek"),
                     jsonObj.getString("slika"),
-                    jsonObj.getDouble("splosnaOcena"));
+                    jsonObj.getDouble("splosnaOcena"),
+                    jsonObj.getString("email"));
         }
         catch (UnknownHostException e)
         {

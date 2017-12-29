@@ -11,9 +11,10 @@ public class Teacher {
     private String opis;
     private String priimek;
     private String slika;
+    private String email;
     private double splosnaOcena;
 
-    public Teacher(int teacherID, String ime, String naziv, String opis, String priimek, String slika, double splosnaOcena) {
+    public Teacher(int teacherID, String ime, String naziv, String opis, String priimek, String slika, double splosnaOcena, String email) {
         this.teacherID = teacherID;
         this.ime = ime;
         this.naziv = naziv;
@@ -21,6 +22,7 @@ public class Teacher {
         this.priimek = priimek;
         this.slika = slika;
         this.splosnaOcena = splosnaOcena;
+        this.email = email;
     }
 
     public String toString(){
@@ -44,4 +46,6 @@ public class Teacher {
     }
 
     public String getSlika() { return slika; }
+
+    public String getEmail() { return email; }
 }
