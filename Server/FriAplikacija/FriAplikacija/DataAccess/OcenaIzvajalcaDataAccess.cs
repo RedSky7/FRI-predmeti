@@ -39,16 +39,7 @@ namespace FriAplikacija.DataAccess {
                     DateTime dateTime = DateTime.UtcNow;
                     OcenaIzvajalca ocenaIzvajalca = new OcenaIzvajalca(izvajalecID, email, splosnaOcena, dateTime);
                     if (komentar.Length > 0) {
-                        komentar = komentar.Replace('|', ' ');
-                        Komentar komentarS = new Komentar(komentar, 0, dateTime);
-                        using (SqlCommand command = new SqlCommand("INSERT INTO Komentar (Komentar,OcenaKomentarja,Datum) VALUES (@komentar,@ocenaKomentar,@date)", connection)) {
-                            command.Parameters.Add(new SqlParameter("komentar", komentarS.komentar));
-                            command.Parameters.Add(new SqlParameter("ocenaKomentar", komentarS.ocenaKomentar));
-                            command.Parameters.Add(new SqlParameter("date", komentarS.datum.ToString()));
-                            command.ExecuteNonQuery();
-                            komentarS.komentarID = getKomentarID(komentar, dateTime);
-                            ocenaIzvajalca.komentar = komentarS;
-                        }
+                        ocenaIzvajalca.komentar = KomentarDataAccess.addKomentar(komentar, dateTime);
                     }
                     using (SqlCommand command = new SqlCommand("INSERT INTO OcenaIzvajalca (Email,SplosnaOcena,IzvajalecID,komentarID,datum) VALUES (@email,@splosnaOcena,@izvajalecID,@komentar,@date)", connection)) {
                         command.Parameters.Add(new SqlParameter("email", email));
@@ -71,31 +62,11 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
-        private static int getKomentarID(String komentar, DateTime date) {
-            DataTable data = new DataTable("Komentar");
-            using (SqlConnection connection = new SqlConnection(SOURCE)) {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT KomentarID FROM Komentar WHERE Datum=@date and komentar=@komentar", connection)) {
-                    command.Parameters.Add(new SqlParameter("komentar", komentar));
-                    command.Parameters.Add(new SqlParameter("date", date.ToString()));
-                    using (SqlDataAdapter da = new SqlDataAdapter(command))
-                        da.Fill(data);
-                }
-                connection.Close();
-            }
-            if (data.Rows.Count > 0) {
-                return Int32.Parse(data.Rows[0][0].ToString());
-            }
-            return -1;
-        }
-
         private static List<OcenaIzvajalca> rowsToOcene(DataTable data) {
             List<OcenaIzvajalca> ocene = new List<OcenaIzvajalca>();
-
             foreach(DataRow row in data.Rows){
                 ocene.Add(rowToOcena(row));
             }
-
             return ocene;
         }
 

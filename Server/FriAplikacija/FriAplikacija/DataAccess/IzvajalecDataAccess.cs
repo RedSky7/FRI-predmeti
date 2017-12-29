@@ -38,6 +38,7 @@ namespace FriAplikacija.DataAccess {
             izvajalec.slika = row["slika"].ToString();
             izvajalec.opis = row["opis"].ToString();
             izvajalec.naziv = row["naziv"].ToString();
+            izvajalec.email = row["email"].ToString();
             return izvajalec;
         }
     }
