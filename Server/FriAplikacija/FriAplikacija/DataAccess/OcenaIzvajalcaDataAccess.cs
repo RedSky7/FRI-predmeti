@@ -23,8 +23,7 @@ namespace FriAplikacija.DataAccess {
                 connection.Close();
             }
             if (data.Rows.Count >= 1) {
-                List<OcenaIzvajalca> ocene = rowsToOcene(data);
-                return ocene;
+                return rowsToOcene(data);
             }
             return null;
         }

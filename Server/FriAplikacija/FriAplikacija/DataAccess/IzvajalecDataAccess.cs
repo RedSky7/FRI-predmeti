@@ -30,6 +30,30 @@ namespace FriAplikacija.DataAccess {
             }
         }
 
+        internal static List<Izvajalec> getAllIzvajalci() {
+            DataTable data = new DataTable("Izvajalec");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Izvajalec", connection)) {
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count >= 1) {
+                return rowsToIzvajalci(data);
+            }
+            return null;
+        }
+
+        private static List<Izvajalec> rowsToIzvajalci(DataTable data) {
+            List<Izvajalec> izvajalci = new List<Izvajalec>();
+            foreach (DataRow row in data.Rows) {
+                izvajalci.Add(rowToIzvajalec(row));
+            }
+            return izvajalci;
+        }
+
         private static Izvajalec rowToIzvajalec(DataRow row) {
             Izvajalec izvajalec = new Izvajalec();
             izvajalec.izvajalecID = Int32.Parse(row["IzvajalecID"].ToString());
