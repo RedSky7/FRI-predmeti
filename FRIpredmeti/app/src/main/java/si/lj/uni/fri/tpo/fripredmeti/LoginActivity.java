@@ -221,12 +221,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+
+        // mail ==> |ime.priimek|@|fri.uni-lj.si| ==> profesorji, asistenti, izvajalci
+        //          |xx0000|@|student.uni-lj.si| ==> studenti
+        if(email.contains("@")) {
+            String temp[] = email.split("@"); // temp[0] ==> account   temp[1] ==> domain
+            //----------------------------------------------------------------------------------
+            if(temp[1].equals("student.uni-lj.si")){
+                if(temp[0].matches("[a-z][a-z][0-9][0-9][0-9][0-9]"))
+                    return true;
+            }
+            //----------------------------------------------------------------------------------
+            else if(temp[1].equals("fri.uni-lj.si")){
+                if(temp[0].matches("[a-z]+\\.[a-z]+"))
+                    return true;
+            }
+            //----------------------------------------------------------------------------------
+        }
+        return false;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 8;
     }
 
     /**
