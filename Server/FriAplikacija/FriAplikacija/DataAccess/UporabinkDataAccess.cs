@@ -114,8 +114,7 @@ namespace FriAplikacija.DataAccess
                 connection.Close();
             }
             if (data.Rows.Count == 1) {
-                Uporabnik uporabnik = rowToUporabnik(data.Rows[0]);
-                return uporabnik;
+                return rowToUporabnik(data.Rows[0]);
             } else {
                 return null;
             }

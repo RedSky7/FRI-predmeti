@@ -42,7 +42,12 @@ namespace FriAplikacija
             return IzvajalecDataAccess.getIzvajalec(izvajalecID);
         }
 
-        
+        public List<Izvajalec> AllIzvajalci() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            return IzvajalecDataAccess.getAllIzvajalci();
+        }
+
+
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
