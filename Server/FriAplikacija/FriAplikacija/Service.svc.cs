@@ -76,5 +76,11 @@ namespace FriAplikacija
             WebOperationContext ctx = WebOperationContext.Current;
             return PredmetDataAccess.getAllPredmeti();
         }
+
+        public List<Predmet> PredmetiForIzvajalec() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
+            return PredmetDataAccess.getPredmetiForIzvajalec(izvajalecID);
+        }
     }
 }
