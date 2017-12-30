@@ -7,12 +7,8 @@ package si.lj.uni.fri.tpo.fripredmeti;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.media.Image;
-import android.net.Uri;
-import android.util.Log;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,32 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import si.lj.uni.fri.tpo.fripredmeti.REST.SendComment;
@@ -78,7 +53,9 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         splosnaOcena = (SeekBar)dialog.findViewById(R.id.seekBar2);
         tezavnost    = (SeekBar)dialog.findViewById(R.id.seekBar22);
         zanimivost   = (SeekBar)dialog.findViewById(R.id.seekBar23);
-        mnenje     = (EditText)dialog.findViewById(R.id.comment);
+        mnenje       = (EditText)dialog.findViewById(R.id.comment);
+
+        splosnaOcena.setProgress(2);
 
         CardView cv = (CardView) dialog.findViewById(R.id.card_more);
         cv.setOnClickListener(new View.OnClickListener()
@@ -102,17 +79,43 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             }
         });
 
+        splosnaOcena.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                final Drawable one = ContextCompat.getDrawable(mActivity, R.drawable.one);
+                final Drawable two = ContextCompat.getDrawable(mActivity, R.drawable.two);
+                final Drawable three = ContextCompat.getDrawable(mActivity, R.drawable.three);
+                final Drawable four = ContextCompat.getDrawable(mActivity, R.drawable.four);
+                final Drawable five = ContextCompat.getDrawable(mActivity, R.drawable.five);
+
+                switch (progress){
+                    case 0: splosnaOcena.setThumb(one); break;
+                    case 1: splosnaOcena.setThumb(two); break;
+                    case 2: splosnaOcena.setThumb(three); break;
+                    case 3: splosnaOcena.setThumb(four); break;
+                    case 4: splosnaOcena.setThumb(five); break;
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         //dodajanje komentarja
         Button add = (Button) dialog.findViewById(R.id.button2);
         add.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: save to DB
-                String ocena = Integer.toString(splosnaOcena.getProgress());
-
+                String ocena = Integer.toString(splosnaOcena.getProgress()+1);
                 try {
-                    //komentar, izvajalecID, splosnaOcena, email
+                    //TODO: komentar, izvajalecID, splosnaOcena, email
                     new SendComment().execute(mnenje.getText().toString(), "1", ocena, "blaz").get();
 
                 } catch (InterruptedException e) {

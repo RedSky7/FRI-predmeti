@@ -13,17 +13,17 @@
         android:layout_gravity="center_vertical">
 
         <ImageButton
+            android:id="@+id/upVote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_expand_less_black_24dp"
-            android:id="@+id/imageButton"
             android:layout_weight="0"
             android:background="@null"
             android:padding="6dp"
-            android:tint="@color/colorPrimary"
-            android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:paddingRight="6dp" />
+            android:paddingRight="6dp"
+            android:paddingTop="6dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_expand_less_black_24dp" />
 
         <TextView
             android:text="12"
@@ -36,15 +36,15 @@
             android:fontFamily="sans-serif-medium" />
 
         <ImageButton
+            android:id="@+id/downVote"
+            style="@android:style/TextAppearance.Material.Widget.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"
-            android:id="@+id/imageButton2"
             android:layout_weight="0"
-            style="@android:style/TextAppearance.Material.Widget.Button.Borderless.Colored"
             android:background="@null"
             android:padding="6dp"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
     </LinearLayout>
 
@@ -105,6 +105,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:text="Vivamus nec sapien dui. Quisque pretium non elit nec tempor. Sed eu dignissim nisl. Mauris dapibus, sapien sit amet aliquet suscipit, ipsum leo ultrices est, at pretium massa ante eu ligula. Suspendisse sodales ex at lectus ullamcorper, eu faucibus mi feugiat. Curabitur dictum tincidunt nunc in pharetra. Ut a laoreet lectus, quis vehicula nunc. Quisque nisl mi, tempor id tortor vitae, pellentesque tincidunt lectus. Nullam aliquam nec felis ut fermentum." />
+
+                <TextView
+                    android:id="@+id/hiddenID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="8sp"
+                    android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 

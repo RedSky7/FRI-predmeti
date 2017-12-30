@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,8 +47,8 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         switch (type)
         {
             case 0: //filamo PREDMETI
-                map.put(0, new String[]{"Stankica", "Profesor je odličen :D", "11", "5"});
-                map.put(1, new String[]{"Sabina", "Pezde me je fuknu :(", "12", "1"});
+                //map.put(0, new String[]{"Stankica", "Profesor je odličen :D", "11", "5", "0"});
+                //map.put(1, new String[]{"Sabina", "Pezde me je fuknu :(", "12", "1", "0"});
                 //dataSource.add("Avtor komentrja");
                 //dataSource.add("LAIDU LAIDU LAIDU LAIDU LALIDU");
         }
@@ -71,6 +72,7 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         holder.comment.setText(data[1]);
         holder.commentMark.setText(data[2]);
         holder.teacherMark.setText(data[3]);
+        holder.hiddenID.setText(data[4]);
 
     }
 
@@ -90,13 +92,33 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         protected TextView comment;
         protected TextView commentMark;
         protected TextView teacherMark;
+        protected TextView hiddenID;
+        protected ImageButton upVote;
+        protected ImageButton downVote;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             commentAuthor = (TextView) itemView.findViewById(R.id.textView16);
             comment       = (TextView) itemView.findViewById(R.id.textView17);
             commentMark   = (TextView) itemView.findViewById(R.id.textView19);
             teacherMark   = (TextView) itemView.findViewById(R.id.textView18);
+            hiddenID      = (TextView) itemView.findViewById(R.id.hiddenID);
+            upVote        = (ImageButton) itemView.findViewById(R.id.upVote);
+            downVote        = (ImageButton) itemView.findViewById(R.id.downVote);
+
+            upVote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String hiddenID = ((TextView) itemView.findViewById(R.id.hiddenID)).getText().toString();
+                }
+            });
+
+            downVote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String hiddenID = ((TextView) itemView.findViewById(R.id.hiddenID)).getText().toString();
+                }
+            });
         }
     }
 }

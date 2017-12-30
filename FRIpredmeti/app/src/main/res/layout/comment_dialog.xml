@@ -67,17 +67,17 @@
                         android:textSize="14sp" />
 
                     <SeekBar
+                        android:id="@+id/seekBar2"
                         style="@android:style/Widget.Material.SeekBar.Discrete"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:max="4"
-                        android:progress="2"
-                        android:id="@+id/seekBar2"
-                        android:paddingStart="45dip"
-                        android:backgroundTintMode="src_over"
-                        android:paddingEnd="45dip"
-                        android:layout_marginTop="15dp"
                         android:layout_below="@+id/textView7"
+                        android:layout_marginTop="15dp"
+                        android:backgroundTintMode="src_over"
+                        android:max="4"
+                        android:paddingEnd="45dip"
+                        android:paddingStart="45dip"
+                        android:progress="1"
                         android:thumb="@drawable/three" />
                     <View
                         android:layout_height="1dp"
