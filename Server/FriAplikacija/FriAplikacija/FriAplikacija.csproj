@@ -93,6 +93,8 @@
   <ItemGroup>
     <Compile Include="DataAccess\PredmetDataAccess.cs" />
     <Compile Include="DataAccess\IzvajalecDataAccess.cs" />
+    <Compile Include="DataAccess\KomentarDataAccess.cs" />
+    <Compile Include="DataAccess\OcenaIzvajalcaDataAccess.cs" />
     <Compile Include="DataAccess\UporabinkDataAccess.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

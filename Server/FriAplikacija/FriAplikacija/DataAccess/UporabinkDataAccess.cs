@@ -13,7 +13,7 @@ namespace FriAplikacija.DataAccess
     public class UporabinkDataAccess
     {
         private static String SOURCE = "Server=tcp:friaplikacija.database.windows.net,1433;Initial Catalog=friAplikacija;Persist Security Info=False;User ID=user;Password=friAplikacija1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+        
         public static Uporabnik login(String email, String geslo) {
             DataTable data = new DataTable("Uporabnik");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
@@ -114,14 +114,13 @@ namespace FriAplikacija.DataAccess
                 connection.Close();
             }
             if (data.Rows.Count == 1) {
-                Uporabnik uporabnik = rowToUporabnik(data.Rows[0]);
-                return uporabnik;
+                return rowToUporabnik(data.Rows[0]);
             } else {
                 return null;
             }
         }
 
-        private static Boolean getEmail(String email) {
+        public static Boolean getEmail(String email) {
             DataTable data = new DataTable("Uporabnik");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
