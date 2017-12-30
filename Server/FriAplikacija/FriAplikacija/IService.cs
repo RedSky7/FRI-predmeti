@@ -49,5 +49,9 @@ namespace FriAplikacija
         [OperationContract]
         [WebGet(UriTemplate = "Predmet", ResponseFormat = WebMessageFormat.Json)]
         Predmet GetPredmet();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "AllPredmeti", ResponseFormat = WebMessageFormat.Json)]
+        List<Predmet> AllPredmeti();
     }
 }

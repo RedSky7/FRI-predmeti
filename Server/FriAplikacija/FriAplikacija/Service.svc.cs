@@ -69,8 +69,12 @@ namespace FriAplikacija
         public Predmet GetPredmet() {
             WebOperationContext ctx = WebOperationContext.Current;
             int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
-            Predmet predmet = PredmetDataAccess.getPredmet(predmetID);
-            return predmet;
+            return PredmetDataAccess.getPredmet(predmetID);
+        }
+
+        public List<Predmet> AllPredmeti() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            return PredmetDataAccess.getAllPredmeti();
         }
     }
 }
