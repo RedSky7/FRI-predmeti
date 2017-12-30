@@ -21,3 +21,14 @@ D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija
 D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.dll
 D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.pdb
 D:\Users\SimonTusar\Source\Repos\FRI-predmeti\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.xml
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll.config
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\FriAplikacija.pdb
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.pdb
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\BCrypt.Net.xml
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.csprojResolveAssemblyReference.cache
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.dll
+D:\Dropbox\FRI\3. letnik\Tehnologija programske opreme\ProjectRepo\Server\FriAplikacija\FriAplikacija\obj\Debug\FriAplikacija.pdb

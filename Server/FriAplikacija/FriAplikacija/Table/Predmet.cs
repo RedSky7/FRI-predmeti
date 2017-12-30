@@ -7,6 +7,7 @@ namespace FriAplikacija.Table
 {
     public class Predmet
     {
+        public int predmetID { get; set; }
         public String ime { get; set; }
         public decimal splosnaOcena { get; set; }
         public decimal tezavnostOcena { get; set; }
