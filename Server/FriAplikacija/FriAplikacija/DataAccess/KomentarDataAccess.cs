@@ -22,12 +22,32 @@ namespace FriAplikacija.DataAccess {
                     command.Parameters.Add(new SqlParameter("date", komentar.datum.ToString()));
                     command.ExecuteNonQuery();
                     komentar.komentarID = getKomentarID(komentarString, dateTime);
-                    return komentar;
                 }
+                connection.Close();
+                return komentar;
             }
         }
 
-        public static int getKomentarID(String komentar, DateTime date) {
+        public static Komentar updateOcenaToKomentar(int komentarID, bool positive) {
+            Komentar komentar = getKomentar(komentarID);
+            komentar.ocenaKomentar += (positive? 1: -1);
+            try {
+                using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("Update Komentar SET ocenaKomentarja = @ocenaKomentar WHERE komentarID = @komentarID", connection)) {
+                        command.Parameters.Add(new SqlParameter("komentarID", komentarID));
+                        command.Parameters.Add(new SqlParameter("ocenaKomentar", komentar.ocenaKomentar));
+                        command.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                    return komentar;
+                }
+            }catch(Exception e) {
+                return null;
+            }
+        }
+
+        private static int getKomentarID(String komentar, DateTime date) {
             DataTable data = new DataTable("Komentar");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
@@ -43,6 +63,32 @@ namespace FriAplikacija.DataAccess {
                 return Int32.Parse(data.Rows[0][0].ToString());
             }
             return -1;
+        }
+
+        private static Komentar getKomentar(int komentarID) {
+            DataTable data = new DataTable("Komentar");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Komentar WHERE komentarID=@komentarID", connection)) {
+                    command.Parameters.Add(new SqlParameter("komentarID", komentarID));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count > 0) {
+                return rowToKomentar(data.Rows[0]);
+            }
+            return null;
+        }
+
+        private static Komentar rowToKomentar(DataRow row) {
+            Komentar komentar = new Komentar();
+            komentar.komentarID = Int32.Parse(row["komentarID"].ToString());
+            komentar.komentar = row["Komentar"].ToString();
+            komentar.ocenaKomentar = Int32.Parse(row["ocenaKomentarja"].ToString());
+            komentar.datum = row["datum"].ToString();
+            return komentar;
         }
     }
 }

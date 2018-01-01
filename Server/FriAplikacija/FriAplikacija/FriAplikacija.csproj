@@ -91,6 +91,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\OcenaKomentarDataAccess.cs" />
     <Compile Include="DataAccess\PredmetDataAccess.cs" />
     <Compile Include="DataAccess\IzvajalecDataAccess.cs" />
     <Compile Include="DataAccess\KomentarDataAccess.cs" />

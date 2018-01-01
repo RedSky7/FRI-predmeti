@@ -82,5 +82,13 @@ namespace FriAplikacija
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"]);
             return PredmetDataAccess.getPredmetiForIzvajalec(izvajalecID);
         }
+
+        public Komentar AddOcenaKomentar() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            int komentarID = Int32.Parse(ctx.IncomingRequest.Headers["komentarID"]);
+            bool positive = Boolean.Parse(ctx.IncomingRequest.Headers["positive"]);
+            return OcenaKomentarDataAccess.addKomentar(email, komentarID, positive);
+        }
     }
 }
