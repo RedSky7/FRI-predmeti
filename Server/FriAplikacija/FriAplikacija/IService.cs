@@ -36,6 +36,10 @@ namespace FriAplikacija
         [WebGet(UriTemplate = "AllIzvajalci", ResponseFormat = WebMessageFormat.Json)]
         List<Izvajalec> AllIzvajalci();
 
+        [OperationContract]
+        [WebGet(UriTemplate = "IzvajalecForPredmet", ResponseFormat = WebMessageFormat.Json)]
+        List<Izvajalec> IzvajalecForPredmet();
+
         //OcenaIzvajalec
         [OperationContract]
         [WebGet(UriTemplate = "GetKomentarIzvajalec", ResponseFormat = WebMessageFormat.Json)]
@@ -58,7 +62,7 @@ namespace FriAplikacija
         [WebGet(UriTemplate = "PredmetiForIzvajalec", ResponseFormat = WebMessageFormat.Json)]
         List<Predmet> PredmetiForIzvajalec();
 
-        //Komentar 
+        //OcenaKomentar 
         [OperationContract]
         [WebGet(UriTemplate = "AddOcenaKomentar", ResponseFormat = WebMessageFormat.Json)]
         Komentar AddOcenaKomentar();

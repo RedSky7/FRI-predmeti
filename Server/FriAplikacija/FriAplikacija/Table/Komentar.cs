@@ -22,6 +22,6 @@ namespace FriAplikacija.Table
 
         public int ocenaKomentar { get; set; }
 
-        public String datum { get; set; } 
+        public String datum { get; set; }
     }
 }

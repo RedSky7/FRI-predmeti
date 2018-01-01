@@ -14,5 +14,6 @@ namespace FriAplikacija.Table
         public decimal zanimivostOcena { get; set; }
         public decimal uporabnostOcena { get; set; }
         public String ocena { get; set; }
+        public List<Izvaja> izvajalci { get; set; }
     }
 }
