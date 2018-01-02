@@ -13,8 +13,8 @@ namespace FriAplikacija.Email {
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("friaplikacija.noreplay@outlook.com");
                 mail.To.Add(email);
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body " + verificationCode;
+                mail.Subject = "Registration to FRI aplikacija";
+                mail.Body = "Account verification code: " + verificationCode;
 
                 SmtpClient client = new SmtpClient();
                 client.Port = 25;
