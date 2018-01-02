@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FriAplikacija.Table;
+using FriAplikacija.Email;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -52,6 +53,7 @@ namespace FriAplikacija.DataAccess
                         command.ExecuteNonQuery();
                     }
                     connection.Close();
+                    SendEmail.sendVerificationEmail(email, verificationCode);
                 }
                 return uporabink;
             } catch (SaltParseException e) {
