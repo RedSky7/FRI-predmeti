@@ -91,10 +91,10 @@ namespace FriAplikacija
             return OcenaKomentarDataAccess.addKomentar(email, komentarID, positive);
         }
 
-        public List<Izvajalec> IzvajalecForPredmet() {
+        public List<IzvajalecPredmeta> IzvajalecForPredmet() {
             WebOperationContext ctx = WebOperationContext.Current;
             int komentarID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
-            return IzvajalecDataAccess.getPredmetiForIzvajalec(komentarID);
+            return IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(komentarID);
         }
     }
 }

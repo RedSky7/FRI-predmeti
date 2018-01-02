@@ -13,7 +13,7 @@ namespace FriAplikacija.Table
         public Izvajalec(int izvajalec) {
             this.izvajalecID = izvajalec;
         }
-
+   
         public int izvajalecID { get; set; }
         public String email { get; set; }
         public String ime { get; set; }

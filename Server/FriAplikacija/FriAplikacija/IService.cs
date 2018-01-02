@@ -38,7 +38,7 @@ namespace FriAplikacija
 
         [OperationContract]
         [WebGet(UriTemplate = "IzvajalecForPredmet", ResponseFormat = WebMessageFormat.Json)]
-        List<Izvajalec> IzvajalecForPredmet();
+        List<IzvajalecPredmeta> IzvajalecForPredmet();
 
         //OcenaIzvajalec
         [OperationContract]
