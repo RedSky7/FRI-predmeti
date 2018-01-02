@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,7 @@ import android.support.v7.widget.CardView;
 
 import java.util.concurrent.ExecutionException;
 
+import si.lj.uni.fri.tpo.fripredmeti.Model.StaticGlobals;
 import si.lj.uni.fri.tpo.fripredmeti.REST.SendComment;
 
 /**
@@ -116,7 +118,9 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
                 String ocena = Integer.toString(splosnaOcena.getProgress()+1);
                 try {
                     //TODO: komentar, izvajalecID, splosnaOcena, email
-                    new SendComment().execute(mnenje.getText().toString(), "1", ocena, "blaz").get();
+                    String izajalecID = Integer.toString(StaticGlobals.StaticIzvajalecID);
+                    String email = StaticGlobals.StaticEmail;
+                    new SendComment().execute(mnenje.getText().toString(), izajalecID, ocena, email).get();
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

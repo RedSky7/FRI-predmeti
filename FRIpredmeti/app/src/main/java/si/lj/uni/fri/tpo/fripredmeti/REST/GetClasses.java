@@ -2,8 +2,8 @@ package si.lj.uni.fri.tpo.fripredmeti.REST;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -12,24 +12,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
-
-import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
-import si.lj.uni.fri.tpo.fripredmeti.TeacherOverview;
+import java.util.ArrayList;
+import java.util.List;
+import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
 
 /**
- * Created by Blaz on 27-Dec-17.
+ * Created by Blaz on 30-Dec-17.
  */
 
-public class GetTeacher extends AsyncTask<Integer, Void, Teacher> {
+public class GetClasses extends AsyncTask<Integer, Void, List<Course> > {
 
     @Override
-    protected Teacher doInBackground(Integer... params)
+    protected List<Course> doInBackground(Integer... params)
     {
-        Teacher result = null;
+        List<Course> result = new ArrayList<Course>();
         try
         {
             StringBuilder result1 = new StringBuilder("");
-            URL url = new URL("http://friaplikacija.azurewebsites.net/Service.svc/Izvajalec");
+            URL url = new URL("http://friaplikacija.azurewebsites.net/Service.svc/PredmetiForIzvajalec");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             //nastavi prave klice v header
@@ -40,17 +40,20 @@ public class GetTeacher extends AsyncTask<Integer, Void, Teacher> {
             BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
 
-            while ((line = rd.readLine()) != null) { final StringBuilder append = result1.append(line);}
+            while ((line = rd.readLine()) != null) {result1.append(line);}
 
-            JSONObject jsonObj = new JSONObject(result1.toString());
-            result = new Teacher(jsonObj.getInt("izvajalecID"),
-                    jsonObj.getString("ime"),
-                    jsonObj.getString("naziv"),
-                    jsonObj.getString("opis"),
-                    jsonObj.getString("priimek"),
-                    jsonObj.getString("slika"),
-                    jsonObj.getDouble("splosnaOcena"),
-                    jsonObj.getString("email"));
+            JSONArray array = new JSONArray(result1.toString());
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jsonObject = array.getJSONObject(i);
+                result.add(new Course(
+                        jsonObject.getString("ime"),
+                        jsonObject.getString("ocena"),
+                        jsonObject.getInt("predmetID"),
+                        jsonObject.getInt("splosnaOcena"),
+                        jsonObject.getInt("tezavnostOcena"),
+                        jsonObject.getInt("uporabnostOcena"),
+                        jsonObject.getInt("zanimivostOcena")));
+            }
         }
         catch (UnknownHostException e)
         {

@@ -56,7 +56,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerSortBy"
         android:layout_below="@+id/appbar"
         android:gravity="right|center_vertical"
         android:layout_alignParentEnd="true"
@@ -67,7 +67,7 @@
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/spinnerSortBy"
         android:id="@+id/viewPager">
 
     </android.support.v4.view.ViewPager>

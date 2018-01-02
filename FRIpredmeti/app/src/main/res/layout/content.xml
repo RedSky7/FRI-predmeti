@@ -481,7 +481,7 @@ android:layout_height="match_parent"
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerSortBy"
             android:layout_below="@+id/textView14"
             android:gravity="right|center_vertical"
             android:layout_alignParentEnd="true"

@@ -29,12 +29,21 @@ public class GetComments extends AsyncTask<Integer, Void, List<Comment>> {
         List<Comment> result = new ArrayList<Comment>();
         try
         {
-            StringBuffer result1 = new StringBuffer("");
+            StringBuilder result1 = new StringBuilder("");
             URL url = new URL("http://friaplikacija.azurewebsites.net/Service.svc/GetKomentarIzvajalec");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+            String sort;
+            if(params[1] == 1)
+                sort = "splosnaOcena";
+            else if(params[1] == 2)
+                sort = "OcenaKomentarja";
+            else
+                sort = "datum";
+
             //nastavi prave klice v header
             connection.setRequestProperty("izvajalecID", Integer.toString(params[0]));
+            connection.setRequestProperty("sort", sort);
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();
@@ -48,6 +57,7 @@ public class GetComments extends AsyncTask<Integer, Void, List<Comment>> {
                 JSONObject jsonObject = array.getJSONObject(i);
                 JSONObject jsonObjectComment = jsonObject.getJSONObject("komentar");
                 JSONObject jsonObjectUser = jsonObject.getJSONObject("uporabnik");
+                //(String username, int komentarID, int ocenaKomentar, int splosnaOcena, String komentar)
                 result.add(new Comment(
                         jsonObjectUser.getString("username"),
                         jsonObjectComment.getInt("komentarID"),

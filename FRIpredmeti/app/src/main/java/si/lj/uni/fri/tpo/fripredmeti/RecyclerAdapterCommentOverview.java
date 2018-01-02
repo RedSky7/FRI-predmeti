@@ -12,6 +12,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.REST.SendCommentVote;
 
 /**
  * Created by Blaz on 28-Dec-17.
@@ -31,8 +34,6 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
 
         //dataSource = new ArrayList<>();
         map = new HashMap<Integer, String[]>();
-        //TODO: pridobi podatke in jih zapiši v dataSource
-
         fillData(type);
 
     }
@@ -104,12 +105,22 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
             teacherMark   = (TextView) itemView.findViewById(R.id.textView18);
             hiddenID      = (TextView) itemView.findViewById(R.id.hiddenID);
             upVote        = (ImageButton) itemView.findViewById(R.id.upVote);
-            downVote        = (ImageButton) itemView.findViewById(R.id.downVote);
+            downVote      = (ImageButton) itemView.findViewById(R.id.downVote);
 
             upVote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String hiddenID = ((TextView) itemView.findViewById(R.id.hiddenID)).getText().toString();
+                    try {
+                        String result = new SendCommentVote().execute("blaz", hiddenID, "true").get();
+                        if(result != "fail")
+                            commentMark.setText(result);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -117,6 +128,16 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
                 @Override
                 public void onClick(View v) {
                     String hiddenID = ((TextView) itemView.findViewById(R.id.hiddenID)).getText().toString();
+                    try {
+                        String result = new SendCommentVote().execute("blaz", hiddenID, "false").get();
+                        if(result != "fail")
+                            commentMark.setText(result);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

@@ -39,6 +39,7 @@ import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
 import si.lj.uni.fri.tpo.fripredmeti.Model.User;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeacher;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetUser;
+import si.lj.uni.fri.tpo.fripredmeti.REST.SendRegistration;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -114,6 +115,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //User u = new GetUser().execute(email, password).get();
             User u = new GetUser().execute(email, password).get();
             Toast.makeText(LoginActivity.this, "Hello " + u.getUsername(), Toast.LENGTH_SHORT).show();
+
+            //virstni red vhoda --> email, geslo, uporabniško ime
+            String verificationCode = new SendRegistration().execute("stanka@gmail.com", "1234", "stane").get();
+            int i = 0;
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -292,14 +292,14 @@ android:layout_height="match_parent"
             android:textSize="14sp" />
 
         <Spinner
+            android:id="@+id/spinnerSortBy"
+            style="@android:style/Widget.DeviceDefault.Light.Spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:layout_below="@+id/textView14"
-            android:gravity="right|center_vertical"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:entries="@array/sort"
-            style="@android:style/Widget.DeviceDefault.Light.Spinner" />
+            android:gravity="right|center_vertical" />
 
         <FrameLayout
             android:layout_width="match_parent"
