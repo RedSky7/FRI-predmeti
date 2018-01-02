@@ -51,7 +51,8 @@ namespace FriAplikacija
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
-            return OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID);
+            String sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            return OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID, sort);
         }
 
         public OcenaIzvajalca SetKomentarIzvajalec() {

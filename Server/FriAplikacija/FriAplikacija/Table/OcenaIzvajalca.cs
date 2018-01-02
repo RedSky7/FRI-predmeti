@@ -17,6 +17,8 @@ namespace FriAplikacija.Table
             this.date = date.ToString();
         }
 
+
+        public int ocenaIzvajalcaID { get; set; }
         public int splosnaOcena { get; set; }
 
         public String date { get; set; }

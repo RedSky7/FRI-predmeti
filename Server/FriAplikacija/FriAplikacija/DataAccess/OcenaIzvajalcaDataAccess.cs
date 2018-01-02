@@ -11,12 +11,27 @@ namespace FriAplikacija.DataAccess {
 
         private static String SOURCE = "Server=tcp:friaplikacija.database.windows.net,1433;Initial Catalog=friAplikacija;Persist Security Info=False;User ID=user;Password=friAplikacija1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-        public static List<OcenaIzvajalca> getOceneIzvajalca(int izvajalecID) {
+        public static List<OcenaIzvajalca> getOceneIzvajalca(int izvajalecID, String sort) {
+            switch (sort) {
+                case "datum":
+                    sort = "k.Datum";
+                    break;
+                case "splosnaOcena":
+                    sort = "o.splosnaOcena";
+                    break;
+                case "OcenaKomentarja":
+                    sort = "k.OcenaKomentarja";
+                    break;
+                default:
+                    sort = "o.OcenaIzvajalcaID";
+                    break;
+            }
             DataTable data = new DataTable("OcenaIzvajalca");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM OcenaIzvajalca o join komentar k on (k.KomentarID = o.KomentarID) join Uporabnik u on (u.email = o.email) Where izvajalecID = @izvajalecID", connection)) {
+                using (SqlCommand command = new SqlCommand("SELECT * FROM OcenaIzvajalca o join komentar k on (k.KomentarID = o.KomentarID) join Uporabnik u on (u.email = o.email) Where izvajalecID = @izvajalecID ORDER BY " + sort + " DESC", connection)) {
                     command.Parameters.Add(new SqlParameter("izvajalecID", izvajalecID));
+                    command.Parameters.Add(new SqlParameter("sort", sort));
                     using (SqlDataAdapter da = new SqlDataAdapter(command))
                         da.Fill(data);
                 }
@@ -75,8 +90,11 @@ namespace FriAplikacija.DataAccess {
             OcenaIzvajalca ocena = new OcenaIzvajalca();
             uporabnik.email = row["Email"].ToString();
             uporabnik.username = row["Username"].ToString();
+            komentar.komentarID = Int32.Parse(row["komentarID"].ToString());
             komentar.komentar = row["Komentar"].ToString();
             komentar.datum = row["Datum"].ToString();
+            komentar.ocenaKomentar = Int32.Parse(row["OcenaKomentarja"].ToString());
+            ocena.ocenaIzvajalcaID = Int32.Parse(row["ocenaIzvajalcaID"].ToString());
             ocena.splosnaOcena = Int32.Parse(row["SplosnaOcena"].ToString());
             ocena.uporabnik = uporabnik;
             ocena.komentar = komentar;
