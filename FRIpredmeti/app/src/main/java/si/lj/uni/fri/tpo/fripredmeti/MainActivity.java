@@ -26,7 +26,7 @@ import java.util.List;
 import si.lj.uni.fri.tpo.fripredmeti.Fragments.ClassessFragment;
 import si.lj.uni.fri.tpo.fripredmeti.Fragments.TeachersFragment;
 
-public class MainActivity extends AppCompatActivity implements  ClassessFragment.OnFragmentInteractionListener, TeachersFragment.OnFragmentInteractionListener, SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements  ClassessFragment.OnFragmentInteractionListener, TeachersFragment.OnFragmentInteractionListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setTitle("Strojna oprema");
+        getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
@@ -92,32 +92,8 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
 
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setOnQueryTextListener(this);
 
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onQueryTextChange(String newText)
-    {
-        if (TextUtils.isEmpty(newText))
-        {
-
-        }
-        else
-        {
-
-        }
-        return true;
-    }
-
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
 
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

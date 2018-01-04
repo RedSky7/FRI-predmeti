@@ -53,25 +53,27 @@
         android:layout_gravity="center"
         android:layout_below="@+id/appbar"
         android:visibility="invisible" />
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerSortBy"
-        android:layout_below="@+id/appbar"
-        android:gravity="right|center_vertical"
-        android:layout_alignParentEnd="true"
-        android:entries="@array/podrocje"
-        style="@android:style/Widget.Material.Light.Spinner"
-        android:layout_marginTop="16dp" />
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/spinnerSortBy"
-        android:id="@+id/viewPager">
 
-    </android.support.v4.view.ViewPager>
 
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerSortBy"
+            android:layout_below="@+id/appbar"
+            android:gravity="right|center_vertical"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/podrocje"
+            style="@android:style/Widget.Material.Light.Spinner"
+            android:layout_marginTop="16dp" />
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/spinnerSortBy"
+            android:id="@+id/viewPager">
+
+        </android.support.v4.view.ViewPager>
     <!--
 
     <GridLayout

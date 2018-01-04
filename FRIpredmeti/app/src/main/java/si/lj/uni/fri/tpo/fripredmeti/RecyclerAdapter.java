@@ -54,11 +54,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private ArrayList<String> dataSource;
     private Activity mActivity;
+    private boolean isPredmeti;
 
 
     public RecyclerAdapter(Activity a, Boolean predmeti){
         mActivity = a;
-
+        isPredmeti = predmeti;
         dataSource = new ArrayList<>();
 
         fillData(predmeti);
@@ -115,9 +116,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
        // holder.number.startAnimation(a);
 
 
-
-
-
         Animation fadeIn = new ScaleAnimation(0, 1, 0, 1, 220, 160);
         fadeIn.setInterpolator(new AccelerateInterpolator()); //and this
         fadeIn.setStartOffset(5000);
@@ -143,7 +141,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, ClassOverview.class);
+                Intent intent = isPredmeti ? new Intent(mActivity, ClassOverview.class) : new Intent(mActivity, TeacherOverview.class);
                 intent.putExtra("title", holder.title.getText());
                 mActivity.startActivity(intent);
             }
