@@ -32,7 +32,7 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
 
         AreasFragment newFragment = new AreasFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.replace(R.id.fragment_container, newFragment, "AREAS");
         //transaction.addToBackStack(null);
         transaction.commit();
 
@@ -61,32 +61,34 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
         startActivity(intent);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri){}
+
     public boolean onQueryTextChange(String newText)
     {
-        if (!TextUtils.isEmpty(newText))
+        if (newText.length() > 0)
         {
             SearchFragment newFragment = new SearchFragment();
             Bundle args = new Bundle();
             args.putString("query", newText);
             newFragment.setArguments(args);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.replace(R.id.fragment_container, newFragment, "SEARCH");
             //transaction.addToBackStack(null);
             transaction.commit();
+
         }
         else
         {
             AreasFragment newFragment = new AreasFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, newFragment);
-            //transaction.addToBackStack(null);
+            transaction.replace(R.id.fragment_container, newFragment, "AREAS");
             transaction.commit();
         }
         return true;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri){}
+
 
     public boolean onQueryTextSubmit(String query) {
         return false;

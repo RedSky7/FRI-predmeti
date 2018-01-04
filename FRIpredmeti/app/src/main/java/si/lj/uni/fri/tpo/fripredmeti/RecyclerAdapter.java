@@ -89,6 +89,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             dataSource.add("Plagiat Kadunc:107:69");
             dataSource.add("Tina Kadunc:23:69");
         }
+
+    }
+
+    public void fillDataWithQuery(String query)
+    {
+        dataSource.clear();
+        dataSource.add("This is with query:0:0");
+        dataSource.add("Query:0:0");
+        dataSource.add("Querrrx:0:0");
+        dataSource.add("Querrryyyyyyyyyyyy:0:0");
     }
 
     @Override

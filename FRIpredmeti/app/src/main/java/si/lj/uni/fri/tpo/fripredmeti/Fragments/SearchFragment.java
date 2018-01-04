@@ -3,12 +3,18 @@ package si.lj.uni.fri.tpo.fripredmeti.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import si.lj.uni.fri.tpo.fripredmeti.R;
+import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,8 +27,12 @@ import si.lj.uni.fri.tpo.fripredmeti.R;
 public class SearchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "query";
     private static final String ARG_PARAM2 = "param2";
+
+
+    private RecyclerView recyclerView;
+    public RecyclerAdapter adapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -87,6 +97,19 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search);
+        adapter = new RecyclerAdapter(getActivity(), true);
+        adapter.fillDataWithQuery(mParam1);
+        recyclerView.setAdapter(adapter);
+
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -106,4 +129,6 @@ public class SearchFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
