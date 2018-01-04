@@ -1,0 +1,10 @@
+TODO:
+
+- splash screen
+- BUG: aplikacija sesuje če ni interneta
+- prijava/registracija (+ zapomni se me (nek boolean))
+- pravi podatki v področjih (imena, ikone)
+- delujoč search v področjih (predmeti, izvajalci)
+- pravi podatki v posameznih področjih
+- pravi podatki v posameznem predmetu
+- pravi podatki v posameznem izvajalcu
