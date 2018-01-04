@@ -115,14 +115,14 @@ public class ClassessFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
 
 
-        Spinner vrstniRed = (Spinner) getActivity().findViewById(R.id.spinnerSortBy);
+        Spinner vrstniRed = (Spinner) getActivity().findViewById(R.id.spinnerSortByClasses);
         vrstniRed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO: change vrstni red predmetov
-
+                adapter.fillData(true, position);
                 //adapter.fillData(true);
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override

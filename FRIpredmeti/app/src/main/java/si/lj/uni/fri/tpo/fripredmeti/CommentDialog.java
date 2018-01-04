@@ -81,7 +81,7 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             }
         });
 
-        splosnaOcena.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 final Drawable one = ContextCompat.getDrawable(mActivity, R.drawable.one);
@@ -90,12 +90,18 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
                 final Drawable four = ContextCompat.getDrawable(mActivity, R.drawable.four);
                 final Drawable five = ContextCompat.getDrawable(mActivity, R.drawable.five);
 
+                final Drawable one_dark = ContextCompat.getDrawable(mActivity, R.drawable.one_dark);
+                final Drawable two_dark = ContextCompat.getDrawable(mActivity, R.drawable.two_dark);
+                final Drawable three_dark = ContextCompat.getDrawable(mActivity, R.drawable.three_dark);
+                final Drawable four_dark = ContextCompat.getDrawable(mActivity, R.drawable.four_dark);
+                final Drawable five_dark = ContextCompat.getDrawable(mActivity, R.drawable.five_dark);
+
                 switch (progress){
-                    case 0: splosnaOcena.setThumb(one); break;
-                    case 1: splosnaOcena.setThumb(two); break;
-                    case 2: splosnaOcena.setThumb(three); break;
-                    case 3: splosnaOcena.setThumb(four); break;
-                    case 4: splosnaOcena.setThumb(five); break;
+                    case 0: seekBar.setThumb(seekBar.equals(splosnaOcena) ? one : one_dark ); break;
+                    case 1: seekBar.setThumb(seekBar.equals(splosnaOcena) ? two : two_dark ); break;
+                    case 2: seekBar.setThumb(seekBar.equals(splosnaOcena) ? three : three_dark ); break;
+                    case 3: seekBar.setThumb(seekBar.equals(splosnaOcena) ? four : four_dark ); break;
+                    case 4: seekBar.setThumb(seekBar.equals(splosnaOcena) ? five : five_dark ); break;
                 }
             }
 
@@ -108,7 +114,13 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
-        });
+        };
+
+        splosnaOcena.setOnSeekBarChangeListener(seekBarChangeListener);
+
+        tezavnost.setOnSeekBarChangeListener(seekBarChangeListener);
+
+        zanimivost.setOnSeekBarChangeListener(seekBarChangeListener);
 
         //dodajanje komentarja
         Button add = (Button) dialog.findViewById(R.id.button2);

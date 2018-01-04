@@ -90,14 +90,30 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView16"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="Anonymous"
-                    android:textSize="12sp"
-                    android:textStyle="normal|italic" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="0">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Anonymous"
+                        android:textSize="12sp"
+                        android:textStyle="normal|italic"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:text="2.mar.17"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView10"
+                        android:textSize="12sp"
+                        android:textAlignment="viewEnd" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView17"
@@ -114,6 +130,7 @@
                     android:textSize="8sp"
                     android:visibility="invisible" />
             </LinearLayout>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

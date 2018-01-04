@@ -62,18 +62,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         isPredmeti = predmeti;
         dataSource = new ArrayList<>();
 
-        fillData(predmeti);
+        fillData(predmeti, 0);
 
         //TODO: pridobi podatke in jih zapiši v dataSource
 
     }
 
-    public void fillData(Boolean predmeti)
+    public void fillData(Boolean predmeti, int order)
     {
+        dataSource.clear();
         if(predmeti) {
-            dataSource.add("Računalniška arhitektura:201:97");
-            dataSource.add("Organizacija računalnikov:201:59");
-            dataSource.add("Digitalna vezja:26:51");
+            if(order == 0) {
+                dataSource.add("Računalniška arhitektura:201:97");
+                dataSource.add("Organizacija računalnikov:201:59");
+                dataSource.add("Digitalna vezja:26:51");
+            }
+            else
+            {
+                dataSource.add("Digitalna vezja:26:51");
+                dataSource.add("Organizacija računalnikov:201:59");
+                dataSource.add("Računalniška arhitektura:201:97");
+            }
         }
         else {
             dataSource.add("Luka Kadunc:201:69");

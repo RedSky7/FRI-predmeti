@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import si.lj.uni.fri.tpo.fripredmeti.R;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
@@ -33,7 +35,7 @@ public class TeachersFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
-    public RecyclerView.Adapter adapter;
+    public RecyclerAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -111,6 +113,21 @@ public class TeachersFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
 
         //recyclerView.scrollToPosition(0);
+        Spinner vrstniRed = (Spinner) getActivity().findViewById(R.id.spinnerSortByTeachers);
+        vrstniRed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //TODO: change vrstni red predmetov
+                adapter.fillData(false, 1);
+                //adapter.fillData(true);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

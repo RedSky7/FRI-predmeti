@@ -12,13 +12,16 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-
-
 
 
         //imageView.animate().rotationY(180).setInterpolator(new LinearInterpolator()).start();
