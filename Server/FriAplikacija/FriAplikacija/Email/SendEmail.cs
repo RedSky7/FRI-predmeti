@@ -11,7 +11,7 @@ namespace FriAplikacija.Email {
         internal static bool sendVerificationEmail(String email, String verificationCode) {
             try {
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("friaplikacija.noreplay@outlook.com");
+                mail.From = new MailAddress("no-reply.FriAplikacija@outlook.com");
                 mail.To.Add(email);
                 mail.Subject = "Registration to FRI aplikacija";
                 mail.Body = "Account verification code: " + verificationCode;
@@ -19,7 +19,7 @@ namespace FriAplikacija.Email {
                 SmtpClient client = new SmtpClient();
                 client.Port = 25;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Credentials = new NetworkCredential("friaplikacija.noreplay@outlook.com", "FriAplikacija123");
+                client.Credentials = new NetworkCredential("no-reply.FriAplikacija@outlook.com", "FriAplikacija123");
                 client.Host = "smtp.live.com";
                 client.EnableSsl = true;
                 client.Send(mail);

@@ -17,16 +17,11 @@ namespace FriAplikacija.Table
             this.date = date.ToString();
         }
 
-
         public int ocenaIzvajalcaID { get; set; }
         public int splosnaOcena { get; set; }
-
         public String date { get; set; }
-
         public Komentar komentar { get; set; }
-
         public Uporabnik uporabnik { get; set; }
-
         public Izvajalec izvajalec { get; set; }
     }
 }

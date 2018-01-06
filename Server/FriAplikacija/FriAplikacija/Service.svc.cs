@@ -84,6 +84,28 @@ namespace FriAplikacija
             return PredmetDataAccess.getPredmetiForIzvajalec(izvajalecID);
         }
 
+        public List<OcenaPredmeta> GetKomentarPredmet() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"].ToString());
+            String sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            return OcenaPredmetaDataAccess.getOcenePredmeta(predmetID, sort);
+        }
+
+        public OcenaPredmeta SetKomentarPredmet() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"].ToString());
+            String komentar = "";
+            if (ctx.IncomingRequest.Headers["komentar"] != null) {
+                komentar = ctx.IncomingRequest.Headers["komentar"].ToString();
+            }
+            int splosnaOcena = Int32.Parse(ctx.IncomingRequest.Headers["splosnaOcena"].ToString());
+            int uporabnostOcena = Int32.Parse(ctx.IncomingRequest.Headers["uporabnostOcena"].ToString());
+            int tezavnostOcena = Int32.Parse(ctx.IncomingRequest.Headers["tezavnostOcena"].ToString());
+            int zanimivostOcena = Int32.Parse(ctx.IncomingRequest.Headers["zanimivostOcena"].ToString());
+            String email = ctx.IncomingRequest.Headers["email"].ToString();
+            return OcenaPredmetaDataAccess.addOcenaPredmeta(predmetID, email, komentar, splosnaOcena, uporabnostOcena, tezavnostOcena, zanimivostOcena);
+        }
+
         public Komentar AddOcenaKomentar() {
             WebOperationContext ctx = WebOperationContext.Current;
             String email = ctx.IncomingRequest.Headers["email"].ToString();
