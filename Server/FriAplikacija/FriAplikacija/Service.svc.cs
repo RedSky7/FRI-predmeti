@@ -130,5 +130,16 @@ namespace FriAplikacija
             int komentarID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
             return IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(komentarID);
         }
+
+        public Podrocje GetPodrocje() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int podrocjeID = Int32.Parse(ctx.IncomingRequest.Headers["podrocjeID"]);
+            return PodrocjeDataAccess.getPodrocje(podrocjeID);
+        }
+
+        public List<Podrocje> AllPodrocja() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            return PodrocjeDataAccess.getAllPodrocja();
+        }
     }
 }

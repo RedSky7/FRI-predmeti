@@ -94,6 +94,7 @@
     <Compile Include="DataAccess\IzvajalecPredmetaDataAccess.cs" />
     <Compile Include="DataAccess\OcenaKomentarDataAccess.cs" />
     <Compile Include="DataAccess\OcenaPredmetaDataAccess.cs" />
+    <Compile Include="DataAccess\PodrocjeDataAccess.cs" />
     <Compile Include="DataAccess\PredmetDataAccess.cs" />
     <Compile Include="DataAccess\IzvajalecDataAccess.cs" />
     <Compile Include="DataAccess\KomentarDataAccess.cs" />

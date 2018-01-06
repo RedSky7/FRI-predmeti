@@ -84,5 +84,14 @@ namespace FriAplikacija
         [OperationContract]
         [WebGet(UriTemplate = "AddOcenaKomentar", ResponseFormat = WebMessageFormat.Json)]
         Komentar AddOcenaKomentar();
+
+        //Podrocja
+        [OperationContract]
+        [WebGet(UriTemplate = "Podrocje", ResponseFormat = WebMessageFormat.Json)]
+        Podrocje GetPodrocje();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "AllPodrocja", ResponseFormat = WebMessageFormat.Json)]
+        List<Podrocje> AllPodrocja();
     }
 }
