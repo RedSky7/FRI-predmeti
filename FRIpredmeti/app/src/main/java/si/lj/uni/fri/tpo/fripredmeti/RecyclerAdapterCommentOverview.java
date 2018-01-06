@@ -74,6 +74,7 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         holder.commentMark.setText(data[2]);
         holder.teacherMark.setText(data[3]);
         holder.hiddenID.setText(data[4]);
+        holder.date.setText(data[5]);
 
     }
 
@@ -94,6 +95,7 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         protected TextView commentMark;
         protected TextView teacherMark;
         protected TextView hiddenID;
+        protected TextView date;
         protected ImageButton upVote;
         protected ImageButton downVote;
 
@@ -104,6 +106,7 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
             commentMark   = (TextView) itemView.findViewById(R.id.textView19);
             teacherMark   = (TextView) itemView.findViewById(R.id.textView18);
             hiddenID      = (TextView) itemView.findViewById(R.id.hiddenID);
+            date          = (TextView) itemView.findViewById(R.id.tvDate);
             upVote        = (ImageButton) itemView.findViewById(R.id.upVote);
             downVote      = (ImageButton) itemView.findViewById(R.id.downVote);
 

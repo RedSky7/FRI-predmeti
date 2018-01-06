@@ -2,9 +2,9 @@
     <string name="app_name">FRI predmeti</string>
 
     <string-array name="sort">
-        <item>Najprej najnovejši</item>
-        <item>Najprej najboljši</item>
-        <item>Najprej najvišje ocene</item>
+        <item>Po datumu</item>
+        <item>Po oceni izvajalca</item>
+        <item>Po oceni komentarja</item>
     </string-array>
 
     <string-array name="podrocje">

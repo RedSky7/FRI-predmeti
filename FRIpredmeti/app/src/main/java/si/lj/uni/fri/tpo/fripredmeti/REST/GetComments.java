@@ -63,7 +63,8 @@ public class GetComments extends AsyncTask<Integer, Void, List<Comment>> {
                         jsonObjectComment.getInt("komentarID"),
                         jsonObjectComment.getInt("ocenaKomentar"),
                         jsonObject.getInt("splosnaOcena"),
-                        jsonObjectComment.getString("komentar")));
+                        jsonObjectComment.getString("komentar"),
+                        jsonObjectComment.getString("datum")));
             }
         }
         catch (UnknownHostException e)

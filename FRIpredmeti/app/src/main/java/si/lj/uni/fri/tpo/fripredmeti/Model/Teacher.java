@@ -21,12 +21,12 @@ public class Teacher {
         this.opis = opis;
         this.priimek = priimek;
         this.slika = slika;
-        this.splosnaOcena = splosnaOcena;
+        this.splosnaOcena = (double) Math.round(splosnaOcena * 10) / 10;
         this.email = email;
     }
 
     public String toString(){
-        return naziv + " " + ime + " " + priimek;
+        return ime + " " + priimek;
     }
 
     public String getIme(){

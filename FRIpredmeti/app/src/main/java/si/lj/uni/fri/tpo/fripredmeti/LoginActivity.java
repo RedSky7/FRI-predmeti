@@ -3,6 +3,8 @@ package si.lj.uni.fri.tpo.fripredmeti;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -35,8 +37,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import si.lj.uni.fri.tpo.fripredmeti.Model.StaticGlobals;
 import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
 import si.lj.uni.fri.tpo.fripredmeti.Model.User;
+import si.lj.uni.fri.tpo.fripredmeti.REST.CheckEmail;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeacher;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetUser;
 import si.lj.uni.fri.tpo.fripredmeti.REST.SendRegistration;
@@ -96,37 +100,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+                attemptLogin();
 
                 //testno poganjaj samo moj activity
+                /*
                 Intent myIntent = new Intent(LoginActivity.this, TeacherOverview.class);
                 myIntent.putExtra("teacherID", 1);
-                LoginActivity.this.startActivity(myIntent);
+                LoginActivity.this.startActivity(myIntent);*/
             }
         });
 
         //mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
-        String email = "blaz";
-        String password = "blaz";
-        try {
-            //User u = new GetUser().execute(email, password).get();
-            User u = new GetUser().execute(email, password).get();
-            Toast.makeText(LoginActivity.this, "Hello " + u.getUsername(), Toast.LENGTH_SHORT).show();
-
-            //virstni red vhoda --> email, geslo, uporabniško ime
-            String verificationCode = new SendRegistration().execute("stanka@gmail.com", "1234", "stane").get();
-            int i = 0;
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     private void populateAutoComplete() {
@@ -194,6 +179,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
+        //TODO: TESTO ZAKOMENTIRANO
+        /*
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
@@ -210,18 +197,45 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        }
+        }*/
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            //vnos podatkov je bil neuspešen
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //vnos podatko je bil uspešen
+            email = "blaz";
+            password = "blaz";
+            try {
+                String userExists = new CheckEmail().execute(email).get();
+                if(userExists.equals("true")) {
+                    User u = new GetUser().execute(email, password).get();
+
+                    //preveri ali se geslo ujema
+                    if(u != null) {
+                        //za lažje pošiljanje podatkov
+                        StaticGlobals.StaticEmail = u.getEmail();
+                        StaticGlobals.StaticUsername = u.getUsername();
+
+                        Toast.makeText(LoginActivity.this, "Pozdravljen " + u.getUsername(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, Areas.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Geslo se ne ujema", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                //uporabnik ne obstaja, registriraj ga
+                else{
+                    //TODO: odrpi registration dialog
+                    Toast.makeText(LoginActivity.this, "Opravi registracijo", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

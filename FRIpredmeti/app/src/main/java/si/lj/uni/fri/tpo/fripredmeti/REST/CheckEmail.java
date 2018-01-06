@@ -1,10 +1,6 @@
 package si.lj.uni.fri.tpo.fripredmeti.REST;
-
 import android.os.AsyncTask;
 import android.util.Log;
-
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,28 +8,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
-import si.lj.uni.fri.tpo.fripredmeti.Model.User;
-import si.lj.uni.fri.tpo.fripredmeti.R;
-
 /**
- * Created by Blaz on 29-Dec-17.
+ * Created by Blaz on 06-Jan-18.
  */
 
-public class GetUser extends AsyncTask<String, Void, User> {
+public class CheckEmail extends AsyncTask<String, Void, String> {
 
     @Override
-    protected User doInBackground(String... params)
+    protected String doInBackground(String... params)
     {
-        User result = null;
+        String result = null;
         try
         {
             StringBuffer result1 = new StringBuffer("");
-            URL url = new URL("http://friaplikacija.azurewebsites.net/Service.svc/login");
+            URL url = new URL("http://friaplikacija.azurewebsites.net/Service.svc/CheckEmail");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             //nastavi prave klice v header
             connection.setRequestProperty("email", params[0]);
-            connection.setRequestProperty("geslo", params[1]);
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();
@@ -42,11 +34,7 @@ public class GetUser extends AsyncTask<String, Void, User> {
 
             while ((line = rd.readLine()) != null) {result1.append(line);}
 
-            JSONObject jsonObj = new JSONObject(result1.toString());
-            result = new User(jsonObj.getString("username"),
-                    jsonObj.getString("geslo"),
-                    jsonObj.getString("email"),
-                    jsonObj.getString("verificationCode"));
+            result = result1.toString();
 
         }
         catch (UnknownHostException e)
@@ -58,5 +46,4 @@ public class GetUser extends AsyncTask<String, Void, User> {
         }
         return result;
     }
-
 }

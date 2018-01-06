@@ -118,7 +118,7 @@ public class TeacherOverview extends AppCompatActivity {
         Intent intent = getIntent();
         izvajalecID = intent.getIntExtra("teacherID", 0);
         StaticGlobals.StaticIzvajalecID = 1;
-        StaticGlobals.StaticEmail = "blaz";
+        //StaticGlobals.StaticEmail = "blaz";
 
         //pridobi podatke o predavatelju
         try {
@@ -220,7 +220,8 @@ public class TeacherOverview extends AppCompatActivity {
                     c.getKomentar(),
                     Integer.toString(c.getOcenaKomentar()),
                     Integer.toString(c.getSplosnaOcena()),
-                    Integer.toString(c.getKomentarID())});
+                    Integer.toString(c.getKomentarID()),
+                    c.getDatum()});
         }
 
         recyclerView3.setAdapter(adapter3);
