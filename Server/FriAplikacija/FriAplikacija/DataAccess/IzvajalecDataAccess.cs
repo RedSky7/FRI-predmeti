@@ -63,6 +63,7 @@ namespace FriAplikacija.DataAccess {
             izvajalec.opis = row["opis"].ToString();
             izvajalec.naziv = row["naziv"].ToString();
             izvajalec.email = row["email"].ToString();
+            izvajalec.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString());
             return izvajalec;
         }
     }
