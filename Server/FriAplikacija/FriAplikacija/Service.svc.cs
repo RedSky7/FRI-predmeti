@@ -89,6 +89,12 @@ namespace FriAplikacija
             return PredmetDataAccess.getPredmetiForIzvajalec(izvajalecID);
         }
 
+        public List<Predmet> PredmetiForPodrocje() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int podrocjeID = Int32.Parse(ctx.IncomingRequest.Headers["podrocjeID"]);
+            return PredmetDataAccess.getPredmetiForIzvajalec(podrocjeID);
+        }
+
         public List<OcenaPredmeta> GetKomentarPredmet() {
             WebOperationContext ctx = WebOperationContext.Current;
             int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"].ToString());

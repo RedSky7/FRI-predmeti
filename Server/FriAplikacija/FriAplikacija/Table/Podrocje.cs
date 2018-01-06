@@ -7,6 +7,7 @@ namespace FriAplikacija.Table
 {
     public class Podrocje
     {
+        public int podrocjeID { get; set; }
         public String imePodrocja { get; set; }
     }
 }
