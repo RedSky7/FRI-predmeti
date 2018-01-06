@@ -103,7 +103,7 @@ namespace FriAplikacija
         public List<Predmet> PredmetiForPodrocje() {
             WebOperationContext ctx = WebOperationContext.Current;
             int podrocjeID = Int32.Parse(ctx.IncomingRequest.Headers["podrocjeID"]);
-            return PredmetDataAccess.getPredmetiForIzvajalec(podrocjeID);
+            return PredmetDataAccess.getPredmetiForPodrocje(podrocjeID);
         }
 
         public List<Predmet> PredmetiForOznaka() {
