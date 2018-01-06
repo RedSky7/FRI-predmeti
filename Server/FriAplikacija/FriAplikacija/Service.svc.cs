@@ -52,6 +52,17 @@ namespace FriAplikacija
             return IzvajalecDataAccess.getAllIzvajalci();
         }
 
+        public List<IzvajalecPredmeta> IzvajalecForPredmet() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int komentarID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
+            return IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(komentarID);
+        }
+
+        public List<Izvajalec> IzvajalciForOznaka() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int oznakaID = Int32.Parse(ctx.IncomingRequest.Headers["oznakaID"]);
+            return IzvajalecDataAccess.getIzvajalciForOznaka(oznakaID);
+        }
 
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
@@ -95,6 +106,12 @@ namespace FriAplikacija
             return PredmetDataAccess.getPredmetiForIzvajalec(podrocjeID);
         }
 
+        public List<Predmet> PredmetiForOznaka() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int oznakaID = Int32.Parse(ctx.IncomingRequest.Headers["oznakaID"]);
+            return PredmetDataAccess.getPredmetiForOznaka(oznakaID);
+        }
+
         public List<OcenaPredmeta> GetKomentarPredmet() {
             WebOperationContext ctx = WebOperationContext.Current;
             int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"].ToString());
@@ -125,12 +142,6 @@ namespace FriAplikacija
             return OcenaKomentarDataAccess.addKomentar(email, komentarID, positive);
         }
 
-        public List<IzvajalecPredmeta> IzvajalecForPredmet() {
-            WebOperationContext ctx = WebOperationContext.Current;
-            int komentarID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
-            return IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(komentarID);
-        }
-
         public Podrocje GetPodrocje() {
             WebOperationContext ctx = WebOperationContext.Current;
             int podrocjeID = Int32.Parse(ctx.IncomingRequest.Headers["podrocjeID"]);
@@ -140,6 +151,17 @@ namespace FriAplikacija
         public List<Podrocje> AllPodrocja() {
             WebOperationContext ctx = WebOperationContext.Current;
             return PodrocjeDataAccess.getAllPodrocja();
+        }
+
+        public Oznaka GetOznaka() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int oznakaID = Int32.Parse(ctx.IncomingRequest.Headers["oznakaID"]);
+            return OznakaDataAccess.getOznaka(oznakaID);
+        }
+
+        public List<Oznaka> AllOznake() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            return OznakaDataAccess.getAllOznake();
         }
     }
 }

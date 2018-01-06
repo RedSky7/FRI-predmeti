@@ -7,6 +7,7 @@ namespace FriAplikacija.Table
 {
     public class Oznaka
     {
+        public int OznakaID { get; set; }
         public String Ime { get; set; }
     }
 }

@@ -44,6 +44,10 @@ namespace FriAplikacija
         [WebGet(UriTemplate = "IzvajalecForPredmet", ResponseFormat = WebMessageFormat.Json)]
         List<IzvajalecPredmeta> IzvajalecForPredmet();
 
+        [OperationContract]
+        [WebGet(UriTemplate = "IzvajalciForOznaka", ResponseFormat = WebMessageFormat.Json)]
+        List<Izvajalec> IzvajalciForOznaka();
+
         //OcenaIzvajalec
         [OperationContract]
         [WebGet(UriTemplate = "GetKomentarIzvajalec", ResponseFormat = WebMessageFormat.Json)]
@@ -70,6 +74,10 @@ namespace FriAplikacija
         [WebGet(UriTemplate = "PredmetiForPodrocje", ResponseFormat = WebMessageFormat.Json)]
         List<Predmet> PredmetiForPodrocje();
 
+        [OperationContract]
+        [WebGet(UriTemplate = "PredmetiForOznaka", ResponseFormat = WebMessageFormat.Json)]
+        List<Predmet> PredmetiForOznaka();
+
 
         //OcenaPredmet
         [OperationContract]
@@ -93,5 +101,14 @@ namespace FriAplikacija
         [OperationContract]
         [WebGet(UriTemplate = "AllPodrocja", ResponseFormat = WebMessageFormat.Json)]
         List<Podrocje> AllPodrocja();
+
+        //Oznake
+        [OperationContract]
+        [WebGet(UriTemplate = "Oznaka", ResponseFormat = WebMessageFormat.Json)]
+        Oznaka GetOznaka();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "AllOznake", ResponseFormat = WebMessageFormat.Json)]
+        List<Oznaka> AllOznake();
     }
 }

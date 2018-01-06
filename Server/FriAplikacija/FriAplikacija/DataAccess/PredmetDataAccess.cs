@@ -80,6 +80,23 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        internal static List<Predmet> getPredmetiForOznaka(int oznakaID) {
+            DataTable data = new DataTable("Predmet");
+            using(SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using(SqlCommand command = new SqlCommand("SELECT * FROM Predmet p JOIN OznacujePredmet o ON p.predmetID = o.predmetID JOIN Oznaka oz ON o.oznakaID = oz.oznakaID WHERE o.oznakaID = @oznakaID", connection)) {
+                    command.Parameters.Add(new SqlParameter("oznakaID", oznakaID));
+                    using(SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if(data.Rows.Count >= 1) {
+                return rowsToPredmeti(data);
+            }
+            return null;
+        }
+
         private static List<Predmet> rowsToPredmeti(DataTable data) {
             List<Predmet> predmeti = new List<Predmet>();
             foreach(DataRow row in data.Rows) {
