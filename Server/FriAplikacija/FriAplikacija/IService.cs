@@ -16,6 +16,10 @@ namespace FriAplikacija
     {
         //Uporabnik
         [OperationContract]
+        [WebGet(UriTemplate = "CheckEmail", ResponseFormat = WebMessageFormat.Json)]
+        Boolean CheckEmail();
+
+        [OperationContract]
         [WebGet(UriTemplate = "Login", ResponseFormat = WebMessageFormat.Json)]
         Uporabnik Login();
 

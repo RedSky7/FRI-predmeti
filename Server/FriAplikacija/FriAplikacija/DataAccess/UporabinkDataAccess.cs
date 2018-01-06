@@ -122,6 +122,7 @@ namespace FriAplikacija.DataAccess
             }
         }
 
+        
         public static Boolean getEmail(String email) {
             DataTable data = new DataTable("Uporabnik");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
