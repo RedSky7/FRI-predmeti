@@ -15,7 +15,7 @@ namespace FriAplikacija.DataAccess {
             DataTable data = new DataTable("Izvajalec");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Predmet p JOIN Izvaja i ON p.predmetID = i.predmetID JOIN Izvajalec iz ON iz.izvajalecID = i.izvajalecID WHERE p.predmetID = @predmetID", connection)) {
+                using (SqlCommand command = new SqlCommand("SELECT i.*, iz.* FROM Predmet p JOIN Izvaja i ON p.predmetID = i.predmetID JOIN Izvajalec iz ON iz.izvajalecID = i.izvajalecID WHERE p.predmetID = @predmetID", connection)) {
                     command.Parameters.Add(new SqlParameter("predmetID", predmetID));
                     using (SqlDataAdapter da = new SqlDataAdapter(command))
                         da.Fill(data);
@@ -45,6 +45,7 @@ namespace FriAplikacija.DataAccess {
             izvajalec.opis = row["opis"].ToString();
             izvajalec.naziv = row["naziv"].ToString();
             izvajalec.email = row["email"].ToString();
+            izvajalec.splosnaOcena = Decimal.Parse(row["SplosnaOcena"].ToString());
             izvajalec.profesor = Boolean.Parse(row["Profesor"].ToString());
             return izvajalec;
         }
