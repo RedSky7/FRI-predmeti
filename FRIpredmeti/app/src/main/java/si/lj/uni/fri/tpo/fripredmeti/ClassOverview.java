@@ -85,8 +85,12 @@ public class ClassOverview extends AppCompatActivity {
 
     public void showPrimer(View v)
     {
-        Intent intent = new Intent(this, TeacherOverview.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, TeacherOverview.class);
+        //startActivity(intent);
+
+        Intent myIntent = new Intent(this, TeacherOverview.class);
+        myIntent.putExtra("teacherID", 1);
+        startActivity(myIntent);
     }
 
 
