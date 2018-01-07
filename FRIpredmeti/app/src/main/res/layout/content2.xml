@@ -94,7 +94,7 @@ android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     app:donut_circle_starting_degree="270" />
                 <TextView
-                    android:text="49%"
+                    android:text="/?"
                     android:id="@+id/textView55"
                     android:layout_weight="1"
                     android:background="@drawable/ic_circle"
@@ -109,7 +109,7 @@ android:layout_height="match_parent"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:text="(61)"
+                    android:text="(?)"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/te"
@@ -166,7 +166,7 @@ android:layout_height="match_parent"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:text="(61)"
+                    android:text="(?)"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/te"

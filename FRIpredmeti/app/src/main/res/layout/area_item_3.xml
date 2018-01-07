@@ -90,7 +90,9 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="match_parent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:minLines="2"
+                android:maxLines="2" />
 
         </LinearLayout>
 

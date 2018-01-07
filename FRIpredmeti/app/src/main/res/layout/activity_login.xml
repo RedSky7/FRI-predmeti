@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -23,7 +23,7 @@
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -59,12 +59,12 @@
                     android:layout_width="128dp" />
 
                 <ImageView
-                    app:srcCompat="@drawable/ic_polygonal_chart_of_triangles"
+                    app:srcCompat="@drawable/ic_box"
                     android:id="@+id/icon"
                     android:tint="@android:color/white"
                     android:layout_gravity="center"
-                    android:layout_width="82dp"
-                    android:layout_height="82dp" />
+                    android:layout_height="82dp"
+                    android:layout_width="72dp" />
 
 
             </FrameLayout>
@@ -86,7 +86,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
             <AutoCompleteTextView
                 android:id="@+id/email"
@@ -121,7 +122,16 @@
             android:text="zapomni se me "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox" />
+            android:id="@+id/checkBox"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
         <Button
             android:id="@+id/email_sign_in_button"
@@ -130,7 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/action_sign_in"
-            android:onClick="startMainActivity" />
+            android:onClick="startMainActivity"
+            android:layout_gravity="bottom" />
 
         <Button
             android:text="preskoči"
@@ -141,7 +152,6 @@
             android:onClick="startMainActivity"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_gravity="bottom" />
-
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
