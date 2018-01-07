@@ -7,5 +7,6 @@ package si.lj.uni.fri.tpo.fripredmeti.Model;
 public class StaticGlobals {
     public static String StaticUsername = null;
     public static String StaticEmail    = null;
+    public static String StaticPassword = null;
     public static int StaticIzvajalecID = 0;
 }

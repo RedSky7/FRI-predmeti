@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
@@ -123,7 +122,7 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         zanimivost.setOnSeekBarChangeListener(seekBarChangeListener);
 
         //dodajanje komentarja
-        Button add = (Button) dialog.findViewById(R.id.button2);
+        Button add = (Button) dialog.findViewById(R.id.btnAdd);
         add.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {

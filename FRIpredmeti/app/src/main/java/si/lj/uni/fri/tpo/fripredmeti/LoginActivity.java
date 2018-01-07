@@ -204,8 +204,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView.requestFocus();
         } else {
             //vnos podatko je bil uspešen
-            email = "blaz";
-            password = "blaz";
+            //email = "blazo";
+            //password = "blaz";
             try {
                 String userExists = new CheckEmail().execute(email).get();
                 if(userExists.equals("true")) {
@@ -220,6 +220,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Toast.makeText(LoginActivity.this, "Pozdravljen " + u.getUsername(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, Areas.class);
                         startActivity(intent);
+                        //Intent myIntent = new Intent(LoginActivity.this, TeacherOverview.class);
+                        //myIntent.putExtra("teacherID", 1);
+                        //LoginActivity.this.startActivity(myIntent);
                     }
                     else{
                         Toast.makeText(LoginActivity.this, "Geslo se ne ujema", Toast.LENGTH_SHORT).show();
@@ -227,8 +230,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 //uporabnik ne obstaja, registriraj ga
                 else{
-                    //TODO: odrpi registration dialog
-                    Toast.makeText(LoginActivity.this, "Opravi registracijo", Toast.LENGTH_SHORT).show();
+
+                    //zaradi lažje komnunikacije, naredi tako
+                    StaticGlobals.StaticEmail = email;
+                    StaticGlobals.StaticPassword = password;
+
+                    //odpri dialog
+                    RegistrationDialog rd = new RegistrationDialog(this);
+                    Dialog d = rd.showDialog(this);
+
                 }
 
 

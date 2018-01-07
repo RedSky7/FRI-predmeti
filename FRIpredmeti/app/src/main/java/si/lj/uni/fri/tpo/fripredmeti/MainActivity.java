@@ -82,8 +82,11 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
 
     public void startTeacherOverview(View v)
     {
-        Intent intent = new Intent(this, TeacherOverview.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, TeacherOverview.class);
+        //startActivity(intent);
+        Intent myIntent = new Intent(this, TeacherOverview.class);
+        myIntent.putExtra("teacherID", 1);
+        startActivity(myIntent);
     }
 
 
