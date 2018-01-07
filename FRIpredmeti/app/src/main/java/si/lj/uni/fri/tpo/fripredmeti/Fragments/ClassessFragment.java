@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import si.lj.uni.fri.tpo.fripredmeti.R;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
+import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapterTeacherOverview;
 
 
 /**
@@ -131,10 +132,11 @@ public class ClassessFragment extends Fragment {
             }
         });
 
-
         //recyclerView.scrollToPosition(0);
 
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

@@ -37,53 +37,42 @@ android:layout_height="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/success">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <com.github.lzyzsd.circleprogress.DonutProgress
+                    android:id="@+id/donut_progress"
+                    app:donut_finished_color="@color/colorPrimary"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_gravity="center_horizontal"
+                    app:donut_circle_starting_degree="270" />
+                <ImageView
+                    android:text="49%"
+                    android:id="@+id/imSlika"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_circle"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:textColorLink="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_height="64dp"
+                    android:layout_width="64dp"
+                    android:textSize="16sp" />
 
-
-            <!--
+            </FrameLayout>
             <TextView
-                android:id="@+id/textView4"
-                android:layout_weight="1"
-                android:background="@drawable/ic_circle"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-medium"
-                android:layout_gravity="center_horizontal"
-                android:textColorLink="@color/colorPrimary"
-                android:layout_height="64dp"
-                android:layout_width="64dp"
-                android:textSize="16sp"
-                android:text="slika"
-                android:backgroundTint="@color/colorPrimary" />-->
-
-            <ImageView
-
-                android:id="@+id/imSlika"
-                android:layout_weight="1"
-                android:background="@drawable/ic_circle"
-                android:gravity="center"
-                android:layout_above="@+id/textView12"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView5"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-medium"
-                android:layout_gravity="center_horizontal"
-                android:textColorLink="@color/colorPrimary"
-                android:layout_height="64dp"
-                android:layout_width="64dp"
-                android:textSize="16sp"
-                android:text="slika"
-                />
-
-
-            <TextView
-                android:id="@+id/tvNaziv"
+                android:text="prof."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:id="@+id/tvNaziv"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
-                android:text="izr. prof. dr." />
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-medium" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,39 +81,50 @@ android:layout_height="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/favorites">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <com.github.lzyzsd.circleprogress.DonutProgress
+                    android:id="@+id/donut_progress"
+                    app:donut_finished_color="@color/colorPrimary"
+                    app:donut_progress="49"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_gravity="center_horizontal"
+                    app:donut_circle_starting_degree="270" />
+                <TextView
+                    android:text="49%"
+                    android:id="@+id/textView55"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_circle"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:textColorLink="@color/colorPrimary"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_height="64dp"
+                    android:layout_width="64dp"
+                    android:textSize="16sp" />
 
-
-            <!--
-            <com.github.lzyzsd.circleprogress.CircleProgress
-                android:id="@+id/circle_progress"
-                app:circle_progress="52"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="center_horizontal"
-                app:circle_finished_color="@color/colorAccent"
-                app:circle_text_size="16sp"
-                app:circle_unfinished_color="@color/lightGray" />
-
--->
-            <TextView
-                android:id="@+id/tvPriljbuljenost"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:background="@drawable/ic_circle"
-                android:backgroundTint="@color/colorAccent"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:text="70%"
-                android:textColor="@android:color/white"
-                android:textColorLink="@color/colorPrimary"
-                android:textSize="16sp" />
+                <TextView
+                    android:text="(61)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/te"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp" />
+            </FrameLayout>
             <TextView
                 android:text="Priljubljenost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
+                android:id="@+id/tvPriljbuljenost"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
@@ -138,37 +138,50 @@ android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/difficulty">
 
-            <!--
-            <com.github.lzyzsd.circleprogress.CircleProgress
-                android:id="@+id/donut_progress"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                app:circle_progress="50"
-                app:circle_text_size="16sp"
-                app:circle_finished_color="@color/colorPrimary"
-                app:circle_unfinished_color="@color/lightGray" />
-                -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <com.github.lzyzsd.circleprogress.DonutProgress
+                    android:id="@+id/donut_progress"
+                    app:donut_finished_color="@color/colorPrimary"
+                    app:donut_progress="49"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_gravity="center_horizontal"
+                    app:donut_circle_starting_degree="270" />
+                <TextView
+                    android:text="/?"
+                    android:id="@+id/textView55"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_circle"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:textColorLink="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_height="64dp"
+                    android:layout_width="64dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:text="(61)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/te"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp" />
+            </FrameLayout>
             <TextView
                 android:text="/?"
-                android:id="@+id/textView88"
-                android:layout_weight="1"
-                android:background="@drawable/ic_circle"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:fontFamily="sans-serif-medium"
-                android:layout_gravity="center_horizontal"
-                android:textColorLink="@color/colorPrimary"
-                android:backgroundTint="@color/colorPrimary"
-                android:layout_height="64dp"
-                android:layout_width="64dp"
-                android:textSize="16sp" />
-
-            <TextView
-                android:text="-"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView3"
+                android:id="@+id/unknown"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
