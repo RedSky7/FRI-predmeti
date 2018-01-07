@@ -51,13 +51,13 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
     {
 
         dataSource.add("Ni za kej");
-        iconSource.add(R.drawable.ic_two);
+        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
 
         dataSource.add("Perčič");
-        iconSource.add(R.drawable.ic_one);
+        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
 
         dataSource.add("Področje krompirja");
-        iconSource.add(R.drawable.ic_three);
+        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
 
 
 
@@ -67,7 +67,7 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.area_item, parent, false);
+                .inflate(R.layout.area_item_3, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
 

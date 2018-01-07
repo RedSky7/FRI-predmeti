@@ -38,6 +38,7 @@ package si.lj.uni.fri.tpo.fripredmeti;
 
 
         import com.github.lzyzsd.circleprogress.CircleProgress;
+        import com.github.lzyzsd.circleprogress.DonutProgress;
 
         import java.text.SimpleDateFormat;
         import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.area_item2, parent, false);
+                .inflate(R.layout.area_item_3, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
 
@@ -120,10 +121,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         String[] stringComponents = all.split(":");
 
         holder.title.setText(stringComponents[0]);
-        holder.number.setText("("+stringComponents[1]+")");
-        holder.percent2.setText(stringComponents[2]+"%");
-        holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
-
+        //holder.number.setText("("+stringComponents[1]+")");
+        //holder.percent2.setText(stringComponents[2]+"%");
+        //holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
+        holder.progress.setProgress(Integer.parseInt(stringComponents[2]));
 
 
        // Animation a = AnimationUtils.loadAnimation(mActivity, R.layout.animation_up);
@@ -141,7 +142,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         fadeIn.setDuration(700);
         fadeIn.setRepeatCount(Animation.INFINITE);
         fadeIn.setRepeatMode(Animation.REVERSE);
-        holder.first.setAnimation(fadeIn);
+        //holder.first.setAnimation(fadeIn);
 
 
 //Animation fadeOut = new AlphaAnimation(0, 1);
@@ -152,7 +153,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         fadeOut.setRepeatCount(Animation.INFINITE);
         fadeOut.setRepeatMode(Animation.REVERSE);
         //fadeOut.setStartOffset(2000);
-        holder.second.setAnimation(fadeOut);
+        //holder.second.setAnimation(fadeOut);
 
 
 
@@ -176,25 +177,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        protected CircleProgress percent;
-        protected TextView percent2;
-        protected TextView number;
+        //protected CircleProgress percent;
+        protected DonutProgress progress;
+        //protected TextView percent2;
+        //protected TextView number;
         protected TextView title;
         protected CardView current;
 
-        protected FrameLayout first;
-        protected FrameLayout second;
+        //protected FrameLayout first;
+        //protected FrameLayout second;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            number =  (TextView) itemView.findViewById(R.id.number);
-            percent = (CircleProgress) itemView.findViewById(R.id.percent);
-            percent2 = (TextView) itemView.findViewById(R.id.percent2);
+            //number =  (TextView) itemView.findViewById(R.id.number);
+            //percent = (CircleProgress) itemView.findViewById(R.id.percent);
+            //percent2 = (TextView) itemView.findViewById(R.id.percent2);
+            progress = (DonutProgress) itemView.findViewById(R.id.donut_progress);
             title = (TextView) itemView.findViewById(R.id.title);
             current = (CardView) itemView.findViewById(R.id.card);
 
-            first = (FrameLayout) itemView.findViewById(R.id.fl);
-            second = (FrameLayout) itemView.findViewById(R.id.fl2);
+            //first = (FrameLayout) itemView.findViewById(R.id.fl);
+            //second = (FrameLayout) itemView.findViewById(R.id.fl2);
         }
     }
 
