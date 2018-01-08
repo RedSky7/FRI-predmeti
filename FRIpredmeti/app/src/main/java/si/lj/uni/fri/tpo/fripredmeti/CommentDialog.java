@@ -26,6 +26,7 @@ import java.util.concurrent.ExecutionException;
 
 import si.lj.uni.fri.tpo.fripredmeti.Model.StaticGlobals;
 import si.lj.uni.fri.tpo.fripredmeti.REST.SendComment;
+import si.lj.uni.fri.tpo.fripredmeti.REST.SendCommentPredmet;
 
 /**
  * Created by timko on 6. 09. 2017.
@@ -37,13 +38,14 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
     private SeekBar tezavnost;
     private SeekBar zanimivost;
     private EditText mnenje;
+    private ImageView more;
 
     public CommentDialog(Activity a)
     {
         mActivity = a;
     }
 
-    public Dialog showDialog(final Activity activity){
+    public Dialog showDialog(final Activity activity, final boolean predmeti, final int izvajalecID, final int predmetID){
         final Dialog dialog = new Dialog(activity);
         mActivity = activity;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,8 +57,13 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
         tezavnost    = (SeekBar)dialog.findViewById(R.id.seekBar22);
         zanimivost   = (SeekBar)dialog.findViewById(R.id.seekBar23);
         mnenje       = (EditText)dialog.findViewById(R.id.comment);
+        more         = (ImageView)dialog.findViewById(R.id.view_more);
 
         splosnaOcena.setProgress(2);
+
+        if(!predmeti){
+            more.setVisibility(View.GONE);
+        }
 
         CardView cv = (CardView) dialog.findViewById(R.id.card_more);
         cv.setOnClickListener(new View.OnClickListener()
@@ -127,11 +134,24 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
             @Override
             public void onClick(View v) {
                 String ocena = Integer.toString(splosnaOcena.getProgress()+1);
+                String tezavnostOcena = Integer.toString(tezavnost.getProgress()+1);
+                String zanimivostOcena = Integer.toString(zanimivost.getProgress()+1);
                 try {
                     //TODO: komentar, izvajalecID, splosnaOcena, email
-                    String izajalecID = Integer.toString(StaticGlobals.StaticIzvajalecID);
                     String email = StaticGlobals.StaticEmail;
-                    new SendComment().execute(mnenje.getText().toString(), izajalecID, ocena, email).get();
+                    if(predmeti){
+                        new SendCommentPredmet().execute(
+                                mnenje.getText().toString(),
+                                Integer.toString(predmetID),
+                                ocena,
+                                email,
+                                tezavnostOcena,
+                                zanimivostOcena
+                        ).get();
+                    }
+                    else {
+                        new SendComment().execute(mnenje.getText().toString(), Integer.toString(izvajalecID), ocena, email).get();
+                    }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

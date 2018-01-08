@@ -60,7 +60,7 @@ public class TeacherOverview extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
         //poveži elemente
-        tvPriljubljenost  = (TextView)findViewById(R.id.tvPriljbuljenost);
+        tvPriljubljenost  = (TextView)findViewById(R.id.textView55);
         tvNaziv           = (TextView)findViewById(R.id.tvNaziv);
         imSlika           = (ImageView)findViewById(R.id.imSlika);
         tvEmail           = (TextView)findViewById(R.id.teacherContact);
@@ -112,12 +112,13 @@ public class TeacherOverview extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
 
-        //TODO: preveri delovanje tega, ko začne delati perko
         //pridobi, ID učitelja, na katerega smo kliknili na prejšnjem activityju
         Intent intent = getIntent();
-        izvajalecID = intent.getIntExtra("teacherID", 0);
-        StaticGlobals.StaticIzvajalecID = 1;
+        izvajalecID = Integer.parseInt(intent.getStringExtra("mainID"));
+        StaticGlobals.StaticIzvajalecID = izvajalecID;
         //StaticGlobals.StaticEmail = "blaz";
 
         //pridobi podatke o predavatelju
@@ -147,7 +148,7 @@ public class TeacherOverview extends AppCompatActivity {
     public void showDialog(View v)
     {
         CommentDialog cd = new CommentDialog(this);
-        Dialog d = cd.showDialog(this);
+        Dialog d = cd.showDialog(this, false, izvajalecID, 0);
         d.setOnDismissListener(new Dialog.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {

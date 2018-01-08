@@ -1,5 +1,6 @@
 package si.lj.uni.fri.tpo.fripredmeti.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +13,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
 import si.lj.uni.fri.tpo.fripredmeti.R;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetClassesForArea;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapterTeacherOverview;
 
@@ -35,13 +41,20 @@ public class ClassessFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String hiddenPredmetID;
+
     private RecyclerView recyclerView;
     public RecyclerAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
-    public ClassessFragment() {
+    public ClassessFragment(){
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public ClassessFragment(String hiddenPredmetID) {
+        this.hiddenPredmetID = hiddenPredmetID;
     }
 
     /**
@@ -110,6 +123,19 @@ public class ClassessFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_classes);
         adapter = new RecyclerAdapter(getActivity(), true);
+
+
+        try {
+            List<Course> listCourse = new GetClassesForArea().execute(hiddenPredmetID).get();
+            for (int i = 0; i < listCourse.size(); i++) {
+                //Course c = listCourse.get(i);
+                adapter.addCourses(i, listCourse.get(i));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);

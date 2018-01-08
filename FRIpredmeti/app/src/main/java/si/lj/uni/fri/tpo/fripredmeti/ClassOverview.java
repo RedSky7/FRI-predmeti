@@ -1,5 +1,7 @@
 package si.lj.uni.fri.tpo.fripredmeti;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -38,18 +41,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.Model.Comment;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetComments;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetKomentarPredmet;
 
 public class ClassOverview extends AppCompatActivity {
 
+    private Spinner spSort;
 
+    private int predmetID;
+    private int sortID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_overview);
-
-
-
 
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar2));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,6 +81,18 @@ public class ClassOverview extends AppCompatActivity {
                 }
             }
         });
+
+        spSort = (Spinner)findViewById(R.id.spinnerSortBy);
+
+        sortID = spSort.getSelectedItemPosition();
+
+        Intent intent = getIntent();
+        predmetID = Integer.parseInt(intent.getStringExtra("mainID"));
+
+        loadComments(0);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
 
         //TODO: Fill botom data with right data
         ArrayList<String> data = new ArrayList<>();
@@ -108,6 +128,19 @@ public class ClassOverview extends AppCompatActivity {
         create_TEHNOLOGIJE();
         create_OPIS();
         //create_KOMENTARJI();
+
+        spSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sortID = position;
+                loadComments(predmetID);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -179,9 +212,15 @@ public class ClassOverview extends AppCompatActivity {
     public void showDialog(View v)
     {
         CommentDialog cd = new CommentDialog(this);
-        cd.showDialog(this);
+        Dialog d = cd.showDialog(this, true, 0, predmetID);
+        d.setOnDismissListener(new Dialog.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                //refresh comments
+                loadComments(predmetID);
+            }
+        });
     }
-
 
     public void showPrimer(View v)
     {
@@ -193,6 +232,34 @@ public class ClassOverview extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    private void loadComments(int predmetID){
 
+        List<Comment> commentList = null;
+        try {
+            commentList = new GetKomentarPredmet().execute(predmetID, sortID).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_KOMENTARJI);
+        recyclerView3.setHasFixedSize(true);
+        recyclerView3.setNestedScrollingEnabled(false);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(this);
+        recyclerView3.setLayoutManager(layoutManager3);
+        RecyclerAdapterCommentOverview adapter3 = new RecyclerAdapterCommentOverview(this, 0);
+
+        for(int i = 0; i < commentList.size(); i++){
+            //map.put(0, new String[]{"Stankica", "Profesor je odličen :D", "11", "5", "ID"});
+            Comment c = commentList.get(i);
+            adapter3.addData(i, new String[]{
+                    c.getUsername(),
+                    c.getKomentar(),
+                    Integer.toString(c.getOcenaKomentar()),
+                    Integer.toString(c.getSplosnaOcena()),
+                    Integer.toString(c.getKomentarID()),
+                    c.getDatum()});
+        }
+        recyclerView3.setAdapter(adapter3);
+    }
 
 }

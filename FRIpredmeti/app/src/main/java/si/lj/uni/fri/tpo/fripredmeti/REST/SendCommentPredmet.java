@@ -1,8 +1,6 @@
 package si.lj.uni.fri.tpo.fripredmeti.REST;
 
-
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -12,14 +10,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
-import si.lj.uni.fri.tpo.fripredmeti.TeacherOverview;
-
 /**
- * Created by Blaz on 27-Dec-17.
+ * Created by Boštjan on 8.1.2018.
  */
 
-public class SendComment extends AsyncTask<String, Void, String> {
+public class SendCommentPredmet  extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
@@ -27,15 +22,19 @@ public class SendComment extends AsyncTask<String, Void, String> {
 
         try{
             StringBuffer resultT = new StringBuffer("");
-            String SERVICE_URL = "http://friaplikacija.azurewebsites.net/Service.svc/KomentirajIzvaj";
+            String SERVICE_URL = "http://friaplikacija.azurewebsites.net/Service.svc/KomentirajPredmet";
             URL url = new URL(SERVICE_URL);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
             //KomentirajIzvajalca|izvajalecID|komentar|splosnaOcena|email
             connection.setRequestProperty("komentar", params[0]);
-            connection.setRequestProperty("izvajalecID", params[1]);
+            connection.setRequestProperty("predmetID", params[1]);
             connection.setRequestProperty("splosnaOcena", params[2]);
             connection.setRequestProperty("email", params[3]);
+            connection.setRequestProperty("tezavnostOcena", params[4]);
+            connection.setRequestProperty("zanimivostOcena", params[5]);
+            connection.setRequestProperty("uporabnostOcena","1");
+
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();

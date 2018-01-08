@@ -1,5 +1,6 @@
 package si.lj.uni.fri.tpo.fripredmeti.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +13,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
 import si.lj.uni.fri.tpo.fripredmeti.R;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetTeachersForArea;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
 
 
@@ -38,9 +44,16 @@ public class TeachersFragment extends Fragment {
     public RecyclerAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
+    private String hiddenTeacherID;
 
     public TeachersFragment() {
         // Required empty public constructor
+    }
+
+
+    @SuppressLint("ValidFragment")
+    public TeachersFragment(String hiddenTeacherID) {
+        this.hiddenTeacherID = hiddenTeacherID;
     }
 
     /**
@@ -107,6 +120,20 @@ public class TeachersFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_teachers);
         adapter = new RecyclerAdapter(getActivity(), false);
+
+        try {
+            List<Teacher> listTeacher = new GetTeachersForArea().execute(hiddenTeacherID).get();
+            for(int i = 0; i < listTeacher.size(); i++){
+                Teacher t = listTeacher.get(i);
+                adapter.addTeachers(i, t);
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);

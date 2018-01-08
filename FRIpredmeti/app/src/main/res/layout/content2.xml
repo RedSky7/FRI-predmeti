@@ -48,6 +48,27 @@ android:layout_height="match_parent"
                     android:layout_height="86dp"
                     android:layout_gravity="center_horizontal"
                     app:donut_circle_starting_degree="270" />
+
+                <ImageView
+
+                    android:id="@+id/imSlika"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_circle"
+                    android:gravity="center"
+                    android:layout_above="@+id/textView12"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView5"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center_horizontal"
+                    android:textColorLink="@color/colorPrimary"
+                    android:layout_height="64dp"
+                    android:layout_width="64dp"
+                    android:textSize="16sp"
+                    android:text="slika"
+                    />
+
+                <!--
                 <ImageView
                     android:text="49%"
                     android:id="@+id/imSlika"
@@ -62,6 +83,7 @@ android:layout_height="match_parent"
                     android:layout_height="64dp"
                     android:layout_width="64dp"
                     android:textSize="16sp" />
+                    -->
 
             </FrameLayout>
             <TextView

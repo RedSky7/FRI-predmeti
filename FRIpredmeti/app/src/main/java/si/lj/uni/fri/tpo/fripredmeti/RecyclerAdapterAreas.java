@@ -7,23 +7,20 @@ package si.lj.uni.fri.tpo.fripredmeti;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
-import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.lzyzsd.circleprogress.CircleProgress;
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import si.lj.uni.fri.tpo.fripredmeti.Model.*;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetAllPodrocja;
 
 /**
  * Created by rajat on 2/8/2015.
@@ -34,32 +31,26 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
     private ArrayList<String> dataSource;
     private ArrayList<Integer> iconSource;
     private Activity mActivity;
+    private List<AreasModel> listAreas;
 
 
     public RecyclerAdapterAreas(Activity a){
         mActivity = a;
         dataSource = new ArrayList<>();
         iconSource = new ArrayList<>();
-
-        fillData();
+        try {
+            listAreas = new GetAllPodrocja().execute().get();
+            for (int i = 0; i < listAreas.size(); i++) {
+                dataSource.add(listAreas.get(i).getImePodrocja());
+                iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         //TODO: pridobi podatke in jih zapiši v dataSource
-
-    }
-
-    public void fillData()
-    {
-
-        dataSource.add("Ni za kej");
-        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
-
-        dataSource.add("Perčič");
-        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
-
-        dataSource.add("Področje krompirja");
-        iconSource.add(R.drawable.ic_polygonal_chart_of_triangles);
-
-
 
     }
 
@@ -78,24 +69,24 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        String all = dataSource.get(position);
+        //String all = dataSource.get(position);
+        AreasModel areasModel = listAreas.get(position);
 
-        holder.title.setText(all);
+        holder.title.setText(areasModel.getImePodrocja());
         holder.icon.setImageDrawable(mActivity.getDrawable(iconSource.get(position)));
+
+        holder.hiddenPodrocjeID.setText(areasModel.getPodrocjeID() + "");
+
         //holder.number.setText("("+stringComponents[1]+")");
         //holder.percent2.setText(stringComponents[2]+"%");
         //holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
-
-
-
-
-
 
         holder.current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.putExtra("title", holder.title.getText());
+                intent.putExtra("hiddenPredmetID", holder.hiddenPodrocjeID.getText());
                 mActivity.startActivity(intent);
             }
         });
@@ -116,6 +107,7 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
         protected TextView title;
         protected ImageView icon;
         protected CardView current;
+        protected TextView hiddenPodrocjeID;
 
         //protected FrameLayout first;
         //protected FrameLayout second;
@@ -128,6 +120,7 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
             title = (TextView) itemView.findViewById(R.id.title);
             icon = (ImageView) itemView.findViewById(R.id.icon);
             current = (CardView) itemView.findViewById(R.id.card);
+            hiddenPodrocjeID = (TextView) itemView.findViewById(R.id.TV_idPodrocja);
 
             //first = (FrameLayout) itemView.findViewById(R.id.fl);
             //second = (FrameLayout) itemView.findViewById(R.id.fl2);

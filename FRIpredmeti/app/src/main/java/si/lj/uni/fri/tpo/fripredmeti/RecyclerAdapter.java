@@ -46,6 +46,10 @@ package si.lj.uni.fri.tpo.fripredmeti;
         import java.util.Date;
         import java.util.HashMap;
         import java.util.Locale;
+        import java.util.Map;
+
+        import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
+        import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
 
 /**
  * Created by rajat on 2/8/2015.
@@ -57,11 +61,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Activity mActivity;
     private boolean isPredmeti;
 
+    private Map<Integer, Course> courses;
+    private Map<Integer, Teacher> teachers;
 
     public RecyclerAdapter(Activity a, Boolean predmeti){
         mActivity = a;
         isPredmeti = predmeti;
         dataSource = new ArrayList<>();
+
+        courses = new HashMap<Integer, Course>();
+        teachers = new HashMap<Integer, Teacher>();
 
         fillData(predmeti, 0);
 
@@ -69,15 +78,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
+    //naziv predmeta, ocena1, ocena2,...
+    public void addCourses(int key, Course course){
+        courses.put(key, course);
+    }
+
+    public void addTeachers(int key, Teacher t){
+        teachers.put(key, t);
+    }
+
     public void fillData(Boolean predmeti, int order)
     {
         dataSource.clear();
         if(predmeti) {
             if(order == 0) {
-                dataSource.add("Računalniška arhitektura:201:97");
+                //dataSource.add(courses.get(1));
+                for (int i = 0; i < courses.size(); i++) {
+                    Course course = courses.get(i);
+                    //dataSource.add(course.getIme() + ":201:59");
+                    dataSource.add(course.getIme() + ":201:59");
+                }
+                /*dataSource.add("Računalniška arhitektura:201:97");
                 dataSource.add("Organizacija računalnikov:201:59");
-                dataSource.add("Digitalna vezja:26:51");
+                dataSource.add("Digitalna vezja:26:51");*/
             }
+
             else
             {
                 dataSource.add("Digitalna vezja:26:51");
@@ -86,9 +111,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
         }
         else {
-            dataSource.add("Luka Kadunc:201:69");
+            /*dataSource.add("Luka Kadunc:201:69");
             dataSource.add("Plagiat Kadunc:107:69");
-            dataSource.add("Tina Kadunc:23:69");
+            dataSource.add("Tina Kadunc:23:69");*/
+            for(int i = 0; i < teachers.size(); i++){
+                Teacher t = teachers.get(i);
+                dataSource.add(i, t.getIme().concat(":201:59"));
+            }
         }
 
     }
@@ -126,6 +155,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
         holder.progress.setProgress(Integer.parseInt(stringComponents[2]));
 
+        if(!isPredmeti) {
+            holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
+        }
+        else{
+            holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
+        }
 
        // Animation a = AnimationUtils.loadAnimation(mActivity, R.layout.animation_up);
        // a.reset();
@@ -156,19 +191,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //holder.second.setAnimation(fadeOut);
 
 
-
-
         holder.current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = isPredmeti ? new Intent(mActivity, ClassOverview.class) : new Intent(mActivity, TeacherOverview.class);
                 intent.putExtra("title", holder.title.getText());
+                intent.putExtra("mainID", holder.hiddenID.getText());
                 mActivity.startActivity(intent);
             }
         });
     }
-
-
 
 
     @Override
@@ -184,6 +216,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         protected TextView title;
         protected CardView current;
 
+        protected TextView hiddenID;
+
         //protected FrameLayout first;
         //protected FrameLayout second;
 
@@ -196,11 +230,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             title = (TextView) itemView.findViewById(R.id.title);
             current = (CardView) itemView.findViewById(R.id.card);
 
+            hiddenID = (TextView) itemView.findViewById(R.id.TV_idPodrocja);
+
+            hiddenID.setVisibility(View.VISIBLE);
+
             //first = (FrameLayout) itemView.findViewById(R.id.fl);
             //second = (FrameLayout) itemView.findViewById(R.id.fl2);
         }
     }
-
-
-
 }

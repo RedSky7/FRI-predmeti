@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
 
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         setupViewPager(viewPager);
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new ClassessFragment(), "predmeti");
-        adapter.addFragment(new TeachersFragment(), "izvajalci");
+        adapter.addFragment(new ClassessFragment(getIntent().getStringExtra("hiddenPredmetID")), "predmeti");
+        adapter.addFragment(new TeachersFragment(getIntent().getStringExtra("hiddenPredmetID")), "izvajalci");
 
         viewPager.setAdapter(adapter);
 
