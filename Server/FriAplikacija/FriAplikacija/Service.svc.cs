@@ -64,6 +64,17 @@ namespace FriAplikacija
             return IzvajalecDataAccess.getIzvajalciForOznaka(oznakaID);
         }
 
+        public List<IzvajalecPodrocje> AllIzvajalciPodrocje() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            return IzvajalecForPodrocjeDataAccess.getAllIzvajalciPodrocje();
+        }
+
+        public List<Izvajalec> AllIzvajalciForPodrocje() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int podrocjeID = Int32.Parse(ctx.IncomingRequest.Headers["podrocjeID"]);
+            return IzvajalecDataAccess.getIzvajalciForPodrocje(podrocjeID);
+        }
+
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());

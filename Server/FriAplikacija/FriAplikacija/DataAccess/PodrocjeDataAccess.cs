@@ -45,6 +45,23 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        public static List<Podrocje> getPodrocjeForIzvajalec(int izvajalecID) {
+            DataTable data = new DataTable("Podrocje");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("select po.* from Izvaja i join Predmet p on (p.PredmetID = i.PredmetID) join JeIzPodrocja jp on (jp.PredmetID = p.PredmetID) join Podrocje po on(jp.PodrocjeID=po.PodrocjeID) where i.IzvajalecID = @izvajalecID", connection)) {
+                    command.Parameters.Add(new SqlParameter("izvajalecID", izvajalecID));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count >= 1) {
+                return rowsToPodrocja(data);
+            }
+            return null;
+        }
+
         private static List<Podrocje> rowsToPodrocja(DataTable data) {
             List<Podrocje> podrocja = new List<Podrocje>();
             foreach(DataRow row in data.Rows) {

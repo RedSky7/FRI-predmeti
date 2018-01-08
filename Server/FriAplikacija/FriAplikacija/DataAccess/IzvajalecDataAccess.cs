@@ -63,6 +63,23 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        internal static List<Izvajalec> getIzvajalciForPodrocje(int podrocjeID) {
+            DataTable data = new DataTable("Izvajalec");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("select DISTINCT  iz.* from Izvajalec iz join Izvaja i on (iz.IzvajalecID = i.IzvajalecID) join Predmet p on (p.PredmetID = i.PredmetID) join JeIzPodrocja jp on (jp.PredmetID = p.PredmetID) join Podrocje po on(jp.PodrocjeID=po.PodrocjeID) where po.PodrocjeID = @podrocjeID", connection)) {
+                    command.Parameters.Add(new SqlParameter("podrocjeID", podrocjeID));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count >= 1) {
+                return rowsToIzvajalci(data);
+            }
+            return null;
+        }
+
         private static List<Izvajalec> rowsToIzvajalci(DataTable data) {
             List<Izvajalec> izvajalci = new List<Izvajalec>();
             foreach (DataRow row in data.Rows) {
@@ -80,7 +97,7 @@ namespace FriAplikacija.DataAccess {
             izvajalec.opis = row["opis"].ToString();
             izvajalec.naziv = row["naziv"].ToString();
             izvajalec.email = row["email"].ToString();
-            izvajalec.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString());
+            izvajalec.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString(), System.Globalization.NumberStyles.AllowDecimalPoint);
             return izvajalec;
         }
     }

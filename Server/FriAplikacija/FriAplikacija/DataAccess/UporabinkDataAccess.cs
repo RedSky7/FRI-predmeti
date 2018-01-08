@@ -36,9 +36,6 @@ namespace FriAplikacija.DataAccess
         }
 
         public static Uporabnik register(String email, String geslo, String uporabniskoIme) {
-            if (getEmail(email)) {
-                return null;
-            }
             try {
                 String verificationCode = createVerification();
                 String hashPassword = BCrypt.Net.BCrypt.HashPassword(geslo + "^Y8~JJ", BCrypt.Net.BCrypt.GenerateSalt());
@@ -55,6 +52,7 @@ namespace FriAplikacija.DataAccess
                     connection.Close();
                     SendEmail.sendVerificationEmail(email, verificationCode);
                 }
+                uporabink.verificationCode = "";
                 return uporabink;
             } catch (SaltParseException e) {
                 Console.WriteLine("BCrypt exception:" + e);

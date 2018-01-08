@@ -91,6 +91,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\IzvajalecForPodrocjeDataAccess.cs" />
     <Compile Include="DataAccess\IzvajalecPredmetaDataAccess.cs" />
     <Compile Include="DataAccess\OcenaKomentarDataAccess.cs" />
     <Compile Include="DataAccess\OcenaPredmetaDataAccess.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Table\Encrypt.cs" />
     <Compile Include="Table\Izvaja.cs" />
     <Compile Include="Table\Izvajalec.cs" />
+    <Compile Include="Table\IzvajalecPodrocje.cs" />
     <Compile Include="Table\IzvajalecPredmeta.cs" />
     <Compile Include="Table\Komentar.cs" />
     <Compile Include="Table\OcenaIzvajalca.cs" />
