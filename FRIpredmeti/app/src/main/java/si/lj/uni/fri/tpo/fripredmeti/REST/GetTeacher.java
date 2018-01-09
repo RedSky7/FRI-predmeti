@@ -50,7 +50,8 @@ public class GetTeacher extends AsyncTask<Integer, Void, Teacher> {
                     jsonObj.getString("priimek"),
                     jsonObj.getString("slika"),
                     jsonObj.getDouble("splosnaOcena"),
-                    jsonObj.getString("email"));
+                    jsonObj.getString("email"),
+                    jsonObj.getInt("dd"));
         }
         catch (UnknownHostException e)
         {

@@ -64,13 +64,15 @@ public class ClassOverview extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
 
+
         ScrollView sv = (ScrollView) findViewById(R.id.sw);
         sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Rect scrollBounds = new Rect();
                 v.getHitRect(scrollBounds);
-                Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
+                //Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
+                FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl);
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
                 if (tv15.getLocalVisibleRect(scrollBounds)) {
                     fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
@@ -91,6 +93,7 @@ public class ClassOverview extends AppCompatActivity {
 
         loadComments(0);
 
+        //če je scroll premajhen se gumb ne more prikazati, tako da ga prikažemo tudi tukaj
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
 
