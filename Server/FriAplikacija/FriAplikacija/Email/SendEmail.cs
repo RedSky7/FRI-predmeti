@@ -14,7 +14,7 @@ namespace FriAplikacija.Email {
                 mail.From = new MailAddress("no-reply.FriAplikacija@outlook.com");
                 mail.To.Add(email);
                 mail.Subject = "Registration to FRI aplikacija";
-                mail.Body = "Account verification code: " + verificationCode;
+                mail.Body = "Account verification code: " + verificationCode +"\n Account verification link: http://friaplikacija.azurewebsites.net/Service.svc/Verify1?email="+ email + "&cerCode=" + verificationCode;
 
                 SmtpClient client = new SmtpClient();
                 client.Port = 25;

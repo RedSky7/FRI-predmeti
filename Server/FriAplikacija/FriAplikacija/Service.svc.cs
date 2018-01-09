@@ -8,6 +8,8 @@ using System.Text;
 using FriAplikacija.Table;
 using FriAplikacija.DataAccess;
 using System.ServiceModel.Web;
+using System.Collections.Specialized;
+
 
 namespace FriAplikacija
 {
@@ -41,7 +43,16 @@ namespace FriAplikacija
             return UporabinkDataAccess.accountVerification(email, verCode);
         }
 
-        public Izvajalec GetIzvajalec() {
+        public void Verify1() {
+            NameValueCollection queryStringCol = WebOperationContext.Current.IncomingRequest.UriTemplateMatch.QueryParameters;
+            if(queryStringCol.Count == 2) {
+                String email = queryStringCol[0];
+                String verCode = queryStringCol[1];
+                UporabinkDataAccess.accountVerification(email, verCode);
+            }
+        }
+
+        public IzvajalecZStevilomKomentarjev GetIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
             return IzvajalecDataAccess.getIzvajalec(izvajalecID);

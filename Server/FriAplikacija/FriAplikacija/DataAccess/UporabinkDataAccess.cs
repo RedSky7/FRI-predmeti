@@ -63,7 +63,7 @@ namespace FriAplikacija.DataAccess
         }
 
         public static Uporabnik accountVerification(String email, String verCode) {
-            if (accountVerCodeVerification(email,verCode)) {
+            if (!accountVerCodeVerification(email,verCode)) {
                 return null;
             }
             try {

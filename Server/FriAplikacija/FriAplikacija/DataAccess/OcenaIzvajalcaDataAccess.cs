@@ -76,6 +76,26 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        public static long getSteviloOcenIzvajalca(int izvajalecID) {
+            try {
+                DataTable data = new DataTable("SteviloOcen");
+                using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT COUNT(*) from OcenaIzvajalca where IzvajalecID = @izvajalecID and KomentarID IS  NOT NULL ", connection)) {
+                        command.Parameters.Add(new SqlParameter("izvajalecID",izvajalecID));
+                        command.ExecuteNonQuery();
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                            da.Fill(data);
+                    }
+                    connection.Close();
+                    return Int64.Parse(data.Rows[0][0].ToString());
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+            }
+            return 0;
+        }
+
         private static List<OcenaIzvajalca> rowsToOcene(DataTable data) {
             List<OcenaIzvajalca> ocene = new List<OcenaIzvajalca>();
             foreach(DataRow row in data.Rows){

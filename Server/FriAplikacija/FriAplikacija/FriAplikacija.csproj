@@ -113,6 +113,7 @@
     <Compile Include="Table\Izvajalec.cs" />
     <Compile Include="Table\IzvajalecPodrocje.cs" />
     <Compile Include="Table\IzvajalecPredmeta.cs" />
+    <Compile Include="Table\IzvajalecZStevilomKomentarjev.cs" />
     <Compile Include="Table\Komentar.cs" />
     <Compile Include="Table\OcenaIzvajalca.cs" />
     <Compile Include="Table\OcenaKomentar.cs" />
