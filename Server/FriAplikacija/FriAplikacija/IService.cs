@@ -31,10 +31,14 @@ namespace FriAplikacija
         [WebGet(UriTemplate = "Verify", ResponseFormat = WebMessageFormat.Json)]
         Uporabnik Verify();
 
+        [OperationContract]
+        [WebGet(UriTemplate = "Verify1", ResponseFormat = WebMessageFormat.Json)]
+        void Verify1();
+
         //Izvajalec
         [OperationContract]
         [WebGet(UriTemplate = "Izvajalec", ResponseFormat = WebMessageFormat.Json)]
-        Izvajalec GetIzvajalec();
+        IzvajalecZStevilomKomentarjev GetIzvajalec();
 
         [OperationContract]
         [WebGet(UriTemplate = "AllIzvajalci", ResponseFormat = WebMessageFormat.Json)]
