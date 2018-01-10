@@ -12,6 +12,7 @@ public class Teacher {
     private String priimek;
     private String slika;
     private String email;
+    private int numberOfComments;
     private double splosnaOcena;
 
     public Teacher(int teacherID, String ime, String priimek, double splosnaOcena){
@@ -22,7 +23,7 @@ public class Teacher {
 
     }
 
-    public Teacher(int teacherID, String ime, String naziv, String opis, String priimek, String slika, double splosnaOcena, String email) {
+    public Teacher(int teacherID, String ime, String naziv, String opis, String priimek, String slika, double splosnaOcena, String email, int numberOfComments) {
         this.teacherID = teacherID;
         this.ime = ime;
         this.naziv = naziv;
@@ -31,6 +32,7 @@ public class Teacher {
         this.slika = slika;
         this.splosnaOcena = (double) Math.round(splosnaOcena * 10) / 10;
         this.email = email;
+        this.numberOfComments = numberOfComments;
     }
 
     public int getTeacherID() {
@@ -68,4 +70,6 @@ public class Teacher {
     public String getSlika() { return slika; }
 
     public String getEmail() { return email; }
+
+    public int getNumberOfComments() { return  numberOfComments; }
 }

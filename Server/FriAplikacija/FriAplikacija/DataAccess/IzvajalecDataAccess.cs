@@ -11,7 +11,7 @@ namespace FriAplikacija.DataAccess {
     public class IzvajalecDataAccess {
         private static String SOURCE = "Server=tcp:friaplikacija.database.windows.net,1433;Initial Catalog=friAplikacija;Persist Security Info=False;User ID=user;Password=friAplikacija1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-        public static Izvajalec getIzvajalec(int  izvajalecID) {
+        public static IzvajalecZStevilomKomentarjev getIzvajalec(int  izvajalecID) {
             DataTable data = new DataTable("Izvajalec");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();
@@ -23,8 +23,9 @@ namespace FriAplikacija.DataAccess {
                 connection.Close();
             }
             if (data.Rows.Count == 1) {
-                Izvajalec uporabnik = rowToIzvajalec(data.Rows[0]);
-                return uporabnik;
+                IzvajalecZStevilomKomentarjev izvajalec = rowToIzvajalecWithNumberOfComent(data.Rows[0]);
+                izvajalec.steviloKomentarjev = OcenaIzvajalcaDataAccess.getSteviloOcenIzvajalca(izvajalecID);
+                return izvajalec;
             } else {
                 return null;
             }
@@ -90,6 +91,19 @@ namespace FriAplikacija.DataAccess {
 
         private static Izvajalec rowToIzvajalec(DataRow row) {
             Izvajalec izvajalec = new Izvajalec();
+            izvajalec.izvajalecID = Int32.Parse(row["IzvajalecID"].ToString());
+            izvajalec.ime = row["ime"].ToString();
+            izvajalec.priimek = row["priimek"].ToString();
+            izvajalec.slika = row["slika"].ToString();
+            izvajalec.opis = row["opis"].ToString();
+            izvajalec.naziv = row["naziv"].ToString();
+            izvajalec.email = row["email"].ToString();
+            izvajalec.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString(), System.Globalization.NumberStyles.AllowDecimalPoint);
+            return izvajalec;
+        }
+
+        private static IzvajalecZStevilomKomentarjev rowToIzvajalecWithNumberOfComent(DataRow row) {
+            IzvajalecZStevilomKomentarjev izvajalec = new IzvajalecZStevilomKomentarjev();
             izvajalec.izvajalecID = Int32.Parse(row["IzvajalecID"].ToString());
             izvajalec.ime = row["ime"].ToString();
             izvajalec.priimek = row["priimek"].ToString();
