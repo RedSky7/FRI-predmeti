@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="si.lj.uni.fri.tpo.fripredmeti.LoginActivity">
+    tools:context="si.lj.uni.fri.tpo.fripredmeti.LoginActivity"
+    android:id="@+id/frameLayout_LOGIN">
 
     <!-- Login progress -->
     <ProgressBar
@@ -119,7 +120,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox
-            android:text="zapomni se me "
+            android:text="vpiši me samodejno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/checkBox"

@@ -2,6 +2,7 @@ package si.lj.uni.fri.tpo.fripredmeti;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,8 +28,12 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
         setContentView(R.layout.activity_main2);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar2));
         getSupportActionBar().setTitle("Pregled področij");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+
+        if(getIntent().getBooleanExtra("login", false))
+            Snackbar.make(findViewById(R.id.activity_main), "Pozdravljen " + getIntent().getStringExtra("user"), Snackbar.LENGTH_SHORT).show();
+
 
         AreasFragment newFragment = new AreasFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -38,11 +43,12 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
 
     }
 
+    /*
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -4,9 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +32,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,6 +103,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+
+        final SharedPreferences sharedPref = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        mEmailView.setText(sharedPref.getString("e-mail", ""));
+        mPasswordView.setText(sharedPref.getString("password", ""));
+
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -122,6 +132,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
+
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setChecked(sharedPref.getBoolean("auto", false));
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("auto", isChecked);
+                editor.commit();
+            }
+        });
+
+        if(sharedPref.getBoolean("auto", false) && isNetworkConnected())
+            attemptLogin();
+
+
     }
 
     private void populateAutoComplete() {
@@ -189,6 +215,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
+
+        //KOVAC_START
+
+        if(!isNetworkConnected())
+        {
+            Snackbar.make(findViewById(R.id.frameLayout_LOGIN), "Ni internetne povezave", Snackbar.LENGTH_LONG).show();
+        }
+
+        //KOVAC_END
+
         //TODO: TESTO ZAKOMENTIRANO
         /*
         // Check for a valid password, if the user entered one.
@@ -227,9 +263,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         StaticGlobals.StaticEmail = u.getEmail();
                         StaticGlobals.StaticUsername = u.getUsername();
 
-                        Toast.makeText(LoginActivity.this, "Pozdravljen " + u.getUsername(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, "Pozdravljen " + u.getUsername(), Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences sharedPref = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+
+
+                        editor.putString("e-mail", email);
+                        editor.putString("password", password);
+
+                        editor.commit();
+
+
                         Intent intent = new Intent(this, Areas.class);
+                        intent.putExtra("login", true);
+                        intent.putExtra("user", u.getUsername());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                         //Intent myIntent = new Intent(LoginActivity.this, TeacherOverview.class);
                         //myIntent.putExtra("teacherID", 1);
                         //LoginActivity.this.startActivity(myIntent);
@@ -390,6 +441,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mPassword = password;
         }
 
+
+
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
@@ -431,6 +484,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 
 
