@@ -65,7 +65,7 @@ namespace FriAplikacija.DataAccess {
             return -1;
         }
 
-        private static Komentar getKomentar(int komentarID) {
+        public static Komentar getKomentar(int komentarID) {
             DataTable data = new DataTable("Komentar");
             using (SqlConnection connection = new SqlConnection(SOURCE)) {
                 connection.Open();

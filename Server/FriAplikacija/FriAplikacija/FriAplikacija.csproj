@@ -121,6 +121,7 @@
     <Compile Include="Table\Oznaka.cs" />
     <Compile Include="Table\Podrocje.cs" />
     <Compile Include="Table\Predmet.cs" />
+    <Compile Include="Table\PredmetWithOznaka.cs" />
     <Compile Include="Table\Uporabink.cs" />
   </ItemGroup>
   <PropertyGroup>

@@ -30,6 +30,26 @@ namespace FriAplikacija.DataAccess {
             }
         }
 
+        public static PredmetWithOznaka getPredmetWithOznaka(int predmetID) {
+            DataTable data = new DataTable("Predmet");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Predmet Where predmetID = @predmetID", connection)) {
+                    command.Parameters.Add(new SqlParameter("predmetID", predmetID));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count == 1) {
+                PredmetWithOznaka predmet = rowToPredmetWithOznaka(data.Rows[0]);
+                predmet.oznaka = OznakaDataAccess.getOznakeForPredmet(predmetID);
+                return predmet;
+            } else {
+                return null;
+            }
+        }
+
         internal static List<Predmet> getAllPredmeti() {
             DataTable data = new DataTable("Predmet");
             using(SqlConnection connection = new SqlConnection(SOURCE)) {
@@ -107,6 +127,18 @@ namespace FriAplikacija.DataAccess {
 
         private static Predmet rowToPredmet(DataRow row) {
             Predmet predmet = new Predmet();
+            predmet.predmetID = Int32.Parse(row["predmetID"].ToString());
+            predmet.ime = row["ime"].ToString();
+            predmet.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString());
+            predmet.tezavnostOcena = Decimal.Parse(row["tezavnostOcena"].ToString());
+            predmet.zanimivostOcena = Decimal.Parse(row["zanimivostOcena"].ToString());
+            predmet.uporabnostOcena = Decimal.Parse(row["uporabnostOcena"].ToString());
+            predmet.ocena = row["opis"].ToString();
+            return predmet;
+        }
+
+        private static PredmetWithOznaka rowToPredmetWithOznaka(DataRow row) {
+            PredmetWithOznaka predmet = new PredmetWithOznaka();
             predmet.predmetID = Int32.Parse(row["predmetID"].ToString());
             predmet.ime = row["ime"].ToString();
             predmet.splosnaOcena = Decimal.Parse(row["splosnaOcena"].ToString());

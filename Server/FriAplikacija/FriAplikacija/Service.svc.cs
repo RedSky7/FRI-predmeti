@@ -110,6 +110,11 @@ namespace FriAplikacija
             int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
             return PredmetDataAccess.getPredmet(predmetID);
         }
+        public PredmetWithOznaka GetPredmetWithOznaka() {
+            WebOperationContext ctx = WebOperationContext.Current;
+            int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"]);
+            return PredmetDataAccess.getPredmetWithOznaka(predmetID);
+        }
 
         public List<Predmet> AllPredmeti() {
             WebOperationContext ctx = WebOperationContext.Current;
