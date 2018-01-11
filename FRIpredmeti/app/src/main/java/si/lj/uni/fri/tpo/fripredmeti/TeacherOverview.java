@@ -55,7 +55,7 @@ public class TeacherOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_overview);
 
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar2));
+        //setSupportActionBar((Toolbar)findViewById(R.id.toolbar2));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 

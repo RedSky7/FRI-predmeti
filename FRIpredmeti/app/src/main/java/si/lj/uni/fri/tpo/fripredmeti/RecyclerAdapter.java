@@ -160,7 +160,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.progress.setProgress(Integer.parseInt(stringComponents[2]));
 
         if(!isPredmeti) {
-            holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
+ //           holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
 
             holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_man));
         }
@@ -183,7 +183,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             else if(parent.equals("Ostalo"))
                 holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_computer));
 
-            holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
+//            holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
         }
 
        // Animation a = AnimationUtils.loadAnimation(mActivity, R.layout.animation_up);

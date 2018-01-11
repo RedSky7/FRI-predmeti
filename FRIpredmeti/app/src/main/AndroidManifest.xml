@@ -29,7 +29,8 @@
 
 
         </activity>
-        <activity android:name=".TeacherOverview" />
+        <activity android:name=".TeacherOverview"
+            android:theme="@style/AppTheme2"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Launcher">

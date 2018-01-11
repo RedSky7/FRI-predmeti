@@ -86,13 +86,14 @@
                 android:text="Računalniška grafika"
                 android:layout_height="wrap_content"
                 android:id="@+id/title"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="match_parent"
                 android:layout_weight="0"
                 android:minLines="2"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:layout_gravity="center" />
 
         </LinearLayout>
 
