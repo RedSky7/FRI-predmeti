@@ -74,6 +74,8 @@ public class RecyclerAdapterCommentOverview extends RecyclerView.Adapter<Recycle
         holder.commentMark.setText(data[2]);
         holder.teacherMark.setText(data[3]);
         holder.hiddenID.setText(data[4]);
+
+        data[5] = data[5].replace(" ", ". ");
         holder.date.setText(data[5]);
 
     }

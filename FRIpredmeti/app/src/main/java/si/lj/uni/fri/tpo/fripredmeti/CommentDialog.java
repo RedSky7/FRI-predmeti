@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
@@ -151,6 +152,8 @@ public class CommentDialog  implements DialogInterface.OnDismissListener{
                     }
                     else {
                         new SendComment().execute(mnenje.getText().toString(), Integer.toString(izvajalecID), ocena, email).get();
+                        Snackbar.make(mActivity.findViewById(R.id.rl), "Komentar dodan", Snackbar.LENGTH_SHORT).show();
+
                     }
 
                 } catch (InterruptedException e) {

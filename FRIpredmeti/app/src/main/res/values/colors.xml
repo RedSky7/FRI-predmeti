@@ -7,5 +7,5 @@
 
     <color name="back">#f5f5f5</color>
     <color name="black_overlay">#66000000</color>
-    <color name="colorPrimaryTrans">#64424242</color>
+    <color name="colorPrimaryTrans">#b0000000</color>
 </resources>

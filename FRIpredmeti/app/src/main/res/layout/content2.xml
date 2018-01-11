@@ -9,7 +9,8 @@
 
     android:layout_width="match_parent"
 android:layout_height="match_parent"
-    android:background="@color/cardview_shadow_end_color">
+    android:background="@color/cardview_shadow_end_color"
+    android:id="@+id/rl">
 
 
     <android.support.v7.widget.CardView
@@ -44,10 +45,11 @@ android:layout_height="match_parent"
                 <com.github.lzyzsd.circleprogress.DonutProgress
                     android:id="@+id/donut_progress"
                     app:donut_finished_color="@color/colorPrimary"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
                     android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_circle_starting_degree="270"
+                    app:donut_unfinished_color="@android:color/transparent"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp" />
 
                 <ImageView
 
@@ -111,10 +113,11 @@ android:layout_height="match_parent"
                     android:id="@+id/donut_progress"
                     app:donut_finished_color="@color/colorPrimary"
                     app:donut_progress="49"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
                     android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_circle_starting_degree="270"
+                    app:donut_unfinished_color="@android:color/transparent"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp" />
                 <TextView
                     android:text="/?"
                     android:id="@+id/textView55"
@@ -168,10 +171,11 @@ android:layout_height="match_parent"
                     android:id="@+id/donut_progress"
                     app:donut_finished_color="@color/colorPrimary"
                     app:donut_progress="49"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
                     android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_circle_starting_degree="270"
+                    app:donut_unfinished_color="@android:color/transparent"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp" />
                 <TextView
                     android:text="/?"
                     android:id="@+id/textView55"
