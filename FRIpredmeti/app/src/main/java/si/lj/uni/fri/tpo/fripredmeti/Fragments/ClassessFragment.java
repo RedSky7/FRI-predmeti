@@ -34,7 +34,7 @@ import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapterTeacherOverview;
 public class ClassessFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "title";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -53,8 +53,9 @@ public class ClassessFragment extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public ClassessFragment(String hiddenPredmetID) {
+    public ClassessFragment(String hiddenPredmetID, String title) {
         this.hiddenPredmetID = hiddenPredmetID;
+        this.mParam1 = title;
     }
 
     /**
@@ -122,7 +123,7 @@ public class ClassessFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_classes);
-        adapter = new RecyclerAdapter(getActivity(), true);
+        adapter = new RecyclerAdapter(getActivity(), true, mParam1);
 
 
         try {

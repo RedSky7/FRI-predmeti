@@ -150,7 +150,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if(sharedPref.getBoolean("auto", false) && isNetworkConnected())
             attemptLogin();
 
-
+        if(!isNetworkConnected())
+            Snackbar.make(findViewById(R.id.frameLayout_LOGIN), "Ni internetne povezave", Snackbar.LENGTH_LONG).show();
     }
 
     private void populateAutoComplete() {
@@ -496,10 +497,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    public void startMainActivity(View v)
-    {
-        Intent intent = new Intent(this, Areas.class);
-        startActivity(intent);
+    public void startMainActivity(View v) {
+        if (isNetworkConnected()) {
+            Intent intent = new Intent(this, Areas.class);
+            startActivity(intent);
+        }
+        else {
+            Snackbar.make(findViewById(R.id.frameLayout_LOGIN), "Ni internetne povezave", Snackbar.LENGTH_LONG).show();
+        }
     }
 }
 

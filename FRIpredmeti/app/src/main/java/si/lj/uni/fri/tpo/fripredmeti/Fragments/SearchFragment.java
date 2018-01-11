@@ -101,7 +101,7 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search);
-        adapter = new RecyclerAdapter(getActivity(), true);
+        adapter = new RecyclerAdapter(getActivity(), true, "none");
         adapter.fillDataWithQuery(mParam1);
         recyclerView.setAdapter(adapter);
 

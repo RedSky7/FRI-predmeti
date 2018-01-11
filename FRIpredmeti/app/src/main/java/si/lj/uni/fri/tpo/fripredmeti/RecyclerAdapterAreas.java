@@ -12,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -80,14 +82,36 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
         //holder.number.setText("("+stringComponents[1]+")");
         //holder.percent2.setText(stringComponents[2]+"%");
         //holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
+        if(areasModel.getImePodrocja().equals("Strojna oprema(HW)"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_cpu));
+        else if(areasModel.getImePodrocja().equals("Programska oprema(SW)"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_cd));
+        else if(areasModel.getImePodrocja().equals("Igre in umetna inteligenca"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_gamepad));
+        else if(areasModel.getImePodrocja().equals("Operacijski sistemi"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_operating_system));
+        else if(areasModel.getImePodrocja().equals("Spletne tehnologije"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_wifi));
+        else if(areasModel.getImePodrocja().equals("Informatika"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_server));
+        else if(areasModel.getImePodrocja().equals("Matematika"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_calculator));
+        else if(areasModel.getImePodrocja().equals("Ostalo"))
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_computer));
 
         holder.current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FrameLayout spinner = (FrameLayout) mActivity.findViewById(R.id.progress);
+                spinner.setVisibility(View.VISIBLE);
+
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.putExtra("title", holder.title.getText());
                 intent.putExtra("hiddenPredmetID", holder.hiddenPodrocjeID.getText());
                 mActivity.startActivity(intent);
+
+                //spinner.setVisibility(View.GONE);
             }
         });
     }

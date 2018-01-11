@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import si.lj.uni.fri.tpo.fripredmeti.Fragments.AreasFragment;
 import si.lj.uni.fri.tpo.fripredmeti.Fragments.SearchFragment;
@@ -35,6 +36,7 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
             Snackbar.make(findViewById(R.id.activity_main), "Pozdravljen " + getIntent().getStringExtra("user"), Snackbar.LENGTH_SHORT).show();
 
 
+
         AreasFragment newFragment = new AreasFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, newFragment, "AREAS");
@@ -49,6 +51,13 @@ public class Areas extends AppCompatActivity implements SearchFragment.OnFragmen
         onBackPressed();
         return true;
     }*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FrameLayout spinner = (FrameLayout) findViewById(R.id.progress);
+        spinner.setVisibility(View.GONE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

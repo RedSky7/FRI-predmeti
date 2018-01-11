@@ -71,8 +71,10 @@ public class ClassOverview extends AppCompatActivity {
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Rect scrollBounds = new Rect();
                 v.getHitRect(scrollBounds);
-                //Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
-                FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl);
+
+                //TODO: KOVAC ali ROGI?
+                Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
+                //FrameLayout tv15 = (FrameLayout) findViewById(R.id.fl);
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
                 if (tv15.getLocalVisibleRect(scrollBounds)) {
                     fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();

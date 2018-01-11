@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view_classes"
+        android:layout_below="@+id/spinnerSortByClasses"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/spinnerSortByClasses" />
+        android:layout_marginBottom="16dp" />
 </RelativeLayout>

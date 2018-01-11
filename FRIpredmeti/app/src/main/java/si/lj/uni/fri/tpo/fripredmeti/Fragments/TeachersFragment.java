@@ -119,7 +119,7 @@ public class TeachersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_teachers);
-        adapter = new RecyclerAdapter(getActivity(), false);
+        adapter = new RecyclerAdapter(getActivity(), false, "none");
 
         try {
             List<Teacher> listTeacher = new GetTeachersForArea().execute(hiddenTeacherID).get();

@@ -64,10 +64,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Map<Integer, Course> courses;
     private Map<Integer, Teacher> teachers;
 
-    public RecyclerAdapter(Activity a, Boolean predmeti){
+    private String parent;
+
+    public RecyclerAdapter(Activity a, Boolean predmeti, String parent1){
         mActivity = a;
         isPredmeti = predmeti;
         dataSource = new ArrayList<>();
+
+        parent = parent1;
 
         courses = new HashMap<Integer, Course>();
         teachers = new HashMap<Integer, Teacher>();
@@ -116,7 +120,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             dataSource.add("Tina Kadunc:23:69");*/
             for(int i = 0; i < teachers.size(); i++){
                 Teacher t = teachers.get(i);
-                dataSource.add(i, t.getIme().concat(":201:59"));
+                dataSource.add(i, t.getIme() + " " + t.getPriimek().concat(":201:59"));
             }
         }
 
@@ -157,8 +161,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         if(!isPredmeti) {
             holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
+
+            holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_man));
         }
         else{
+            Log.e("THIS11", parent);
+            if(parent.equals("Strojna oprema(HW)"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_cpu));
+            else if(parent.equals("Programska oprema(SW)"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_cd));
+            else if(parent.equals("Igre in umetna inteligenca"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_gamepad));
+            else if(parent.equals("Operacijski sistemi"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_operating_system));
+            else if(parent.equals("Spletne tehnologije"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_wifi));
+            else if(parent.equals("Informatika"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_server));
+            else if(parent.equals("Matematika"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_calculator));
+            else if(parent.equals("Ostalo"))
+                holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_computer));
+
             holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
         }
 
@@ -169,6 +193,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //holder.number.clearAnimation();
        // holder.percent2.startAnimation(a);
        // holder.number.startAnimation(a);
+
+
 
 
         Animation fadeIn = new ScaleAnimation(0, 1, 0, 1, 220, 160);
@@ -194,6 +220,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.current.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FrameLayout spinner = (FrameLayout) mActivity.findViewById(R.id.progress);
+                spinner.setVisibility(View.VISIBLE);
+
                 Intent intent = isPredmeti ? new Intent(mActivity, ClassOverview.class) : new Intent(mActivity, TeacherOverview.class);
                 intent.putExtra("title", holder.title.getText());
                 intent.putExtra("mainID", holder.hiddenID.getText());
@@ -215,6 +245,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //protected TextView number;
         protected TextView title;
         protected CardView current;
+        protected ImageView icon;
 
         protected TextView hiddenID;
 
@@ -229,10 +260,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             progress = (DonutProgress) itemView.findViewById(R.id.donut_progress);
             title = (TextView) itemView.findViewById(R.id.title);
             current = (CardView) itemView.findViewById(R.id.card);
+            icon = (ImageView) itemView.findViewById(R.id.icon);
 
             hiddenID = (TextView) itemView.findViewById(R.id.TV_idPodrocja);
 
-            hiddenID.setVisibility(View.VISIBLE);
+            //hiddenID.setVisibility(View.VISIBLE);
 
             //first = (FrameLayout) itemView.findViewById(R.id.fl);
             //second = (FrameLayout) itemView.findViewById(R.id.fl2);

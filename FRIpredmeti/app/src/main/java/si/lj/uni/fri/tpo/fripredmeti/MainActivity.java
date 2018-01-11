@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -57,10 +58,17 @@ public class MainActivity extends AppCompatActivity implements  ClassessFragment
         //imageView.animate().rotationYBy(180).setInterpolator(new LinearInterpolator()).start();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FrameLayout spinner = (FrameLayout) findViewById(R.id.progress);
+        spinner.setVisibility(View.GONE);
+    }
+
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new ClassessFragment(getIntent().getStringExtra("hiddenPredmetID")), "predmeti");
+        adapter.addFragment(new ClassessFragment(getIntent().getStringExtra("hiddenPredmetID"), getIntent().getStringExtra("title")), "predmeti");
         adapter.addFragment(new TeachersFragment(getIntent().getStringExtra("hiddenPredmetID")), "izvajalci");
 
         viewPager.setAdapter(adapter);
