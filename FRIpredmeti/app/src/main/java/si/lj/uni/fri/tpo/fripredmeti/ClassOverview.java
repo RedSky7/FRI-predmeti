@@ -44,6 +44,8 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import si.lj.uni.fri.tpo.fripredmeti.Model.Comment;
+import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
+import si.lj.uni.fri.tpo.fripredmeti.REST.GetClassDetails;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetComments;
 import si.lj.uni.fri.tpo.fripredmeti.REST.GetKomentarPredmet;
 
@@ -53,6 +55,9 @@ public class ClassOverview extends AppCompatActivity {
 
     private int predmetID;
     private int sortID;
+    private Course celPredmet = null;
+
+    private double KOLICNIK_ZA_OCENE = 20.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,39 +98,74 @@ public class ClassOverview extends AppCompatActivity {
         Intent intent = getIntent();
         predmetID = Integer.parseInt(intent.getStringExtra("mainID"));
 
-        loadComments(0);
+        loadComments(predmetID);
+
+        try {
+            celPredmet = new GetClassDetails().execute(predmetID).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
         //če je scroll premajhen se gumb ne more prikazati, tako da ga prikažemo tudi tukaj
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
 
-        //TODO: Fill botom data with right data
-        ArrayList<String> data = new ArrayList<>();
-        data.add("70");
-        data.add("70%");
-        data.add("54");
+        if(celPredmet != null){
+            ArrayList<String> data = new ArrayList<>();
+            data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
+            data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
+            data.add("54");
 
-        fillCircle(data, (DonutProgress) findViewById(R.id.zanimivost_progress),
-                (TextView) findViewById(R.id.zanimivost_procenti),
-                (TextView) findViewById(R.id.zanimivost_ljudi));
+            fillCircle(data, (DonutProgress) findViewById(R.id.zanimivost_progress),
+                    (TextView) findViewById(R.id.zanimivost_procenti),
+                    (TextView) findViewById(R.id.zanimivost_ljudi));
 
-        //TODO: Fill botom data with right data
-        data.clear();
-        data.add("49");
-        data.add("49%");
-        data.add("61");
-        fillCircle(data, (DonutProgress) findViewById(R.id.priljubljenost_progress),
-                (TextView) findViewById(R.id.priljubljenost_procenti),
-                (TextView) findViewById(R.id.priljubljenost_ljudi));
+            data.clear();
+            data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + ""); //***to nej bi bla priljubljenost
+            data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + "");
+            data.add("61");
+            fillCircle(data, (DonutProgress) findViewById(R.id.priljubljenost_progress),
+                    (TextView) findViewById(R.id.priljubljenost_procenti),
+                    (TextView) findViewById(R.id.priljubljenost_ljudi));
 
-        //TODO: Fill botom data with right data
-        data.clear();
-        data.add("80");
-        data.add("4/5");
-        data.add("30");
-        fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
-                (TextView) findViewById(R.id.tezavnost_skala),
-                (TextView) findViewById(R.id.tezavnost_ljudi));
+            data.clear();
+            data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
+            data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
+            data.add("30");
+            fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
+                    (TextView) findViewById(R.id.tezavnost_skala),
+                    (TextView) findViewById(R.id.tezavnost_ljudi));
+        }
+        else {
+
+            //TODO: Fill botom data with right data
+            ArrayList<String> data = new ArrayList<>();
+            data.add("70");
+            data.add("70%");
+            data.add("54");
+
+            fillCircle(data, (DonutProgress) findViewById(R.id.zanimivost_progress),
+                    (TextView) findViewById(R.id.zanimivost_procenti),
+                    (TextView) findViewById(R.id.zanimivost_ljudi));
+
+            //TODO: Fill botom data with right data
+            data.clear();
+            data.add("49");
+            data.add("49%");
+            data.add("61");
+            fillCircle(data, (DonutProgress) findViewById(R.id.priljubljenost_progress),
+                    (TextView) findViewById(R.id.priljubljenost_procenti),
+                    (TextView) findViewById(R.id.priljubljenost_ljudi));
+
+            //TODO: Fill botom data with right data
+            data.clear();
+            data.add("80");
+            data.add("4/5");
+            data.add("30");
+            fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
+                    (TextView) findViewById(R.id.tezavnost_skala),
+                    (TextView) findViewById(R.id.tezavnost_ljudi));
+        }
 
         //TODO: Uncomment create_KOMENTARJI();
         create_PREDPOGOJI();
@@ -148,12 +188,16 @@ public class ClassOverview extends AppCompatActivity {
         });
     }
 
+    public double izracunajProcent(double st){
+        double a = Math.round(st * KOLICNIK_ZA_OCENE * 100); //da se procenti pravilno izračunajo se mora najprej shranit, ne sprašuj zakaj
+        return a / 100;
+    }
 
     public void create_PREDPOGOJI()
     {
         //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_PREDPOGOJI);
-        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1);
+        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1, null);
         recyclerView1.setAdapter(adapter1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -164,7 +208,7 @@ public class ClassOverview extends AppCompatActivity {
     {
         //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_IZVAJALCI);
-        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1);
+        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1, null);
         recyclerView1.setAdapter(adapter1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -175,7 +219,7 @@ public class ClassOverview extends AppCompatActivity {
     {
         //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_TEHNOLOGIJE);
-        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1);
+        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 3, celPredmet.getOznake());
         recyclerView1.setAdapter(adapter1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -197,14 +241,13 @@ public class ClassOverview extends AppCompatActivity {
     public void create_OPIS()
     {
         TextView desc = (TextView) findViewById(R.id.textView_DESCRIPTION);
-        //TODO: Get opis from server and correct bottom
-        desc.setText("To je opis");
+        desc.setText(celPredmet != null ? celPredmet.getOcena() : "To je opis");
     }
 
     public void fillCircle(ArrayList<String> data, DonutProgress progress, TextView procenti, TextView ljudi)
     {
-        progress.setProgress(Integer.parseInt(data.get(0)));
-        procenti.setText(data.get(1));
+        progress.setProgress(Float.parseFloat(data.get(0)));
+        procenti.setText(data.get(1) + "%");
         ljudi.setText("(" + data.get(2) + ")");
     }
 

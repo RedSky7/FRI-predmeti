@@ -47,9 +47,11 @@ package si.lj.uni.fri.tpo.fripredmeti;
         import java.util.HashMap;
         import java.util.Locale;
         import java.util.Map;
+        import java.util.concurrent.ExecutionException;
 
         import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
         import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
+        import si.lj.uni.fri.tpo.fripredmeti.REST.GetClassDetails;
 
 /**
  * Created by rajat on 2/8/2015.
@@ -96,11 +98,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         dataSource.clear();
         if(predmeti) {
             if(order == 0) {
+                Course course, courseDetails = null;
+                ClassOverview co = new ClassOverview();
                 //dataSource.add(courses.get(1));
                 for (int i = 0; i < courses.size(); i++) {
-                    Course course = courses.get(i);
+                    course = courses.get(i);
                     //dataSource.add(course.getIme() + ":201:59");
-                    dataSource.add(course.getIme() + ":201:59");
+
+                    try {
+                        courseDetails = new GetClassDetails().execute(course.getPredmetID()).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    dataSource.add(course.getIme() + ":201:" + (courseDetails != null ? co.izracunajProcent(courseDetails.getSplosnaOcena()) + "" : "10"));
                 }
                 /*dataSource.add("Računalniška arhitektura:201:97");
                 dataSource.add("Organizacija računalnikov:201:59");
@@ -157,7 +170,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //holder.number.setText("("+stringComponents[1]+")");
         //holder.percent2.setText(stringComponents[2]+"%");
         //holder.percent.setProgress(Integer.parseInt(stringComponents[2]));
-        holder.progress.setProgress(Integer.parseInt(stringComponents[2]));
+        holder.progress.setProgress(Float.parseFloat(stringComponents[2]));
 
         if(!isPredmeti) {
            holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));

@@ -12,12 +12,13 @@ public class Course {
     private String izvajalci;
     private String ocena;
     private int predmetID;
-    private int splosnaOcena;
-    private int tezavnostOcena;
-    private int uporabnostOcena;
-    private int zanimivostOcena;
+    private double splosnaOcena;
+    private double tezavnostOcena;
+    private double uporabnostOcena;
+    private double zanimivostOcena;
+    private List<String> oznake;
 
-    public Course(String ime, String opis, int predmetID, int splosnaOcena, int tezavnostOcena, int uporabnostOcena, int zanimivostOcena) {
+    public Course(String ime, String opis, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena, double zanimivostOcena) {
         this.ime = ime;
         this.opis = opis;
         this.predmetID = predmetID;
@@ -27,7 +28,7 @@ public class Course {
         this.zanimivostOcena = zanimivostOcena;
     }
 
-    public Course(String ime, String izvajalci, String ocena, int predmetID, int splosnaOcena, int tezavnostOcena, int uporabnostOcena, int zanimivostOcena){
+    public Course(String ime, String izvajalci, String ocena, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena, double zanimivostOcena){
         this.ime = ime;
         this.izvajalci = izvajalci;
         this.ocena = ocena;
@@ -38,7 +39,19 @@ public class Course {
         this.zanimivostOcena = zanimivostOcena;
     }
 
-    public int getSplosnaOcena() {
+    public Course(String ime, String izvajalci, String ocena, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena, double zanimivostOcena, List<String> oznake){
+        this.ime = ime;
+        this.izvajalci = izvajalci;
+        this.ocena = ocena;
+        this.predmetID = predmetID;
+        this.splosnaOcena = splosnaOcena;
+        this.tezavnostOcena = tezavnostOcena;
+        this.uporabnostOcena = uporabnostOcena;
+        this.zanimivostOcena = zanimivostOcena;
+        this.oznake = oznake;
+    }
+
+    public double getSplosnaOcena() {
         return splosnaOcena;
     }
 
@@ -50,16 +63,28 @@ public class Course {
         return predmetID;
     }
 
-    public int getTezavnostOcena() {
+    public double getTezavnostOcena() {
         return tezavnostOcena;
     }
 
-    public int getUporabnostOcena() {
+    public double getUporabnostOcena() {
         return uporabnostOcena;
     }
 
-    public int getZanimivostOcena() {
+    public double getZanimivostOcena() {
         return zanimivostOcena;
+    }
+
+    public String getIzvajalci() {
+        return izvajalci;
+    }
+
+    public String getOcena() {
+        return ocena;
+    }
+
+    public List<String> getOznake() {
+        return oznake;
     }
 
     public String getIme() {
