@@ -45,12 +45,15 @@ package si.lj.uni.fri.tpo.fripredmeti;
         import java.util.Calendar;
         import java.util.Date;
         import java.util.HashMap;
+        import java.util.List;
         import java.util.Locale;
         import java.util.Map;
         import java.util.concurrent.ExecutionException;
 
+        import si.lj.uni.fri.tpo.fripredmeti.Model.AreasModel;
         import si.lj.uni.fri.tpo.fripredmeti.Model.Course;
         import si.lj.uni.fri.tpo.fripredmeti.Model.Teacher;
+        import si.lj.uni.fri.tpo.fripredmeti.REST.GetAllPodrocja;
         import si.lj.uni.fri.tpo.fripredmeti.REST.GetClassDetails;
 
 /**
@@ -63,10 +66,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Activity mActivity;
     private boolean isPredmeti;
 
+    private List<AreasModel> vsaPodrocja = null;
+
     private Map<Integer, Course> courses;
     private Map<Integer, Teacher> teachers;
 
     private String parent;
+    private boolean searching = false;
 
     public RecyclerAdapter(Activity a, Boolean predmeti, String parent1){
         mActivity = a;
@@ -79,9 +85,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         teachers = new HashMap<Integer, Teacher>();
 
         fillData(predmeti, 0);
-
         //TODO: pridobi podatke in jih zapiši v dataSource
 
+        try {
+            vsaPodrocja = new GetAllPodrocja().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     //naziv predmeta, ocena1, ocena2,...
@@ -139,13 +151,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
-    public void fillDataWithQuery(String query)
-    {
+    public void fillDataWithQuery(String query) {
         dataSource.clear();
-        dataSource.add("This is with query:0:0");
+
+        AreasModel am;
+
+        for (int i = 0; i < vsaPodrocja.size(); i++) {
+            am = vsaPodrocja.get(i);
+
+            if(am.getImePodrocja().toLowerCase().contains(query.toLowerCase())){
+                dataSource.add(am.getImePodrocja() + ":10:100");
+            }
+        }
+
+        searching = true;
+
+        /*dataSource.add("This is with query:0:0");
         dataSource.add("Query:0:0");
         dataSource.add("Querrrx:0:0");
-        dataSource.add("Querrryyyyyyyyyyyy:0:0");
+        dataSource.add("Querrryyyyyyyyyyyy:0:0");*/
     }
 
     @Override
@@ -154,8 +178,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.area_item_3, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-
-
 
         return viewHolder;
     }
@@ -173,7 +195,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.progress.setProgress(Float.parseFloat(stringComponents[2]));
 
         if(!isPredmeti) {
-           holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
+            holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
 
             holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_man));
         }
@@ -195,8 +217,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_calculator));
             else if(parent.equals("Ostalo"))
                 holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_computer));
+            else if(parent.equals("none")){
 
-           holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
+            }
+
+            if(!parent.equals("none"))
+                holder.hiddenID.setText(Integer.toString(courses.get(position).getPredmetID()));
+
         }
 
        // Animation a = AnimationUtils.loadAnimation(mActivity, R.layout.animation_up);
@@ -239,7 +266,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                 Intent intent = isPredmeti ? new Intent(mActivity, ClassOverview.class) : new Intent(mActivity, TeacherOverview.class);
                 intent.putExtra("title", holder.title.getText());
-                intent.putExtra("mainID", holder.hiddenID.getText());
+
+                if(searching){
+                    AreasModel am;
+                    for (int i = 0; i < vsaPodrocja.size(); i++) {
+                        am = vsaPodrocja.get(i);
+
+                        if(am.getImePodrocja().equals(holder.title.getText())){
+                            intent.putExtra("mainID", am.getPodrocjeID() + "");
+                            break;
+                        }
+                    }
+                }
+                else{
+                    intent.putExtra("mainID", holder.hiddenID.getText());
+
+                }
+
                 mActivity.startActivity(intent);
             }
         });

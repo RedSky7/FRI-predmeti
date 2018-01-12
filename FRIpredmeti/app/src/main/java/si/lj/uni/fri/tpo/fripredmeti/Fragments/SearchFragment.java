@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import si.lj.uni.fri.tpo.fripredmeti.R;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
+import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapterAreas;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +33,7 @@ public class SearchFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    public RecyclerAdapter adapter;
+    public RecyclerAdapterAreas adapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -101,7 +102,7 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search);
-        adapter = new RecyclerAdapter(getActivity(), true, "none");
+        adapter = new RecyclerAdapterAreas(getActivity());
         adapter.fillDataWithQuery(mParam1);
         recyclerView.setAdapter(adapter);
 
