@@ -52,6 +52,7 @@ public class RegistrationDialog  implements DialogInterface.OnDismissListener{
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 try {
                     String verificationCode = new SendRegistration().execute(
                             StaticGlobals.StaticEmail,
@@ -74,7 +75,6 @@ public class RegistrationDialog  implements DialogInterface.OnDismissListener{
             }
         });
 
-        dialog.show();
         return dialog;
     }
 
