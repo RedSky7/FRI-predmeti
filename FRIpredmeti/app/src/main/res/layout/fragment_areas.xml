@@ -10,6 +10,8 @@
         android:layout_height="match_parent"
         android:id="@+id/recycler_view_areas"
         android:layout_below="@+id/appbar"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="16dp" />
 </FrameLayout>

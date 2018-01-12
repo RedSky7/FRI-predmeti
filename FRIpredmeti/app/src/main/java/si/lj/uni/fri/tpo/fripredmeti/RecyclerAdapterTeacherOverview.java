@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -62,13 +63,13 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
     private Activity mActivity;
 
 
-    public RecyclerAdapterTeacherOverview(Activity a, int type){
+    public RecyclerAdapterTeacherOverview(Activity a, int type, List<String> values){
         mActivity = a;
 
         dataSource = new ArrayList<>();
         //TODO: pridobi podatke in jih zapiši v dataSource
 
-        fillData(type);
+        fillData(type, values);
 
     }
 
@@ -76,7 +77,7 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
         dataSource.add(data);
     }
 
-    public void fillData(int type)
+    public void fillData(int type, List<String> values)
     {
         switch (type)
         {
@@ -93,7 +94,12 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
 
             case 2:    //filamo TEHNOLOGIJE
                 dataSource.add("Komenta1");
+                break;
 
+            case 3:
+                for (int i = 0; i < values.size(); i++) {
+                    dataSource.add(values.get(i));
+                }
                 break;
         }
 

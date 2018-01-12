@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:padding="6dp"
             android:paddingBottom="6dp"
             android:paddingRight="6dp"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:padding="6dp"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
@@ -103,8 +103,8 @@
                         android:fontFamily="sans-serif"
                         android:text="Anonymous"
                         android:textSize="12sp"
-                        android:textStyle="normal|italic"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textStyle="normal|bold" />
 
                     <TextView
                         android:id="@+id/tvDate"
@@ -112,7 +112,8 @@
                         android:layout_height="wrap_content"
                         android:text="2.mar.17"
                         android:textAlignment="viewEnd"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:textStyle="normal|italic" />
                 </LinearLayout>
 
                 <TextView

@@ -185,7 +185,7 @@ public class TeacherOverview extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerAdapterTeacherOverview adapter = new RecyclerAdapterTeacherOverview(this, 0);
+        RecyclerAdapterTeacherOverview adapter = new RecyclerAdapterTeacherOverview(this, 0, null); //dodano null by Boštjan
 
         for(int i = 0; i < coursesList.size(); i++){
             Course c = coursesList.get(i);
