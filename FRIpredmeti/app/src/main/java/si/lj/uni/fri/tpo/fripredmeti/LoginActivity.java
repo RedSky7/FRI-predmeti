@@ -229,23 +229,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         //KOVAC_END
 
+        //TODO: TESTO ZAKOMENTIRANO
+        /*
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError("Geslo je prekratko");
+            mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError("Vnesite enaslov");
+            mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError("Vpiši se s šolskim naslovom");
+            mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        }
+        }*/
 
         if (cancel) {
             //vnos podatkov je bil neuspešen
@@ -313,6 +315,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+
         // mail ==> |ime.priimek|@|fri.uni-lj.si| ==> profesorji, asistenti, izvajalci
         //          |xx0000|@|student.uni-lj.si| ==> studenti
         if(email.contains("@")) {
@@ -329,18 +333,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
             //----------------------------------------------------------------------------------
         }
-        //upam da ne bo kdo jezn zarad tega
-        else if (email.equals("blaz"))
-            return true;
-
         return false;
     }
 
     private boolean isPasswordValid(String password) {
-        if(password.equals("blaz"))
-            return true;
-        else
-            return password.length() > 7;
+        //TODO: Replace this with your own logic
+        return password.length() > 8;
     }
 
     /**

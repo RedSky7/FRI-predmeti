@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -27,8 +26,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.lzyzsd.circleprogress.DonutProgress;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -46,19 +43,11 @@ public class TeacherOverview extends AppCompatActivity {
     private TextView tvPriljubljenost;
     private TextView tvNaziv;
     private TextView tvEmail;
-    private TextView tvNumOfComments;
-    private TextView tvPrejsnje;
-    private TextView tvNumPrejsnje;
-    private TextView tvAvgPrejsnje;
     private Spinner  spSort;
     private ImageView imSlika;
-    private DonutProgress donutProgress;
-    private DonutProgress donutProgress2;
 
     private int izvajalecID;
     private int sortIndex;
-
-    private double KOLICNIK_ZA_OCENE = 20.0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -76,13 +65,6 @@ public class TeacherOverview extends AppCompatActivity {
         imSlika           = (ImageView)findViewById(R.id.imSlika);
         tvEmail           = (TextView)findViewById(R.id.teacherContact);
         spSort            = (Spinner)findViewById(R.id.spinnerSortBy);
-        tvNumOfComments   = (TextView)findViewById(R.id.numberOfComments);
-        tvPrejsnje        = (TextView)findViewById(R.id.tvPrejsnje);
-        tvAvgPrejsnje     = (TextView)findViewById(R.id.tvPrejsnjeleto);
-        tvNumPrejsnje     = (TextView)findViewById(R.id.tvnumPrejsnje);
-        donutProgress     = (DonutProgress)findViewById(R.id.donPriljubljenost);
-        donutProgress2    = (DonutProgress)findViewById(R.id.donPriljubljenost2);
-
 
         //po čem bomo sortirali
         sortIndex = spSort.getSelectedItemPosition();
@@ -111,29 +93,27 @@ public class TeacherOverview extends AppCompatActivity {
         });
 
 
-        if(StaticGlobals.StaticEmail != null) {
-            //prikaži ikono za komentiraje, na koncu scrollanja
-            ScrollView sv = (ScrollView) findViewById(R.id.sw);
-            sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    Rect scrollBounds = new Rect();
-                    v.getHitRect(scrollBounds);
-                    Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
-                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-                    if (tv15.getLocalVisibleRect(scrollBounds)) {
-                        fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
-                    } else {
-                        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab.getLayoutParams();
-                        int fab_bottomMargin = layoutParams.bottomMargin;
-                        fab.animate().translationY(fab.getHeight() + fab_bottomMargin).setInterpolator(new AccelerateInterpolator()).start();
-                    }
+        //prikaži ikono za komentiraje, na koncu scrollanja
+        ScrollView sv = (ScrollView) findViewById(R.id.sw);
+        sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Rect scrollBounds = new Rect();
+                v.getHitRect(scrollBounds);
+                Spinner tv15 = (Spinner) findViewById(R.id.spinnerSortBy);
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+                if (tv15.getLocalVisibleRect(scrollBounds)) {
+                    fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
+                } else {
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab.getLayoutParams();
+                    int fab_bottomMargin = layoutParams.bottomMargin;
+                    fab.animate().translationY(fab.getHeight() + fab_bottomMargin).setInterpolator(new AccelerateInterpolator()).start();
                 }
-            });
+            }
+        });
 
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-            fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
-        }
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        fab.animate().translationY(0).setInterpolator(new AccelerateInterpolator()).start();
 
         //pridobi, ID učitelja, na katerega smo kliknili na prejšnjem activityju
         Intent intent = getIntent();
@@ -149,12 +129,7 @@ public class TeacherOverview extends AppCompatActivity {
             loadCourses(izvajalecID);
 
             Bitmap image = new ImageDownloader().execute(t.getSlika()).get();
-
-            if(image == null) {
-                imSlika.setBackground(getResources().getDrawable(R.drawable.ic_man));
-            }
-            else
-                imSlika.setBackground(new BitmapDrawable(getResources(), image));
+            imSlika.setBackground(new BitmapDrawable(getResources(), image));
 
         } catch (Exception e) {
             Toast.makeText(TeacherOverview.this, "There was error connecting to server!", Toast.LENGTH_SHORT).show();
@@ -191,15 +166,6 @@ public class TeacherOverview extends AppCompatActivity {
         tvPriljubljenost.setText(Double.toString(t.splosnaOcena()));
         tvNaziv.setText(t.getNaziv());
         tvEmail.setText(t.getEmail());
-        tvNumOfComments.setText(Integer.toString(t.getNumberOfComments()));
-
-        tvNumPrejsnje.setText(Integer.toString(t.getNumberOfComments()));
-        tvPrejsnje.setText("Prejsnje leto");
-        tvAvgPrejsnje.setText(Double.toString(t.splosnaOcena()));
-
-        donutProgress.setProgress(izracunajProcent(t.getSplosnaOcena()));
-        donutProgress2.setProgress(izracunajProcent(t.getSplosnaOcena()));
-        //izracunajProcent()
     }
 
 
@@ -261,10 +227,5 @@ public class TeacherOverview extends AppCompatActivity {
 
         recyclerView3.setAdapter(adapter3);
 
-    }
-
-    public float izracunajProcent(double st){
-        float a = Math.round(st * KOLICNIK_ZA_OCENE * 100); //da se procenti pravilno izračunajo se mora najprej shranit, ne sprašuj zakaj
-        return a / 100;
     }
 }

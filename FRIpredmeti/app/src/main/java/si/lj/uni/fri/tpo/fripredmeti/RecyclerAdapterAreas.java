@@ -63,8 +63,6 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
                 .inflate(R.layout.area_item_3, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-
-
         return viewHolder;
     }
 
@@ -146,6 +144,37 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
             //first = (FrameLayout) itemView.findViewById(R.id.fl);
             //second = (FrameLayout) itemView.findViewById(R.id.fl2);
         }
+    }
+
+    public void fillDataWithQuery(String query) {
+        dataSource.clear();
+
+        AreasModel am;
+
+        for (int i = 0; i < listAreas.size(); i++) {
+            am = listAreas.get(i);
+
+            if(am.getImePodrocja().toLowerCase().contains(query.toLowerCase())){
+                dataSource.add(am.getImePodrocja());
+            }
+        }
+
+        /*AreasModel am;
+
+        for (int i = 0; i < vsaPodrocja.size(); i++) {
+            am = vsaPodrocja.get(i);
+
+            if(am.getImePodrocja().toLowerCase().contains(query.toLowerCase())){
+                dataSource.add(am.getImePodrocja() + ":10:100");
+            }
+        }
+
+        searching = true;
+
+        dataSource.add("This is with query:0:0");
+        dataSource.add("Query:0:0");
+        dataSource.add("Querrrx:0:0");
+        dataSource.add("Querrryyyyyyyyyyyy:0:0");*/
     }
 
 }

@@ -72,6 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private Map<Integer, Teacher> teachers;
 
     private String parent;
+    private boolean searching = false;
 
     public RecyclerAdapter(Activity a, Boolean predmeti, String parent1){
         mActivity = a;
@@ -150,24 +151,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     }
 
-    public void fillDataWithQuery(String query)
-    {
+    public void fillDataWithQuery(String query) {
         dataSource.clear();
 
-        AreasModel am = null;
+        AreasModel am;
 
         for (int i = 0; i < vsaPodrocja.size(); i++) {
             am = vsaPodrocja.get(i);
 
-            if(am.getImePodrocja().contains(query)){
-
+            if(am.getImePodrocja().toLowerCase().contains(query.toLowerCase())){
+                dataSource.add(am.getImePodrocja() + ":10:100");
             }
         }
 
-        dataSource.add("This is with query:0:0");
+        searching = true;
+
+        /*dataSource.add("This is with query:0:0");
         dataSource.add("Query:0:0");
         dataSource.add("Querrrx:0:0");
-        dataSource.add("Querrryyyyyyyyyyyy:0:0");
+        dataSource.add("Querrryyyyyyyyyyyy:0:0");*/
     }
 
     @Override
@@ -176,8 +178,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.area_item_3, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-
-
 
         return viewHolder;
     }
@@ -195,7 +195,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.progress.setProgress(Float.parseFloat(stringComponents[2]));
 
         if(!isPredmeti) {
-           holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
+            holder.hiddenID.setText(Integer.toString(teachers.get(position).getTeacherID()));
 
             holder.icon.setImageDrawable(mActivity.getDrawable(R.drawable.ic_man));
         }
@@ -266,7 +266,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                 Intent intent = isPredmeti ? new Intent(mActivity, ClassOverview.class) : new Intent(mActivity, TeacherOverview.class);
                 intent.putExtra("title", holder.title.getText());
-                intent.putExtra("mainID", holder.hiddenID.getText());
+
+                if(searching){
+                    AreasModel am;
+                    for (int i = 0; i < vsaPodrocja.size(); i++) {
+                        am = vsaPodrocja.get(i);
+
+                        if(am.getImePodrocja().equals(holder.title.getText())){
+                            intent.putExtra("mainID", am.getPodrocjeID() + "");
+                            break;
+                        }
+                    }
+                }
+                else{
+                    intent.putExtra("mainID", holder.hiddenID.getText());
+
+                }
+
                 mActivity.startActivity(intent);
             }
         });
