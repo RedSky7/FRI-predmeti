@@ -9,7 +9,8 @@
 
     android:layout_width="match_parent"
 android:layout_height="match_parent"
-    android:background="@color/cardview_shadow_end_color">
+    android:background="@color/cardview_shadow_end_color"
+    android:id="@+id/rl">
 
 
     <android.support.v7.widget.CardView
@@ -41,13 +42,16 @@ android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
+
                 <com.github.lzyzsd.circleprogress.DonutProgress
                     android:id="@+id/donut_progress"
-                    app:donut_finished_color="@color/colorPrimary"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
                     android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    android:visibility="invisible"
+                    app:donut_circle_starting_degree="270"
+                    app:donut_finished_color="@color/colorPrimary"
+                    app:donut_unfinished_color="@android:color/transparent" />
 
                 <ImageView
 
@@ -107,14 +111,16 @@ android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
+
                 <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:id="@+id/donut_progress"
+                    android:id="@+id/donPriljubljenost"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_gravity="center_horizontal"
+                    app:donut_circle_starting_degree="270"
                     app:donut_finished_color="@color/colorPrimary"
                     app:donut_progress="49"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
-                    android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_unfinished_color="@android:color/transparent" />
                 <TextView
                     android:text="/?"
                     android:id="@+id/textView55"
@@ -131,16 +137,16 @@ android:layout_height="match_parent"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:text="(?)"
+                    android:id="@+id/numberOfComments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/te"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="10sp"
+                    android:text="(?)"
                     android:textColor="@android:color/white"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="20dp" />
+                    android:textSize="10sp" />
             </FrameLayout>
             <TextView
                 android:text="Priljubljenost"
@@ -164,50 +170,54 @@ android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
+
                 <com.github.lzyzsd.circleprogress.DonutProgress
-                    android:id="@+id/donut_progress"
+                    android:id="@+id/donPriljubljenost2"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:layout_gravity="center_horizontal"
+                    app:donut_circle_starting_degree="270"
                     app:donut_finished_color="@color/colorPrimary"
                     app:donut_progress="49"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
-                    android:layout_gravity="center_horizontal"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_unfinished_color="@android:color/transparent" />
+
                 <TextView
-                    android:text="/?"
-                    android:id="@+id/textView55"
+                    android:id="@+id/tvPrejsnjeleto"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@drawable/ic_circle"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_gravity="center"
-                    android:textColorLink="@color/colorPrimary"
                     android:backgroundTint="@color/colorPrimary"
-                    android:layout_height="64dp"
-                    android:layout_width="64dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="/?"
+                    android:textColor="@android:color/white"
+                    android:textColorLink="@color/colorPrimary"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:text="(?)"
+                    android:id="@+id/tvnumPrejsnje"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/te"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="10sp"
+                    android:text="(?)"
                     android:textColor="@android:color/white"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="20dp" />
+                    android:textSize="10sp" />
             </FrameLayout>
+
             <TextView
-                android:text="/?"
+                android:id="@+id/tvPrejsnje"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/unknown"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="/?" />
         </LinearLayout>
 
     </LinearLayout>
@@ -291,13 +301,14 @@ android:layout_height="match_parent"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
         <TextView
-            android:text="Tehnologije"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
+            android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-medium"
+            android:text="Tehnologije"
             android:textSize="14sp"
-            android:layout_marginBottom="16dp" />
+            android:visibility="gone" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

@@ -56,11 +56,13 @@
                 <com.github.lzyzsd.circleprogress.DonutProgress
                     android:id="@+id/donut_progress"
                     android:layout_gravity="center"
-                    donut_progress="30"
                     app:donut_finished_color="@color/colorPrimary"
-                    android:layout_width="86dp"
-                    android:layout_height="86dp"
-                    app:donut_circle_starting_degree="270" />
+                    app:donut_circle_starting_degree="270"
+                    app:donut_progress="100"
+                    app:donut_unfinished_color="@android:color/transparent"
+                    android:visibility="visible"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp" />
 
                 <ImageView
                     android:id="@+id/imageViewTOANIMATE"
