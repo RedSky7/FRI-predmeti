@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_end_color">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view_classes"
+        android:clipToPadding="false"
+        android:paddingTop="60dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp" />
+
     <Spinner
         android:id="@+id/spinnerSortByClasses"
         style="@android:style/Widget.Material.Light.Spinner"
@@ -18,13 +27,4 @@
         android:entries="@array/podrocje"
         android:gravity="right|center_vertical"
         android:visibility="visible" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view_classes"
-        android:clipToPadding="false"
-        android:paddingTop="60dp"
-        android:paddingLeft="16dp"
-        android:paddingBottom="16dp" />
 </RelativeLayout>
