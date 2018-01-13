@@ -1,10 +1,14 @@
 package si.lj.uni.fri.tpo.fripredmeti.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RestrictTo;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +16,8 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 import si.lj.uni.fri.tpo.fripredmeti.R;
 import si.lj.uni.fri.tpo.fripredmeti.RecyclerAdapter;
@@ -104,6 +110,7 @@ public class SearchFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search);
         adapter = new RecyclerAdapterAreas(getActivity());
         adapter.fillDataWithQuery(mParam1);
+
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
@@ -115,6 +122,7 @@ public class SearchFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

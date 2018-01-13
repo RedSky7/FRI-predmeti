@@ -148,9 +148,7 @@ public class RecyclerAdapterAreas extends RecyclerView.Adapter<RecyclerAdapterAr
 
     public void fillDataWithQuery(String query) {
         dataSource.clear();
-
         AreasModel am;
-
         for (int i = 0; i < listAreas.size(); i++) {
             am = listAreas.get(i);
 

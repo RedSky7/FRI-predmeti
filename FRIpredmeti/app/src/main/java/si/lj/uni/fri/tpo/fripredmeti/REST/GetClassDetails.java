@@ -43,7 +43,9 @@ public class GetClassDetails extends AsyncTask<Integer, Void, Course> {
             while ((line = rd.readLine()) != null) { final StringBuilder append = result1.append(line);}
 
             JSONObject jsonObj = new JSONObject(result1.toString());
-            JSONArray oznakeArray = jsonObj.getJSONArray("oznaka");;
+            JSONArray oznakeArray = new JSONArray();
+            if(jsonObj.get("oznaka").equals("null"))
+                oznakeArray = jsonObj.getJSONArray("oznaka");
 
             JSONObject oznakeObj;
             List<String> oznake = new ArrayList<>();

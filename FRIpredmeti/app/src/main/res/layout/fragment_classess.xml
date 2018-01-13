@@ -2,19 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_end_color">
+
     <Spinner
+        android:id="@+id/spinnerSortByClasses"
+        style="@android:style/Widget.Material.Light.Spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerSortByClasses"
-        android:layout_below="@+id/appbar"
-        android:gravity="right|center_vertical"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
         android:entries="@array/podrocje"
-        style="@android:style/Widget.Material.Light.Spinner"
-        android:layout_marginTop="16dp" />
+        android:gravity="right|center_vertical"
+        android:visibility="visible" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
