@@ -44,7 +44,7 @@ public class GetClassDetails extends AsyncTask<Integer, Void, Course> {
 
             JSONObject jsonObj = new JSONObject(result1.toString());
             JSONArray oznakeArray = new JSONArray();
-            if(jsonObj.get("oznaka").equals("null"))
+            if(jsonObj.get("oznaka") != JSONObject.NULL)
                 oznakeArray = jsonObj.getJSONArray("oznaka");
 
             JSONObject oznakeObj;
@@ -58,7 +58,7 @@ public class GetClassDetails extends AsyncTask<Integer, Void, Course> {
             }
 
 
-            if(jsonObj.get("predpogoj").equals("null"))
+            if(jsonObj.get("predpogoj") != JSONObject.NULL)//.equals("null"))
                 oznakeArray = jsonObj.getJSONArray("predpogoj");
             else{
                 oznakeArray = new JSONArray();
@@ -70,8 +70,10 @@ public class GetClassDetails extends AsyncTask<Integer, Void, Course> {
             }
 
 
-            if(!jsonObj.get("izvajalci").equals("null"))
+            if(jsonObj.get("izvajalci") != JSONObject.NULL)
                 oznakeArray = jsonObj.getJSONArray("izvajalci");
+            else
+                oznakeArray = new JSONArray();
 
             for (int j = 0; j < oznakeArray.length(); j++) {
                 oznakeObj = oznakeArray.getJSONObject(j);
