@@ -144,6 +144,7 @@ public class ClassessFragment extends Fragment {
 
 
         Spinner vrstniRed = (Spinner) getActivity().findViewById(R.id.spinnerSortByClasses);
+        vrstniRed.setSelection(1);
         vrstniRed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

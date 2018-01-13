@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view_teachers"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="60dp" />
+
     <Spinner
         android:id="@+id/spinnerSortByTeachers"
         style="@android:style/Widget.Material.Light.Spinner"
@@ -16,12 +24,4 @@
         android:entries="@array/podrocje"
         android:gravity="right|center_vertical"
         android:visibility="visible" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view_teachers"
-        android:paddingLeft="16dp"
-        android:paddingBottom="16dp"
-        android:paddingTop="60dp" />
 </RelativeLayout>
