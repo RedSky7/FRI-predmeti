@@ -188,14 +188,29 @@ public class TeacherOverview extends AppCompatActivity {
     private void loadTeacher(Teacher t){
         //sedaj začni z inicializacijo informacij
         getSupportActionBar().setTitle(t.toString());
-        tvPriljubljenost.setText(Double.toString(t.splosnaOcena()));
+        tvPriljubljenost.setText(Double.toString(t.splosnaOcena()).replace(".", ","));
         tvNaziv.setText(t.getNaziv());
         tvEmail.setText(t.getEmail());
-        tvNumOfComments.setText(Integer.toString(t.getNumberOfComments()));
 
-        tvNumPrejsnje.setText(Integer.toString(t.getNumberOfComments()));
-        tvPrejsnje.setText("Prejsnje leto");
-        tvAvgPrejsnje.setText(Double.toString(t.splosnaOcena()));
+        tvEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+
+                String[] recipients = new String[] { tvEmail.getText().toString() };
+                intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+
+                startActivity(Intent.createChooser(intent, "Izberite email odjemalca."));
+
+            }
+        });
+
+        tvNumOfComments.setText("(" + Integer.toString(t.getNumberOfComments()) + ")" );
+
+        tvNumPrejsnje.setText("(" + Integer.toString(t.getNumberOfComments()) + ")");
+        tvPrejsnje.setText("Prejšnje leto");
+        tvAvgPrejsnje.setText(Double.toString(t.splosnaOcena()).replace(".", ","));
 
         donutProgress.setProgress(izracunajProcent(t.getSplosnaOcena()));
         donutProgress2.setProgress(izracunajProcent(t.getSplosnaOcena()));

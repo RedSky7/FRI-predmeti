@@ -266,7 +266,7 @@ public class ClassOverview extends AppCompatActivity {
     public void fillCircle(ArrayList<String> data, DonutProgress progress, TextView procenti, TextView ljudi)
     {
         progress.setProgress(Float.parseFloat(data.get(0)));
-        procenti.setText(data.get(1) + "%");
+        procenti.setText(data.get(1).substring(0, 2) + "%");
         ljudi.setText("(" + data.get(2) + ")");
     }
 
