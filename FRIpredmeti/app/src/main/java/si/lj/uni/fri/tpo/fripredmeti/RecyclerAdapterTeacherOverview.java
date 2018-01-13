@@ -65,10 +65,7 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
 
     public RecyclerAdapterTeacherOverview(Activity a, int type, List<String> values){
         mActivity = a;
-
         dataSource = new ArrayList<>();
-        //TODO: pridobi podatke in jih zapiši v dataSource
-
         fillData(type, values);
 
     }

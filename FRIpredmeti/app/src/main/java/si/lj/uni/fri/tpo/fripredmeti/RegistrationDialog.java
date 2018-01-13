@@ -49,10 +49,12 @@ public class RegistrationDialog  implements DialogInterface.OnDismissListener{
             }
         });
 
+        dialog.show();
+
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
+                //dialog.show();
                 try {
                     String verificationCode = new SendRegistration().execute(
                             StaticGlobals.StaticEmail,

@@ -17,6 +17,10 @@ public class Course {
     private double uporabnostOcena;
     private double zanimivostOcena;
     private List<String> oznake;
+    private List<String> predpogoji;
+    private List<String> izvajalciSeznam;
+
+    private int stKomentarjev;
 
     public Course(String ime, String opis, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena, double zanimivostOcena) {
         this.ime = ime;
@@ -39,7 +43,8 @@ public class Course {
         this.zanimivostOcena = zanimivostOcena;
     }
 
-    public Course(String ime, String izvajalci, String ocena, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena, double zanimivostOcena, List<String> oznake){
+    public Course(String ime, String izvajalci, String ocena, int predmetID, double splosnaOcena, double tezavnostOcena, double uporabnostOcena,
+                  double zanimivostOcena, List<String> oznake, int stKomentarjev, List<String> predpogoji, List<String>izvajalciSeznam){
         this.ime = ime;
         this.izvajalci = izvajalci;
         this.ocena = ocena;
@@ -49,6 +54,9 @@ public class Course {
         this.uporabnostOcena = uporabnostOcena;
         this.zanimivostOcena = zanimivostOcena;
         this.oznake = oznake;
+        this.stKomentarjev = stKomentarjev;
+        this.predpogoji = predpogoji;
+        this.izvajalciSeznam = izvajalciSeznam;
     }
 
     public double getSplosnaOcena() {
@@ -89,5 +97,15 @@ public class Course {
 
     public String getIme() {
         return ime;
+    }
+
+    public int getStKomentarjev() {  return stKomentarjev; }
+
+    public List<String> getIzvajalciSeznam() {
+        return izvajalciSeznam;
+    }
+
+    public List<String> getPredpogoji() {
+        return predpogoji;
     }
 }
