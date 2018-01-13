@@ -89,7 +89,10 @@ namespace FriAplikacija
         public List<OcenaIzvajalca> GetKomentarIzvajalec() {
             WebOperationContext ctx = WebOperationContext.Current;
             int izvajalecID = Int32.Parse(ctx.IncomingRequest.Headers["izvajalecID"].ToString());
-            String sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            String sort = "";
+            if (ctx.IncomingRequest.Headers["sort"] != null) {
+                sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            }
             return OcenaIzvajalcaDataAccess.getOceneIzvajalca(izvajalecID, sort);
         }
 
@@ -142,7 +145,10 @@ namespace FriAplikacija
         public List<OcenaPredmeta> GetKomentarPredmet() {
             WebOperationContext ctx = WebOperationContext.Current;
             int predmetID = Int32.Parse(ctx.IncomingRequest.Headers["predmetID"].ToString());
-            String sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            String sort = "";
+            if (ctx.IncomingRequest.Headers["sort"] != null) {
+                sort = ctx.IncomingRequest.Headers["sort"].ToString();
+            }
             return OcenaPredmetaDataAccess.getOcenePredmeta(predmetID, sort);
         }
 
