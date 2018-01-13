@@ -117,6 +117,23 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        internal static List<Predmet> getPredmetPredpogoj(int predmetID) {
+            DataTable data = new DataTable("Predmet");
+            using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("select p.* from Predmet p join Predpogoj po on (p.PredmetID = po.Pre_PredmetID) where po.PredmetID = @predmetID", connection)) {
+                    command.Parameters.Add(new SqlParameter("predmetID", predmetID));
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                        da.Fill(data);
+                }
+                connection.Close();
+            }
+            if (data.Rows.Count >= 1) {
+                return rowsToPredmeti(data);
+            }
+            return null;
+        }
+
         private static List<Predmet> rowsToPredmeti(DataTable data) {
             List<Predmet> predmeti = new List<Predmet>();
             foreach(DataRow row in data.Rows) {
@@ -134,6 +151,9 @@ namespace FriAplikacija.DataAccess {
             predmet.zanimivostOcena = Decimal.Parse(row["zanimivostOcena"].ToString());
             predmet.uporabnostOcena = Decimal.Parse(row["uporabnostOcena"].ToString());
             predmet.ocena = row["opis"].ToString();
+            predmet.izvajalci = IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(predmet.predmetID);
+            predmet.predpogoj = getPredmetPredpogoj(predmet.predmetID);
+            predmet.steviloKomentarjev = OcenaPredmetaDataAccess.getSteviloOcenPredmeta(predmet.predmetID);
             return predmet;
         }
 
@@ -146,6 +166,9 @@ namespace FriAplikacija.DataAccess {
             predmet.zanimivostOcena = Decimal.Parse(row["zanimivostOcena"].ToString());
             predmet.uporabnostOcena = Decimal.Parse(row["uporabnostOcena"].ToString());
             predmet.ocena = row["opis"].ToString();
+            predmet.izvajalci = IzvajalecPredmetaDataAccess.getPredmetiForIzvajalec(predmet.predmetID);
+            predmet.predpogoj = getPredmetPredpogoj(predmet.predmetID);
+            predmet.steviloKomentarjev = OcenaPredmetaDataAccess.getSteviloOcenPredmeta(predmet.predmetID);
             return predmet;
         }
     }

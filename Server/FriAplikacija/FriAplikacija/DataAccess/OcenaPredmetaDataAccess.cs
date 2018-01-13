@@ -87,6 +87,26 @@ namespace FriAplikacija.DataAccess {
             return null;
         }
 
+        public static long getSteviloOcenPredmeta(int predmetID) {
+            try {
+                DataTable data = new DataTable("SteviloOcen");
+                using (SqlConnection connection = new SqlConnection(SOURCE)) {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT COUNT(*) from OcenaPredmeta where predmetID = @predmetID and KomentarID IS  NOT NULL ", connection)) {
+                        command.Parameters.Add(new SqlParameter("predmetID", predmetID));
+                        command.ExecuteNonQuery();
+                        using (SqlDataAdapter da = new SqlDataAdapter(command))
+                            da.Fill(data);
+                    }
+                    connection.Close();
+                    return Int64.Parse(data.Rows[0][0].ToString());
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+            }
+            return 0;
+        }
+
         private static List<OcenaPredmeta> rowsToOcene(DataTable data) {
             List<OcenaPredmeta> ocene = new List<OcenaPredmeta>();
             foreach (DataRow row in data.Rows) {
