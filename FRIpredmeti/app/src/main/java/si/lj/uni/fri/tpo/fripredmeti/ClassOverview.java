@@ -60,6 +60,14 @@ public class ClassOverview extends AppCompatActivity {
     private int sortID;
     private Course celPredmet = null;
 
+    private TextView tvNumPriljubljenost;
+    private TextView tvNumTezavnost;
+    private TextView tvNumZanimivost;
+    private TextView tvAvgPriljubljenost;
+    private TextView tvAvgTezavnost;
+    private TextView tvAvgZanimivost;
+
+
     private double KOLICNIK_ZA_OCENE = 20.0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -70,9 +78,14 @@ public class ClassOverview extends AppCompatActivity {
 
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar2));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setTitle(getIntent().getStringExtra("title"));
 
+        tvNumPriljubljenost  = (TextView)findViewById(R.id.tvNumPriljubljenost);
+        tvNumTezavnost       = (TextView)findViewById(R.id.tvNumTezavnost);
+        tvNumZanimivost      = (TextView)findViewById(R.id.tvNumZanimivost);
+        tvAvgPriljubljenost  = (TextView)findViewById(R.id.tvAvgPriljubljenost);
+        tvAvgTezavnost       = (TextView)findViewById(R.id.tvAvgTezavnost);
+        tvAvgZanimivost      = (TextView)findViewById(R.id.tvAvgZanimivost);
 
         if(StaticGlobals.StaticEmail != null) {
             ScrollView sv = (ScrollView) findViewById(R.id.sw);
@@ -119,29 +132,31 @@ public class ClassOverview extends AppCompatActivity {
             ArrayList<String> data = new ArrayList<>();
             data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
             data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
-            data.add("54");
+            data.add(Integer.toString(celPredmet.getStKomentarjev()));
 
             fillCircle(data, (DonutProgress) findViewById(R.id.zanimivost_progress),
-                    (TextView) findViewById(R.id.zanimivost_procenti),
-                    (TextView) findViewById(R.id.zanimivost_ljudi));
+                    (TextView) findViewById(R.id.tvAvgZanimivost),
+                    (TextView) findViewById(R.id.tvNumZanimivost));
 
             data.clear();
             data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + ""); //***to nej bi bla priljubljenost
             data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + "");
-            data.add("61");
+            data.add(Integer.toString(celPredmet.getStKomentarjev()));
+
             fillCircle(data, (DonutProgress) findViewById(R.id.priljubljenost_progress),
-                    (TextView) findViewById(R.id.priljubljenost_procenti),
-                    (TextView) findViewById(R.id.priljubljenost_ljudi));
+                    (TextView) findViewById(R.id.tvAvgPriljubljenost),
+                    (TextView) findViewById(R.id.tvNumPriljubljenost));
 
             data.clear();
             data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
             data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
-            data.add("30");
+            data.add(Integer.toString(celPredmet.getStKomentarjev()));
+
             fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
-                    (TextView) findViewById(R.id.tezavnost_skala),
-                    (TextView) findViewById(R.id.tezavnost_ljudi));
+                    (TextView) findViewById(R.id.tvAvgTezavnost),
+                    (TextView) findViewById(R.id.tvNumTezavnost));
         }
-        else {
+        /*else {
 
             //TODO: Fill botom data with right data
             ArrayList<String> data = new ArrayList<>();
@@ -170,7 +185,7 @@ public class ClassOverview extends AppCompatActivity {
             fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
                     (TextView) findViewById(R.id.tezavnost_skala),
                     (TextView) findViewById(R.id.tezavnost_ljudi));
-        }
+        }*/
 
         //TODO: Uncomment create_KOMENTARJI();
         create_PREDPOGOJI();
@@ -202,7 +217,7 @@ public class ClassOverview extends AppCompatActivity {
     {
         //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_PREDPOGOJI);
-        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1, null);
+        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 3, celPredmet.getPredpogoji());
         recyclerView1.setAdapter(adapter1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -213,7 +228,7 @@ public class ClassOverview extends AppCompatActivity {
     {
         //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_IZVAJALCI);
-        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 1, null);
+        RecyclerAdapterTeacherOverview adapter1 = new RecyclerAdapterTeacherOverview(this, 3, celPredmet.getIzvajalciSeznam());
         recyclerView1.setAdapter(adapter1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -233,7 +248,6 @@ public class ClassOverview extends AppCompatActivity {
 
     public void create_KOMENTARJI()
     {
-        //TODO: Fill with right data use .fillData()
         RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.recycler_view_class_overview_KOMENTARJI);
         recyclerView3.setHasFixedSize(true);
         recyclerView3.setNestedScrollingEnabled(false);
@@ -316,3 +330,4 @@ public class ClassOverview extends AppCompatActivity {
     }
 
 }
+
