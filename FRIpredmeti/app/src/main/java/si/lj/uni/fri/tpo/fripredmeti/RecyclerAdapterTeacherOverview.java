@@ -65,10 +65,7 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
 
     public RecyclerAdapterTeacherOverview(Activity a, int type, List<String> values){
         mActivity = a;
-
         dataSource = new ArrayList<>();
-        //TODO: pridobi podatke in jih zapiši v dataSource
-
         fillData(type, values);
 
     }
@@ -118,6 +115,8 @@ public class RecyclerAdapterTeacherOverview extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.title.setText(dataSource.get(position));
+
+
     }
 
 

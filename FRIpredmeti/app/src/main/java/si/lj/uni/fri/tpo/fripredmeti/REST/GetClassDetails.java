@@ -43,25 +43,56 @@ public class GetClassDetails extends AsyncTask<Integer, Void, Course> {
             while ((line = rd.readLine()) != null) { final StringBuilder append = result1.append(line);}
 
             JSONObject jsonObj = new JSONObject(result1.toString());
-            JSONArray oznakeArray = jsonObj.getJSONArray("oznaka");;
+            JSONArray oznakeArray = new JSONArray();
+            if(jsonObj.get("oznaka") != JSONObject.NULL)
+                oznakeArray = jsonObj.getJSONArray("oznaka");
 
             JSONObject oznakeObj;
             List<String> oznake = new ArrayList<>();
+            List<String> predpogoji = new ArrayList<>();
+            List<String> izvajalci = new ArrayList<>();
 
             for (int j = 0; j < oznakeArray.length(); j++) {
                 oznakeObj = oznakeArray.getJSONObject(j);
                 oznake.add(oznakeObj.getString("Ime"));
             }
 
+
+            if(jsonObj.get("predpogoj") != JSONObject.NULL)//.equals("null"))
+                oznakeArray = jsonObj.getJSONArray("predpogoj");
+            else{
+                oznakeArray = new JSONArray();
+            }
+
+            for (int j = 0; j < oznakeArray.length(); j++) {
+                oznakeObj = oznakeArray.getJSONObject(j);
+                predpogoji.add(oznakeObj.getString("ime"));
+            }
+
+
+            if(jsonObj.get("izvajalci") != JSONObject.NULL)
+                oznakeArray = jsonObj.getJSONArray("izvajalci");
+            else
+                oznakeArray = new JSONArray();
+
+            for (int j = 0; j < oznakeArray.length(); j++) {
+                oznakeObj = oznakeArray.getJSONObject(j);
+                izvajalci.add(oznakeObj.getString("naziv") + " " + oznakeObj.getString("ime") + " " +oznakeObj.getString("priimek"));
+            }
+
+
             result = new Course(jsonObj.getString("ime"),
-                    jsonObj.getString("izvajalci"),
+                    null,
                     jsonObj.getString("ocena"),
                     jsonObj.getInt("predmetID"),
                     jsonObj.getDouble("splosnaOcena"),
                     jsonObj.getDouble("tezavnostOcena"),
                     jsonObj.getDouble("uporabnostOcena"),
                     jsonObj.getDouble("zanimivostOcena"),
-                    oznake
+                    oznake,
+                    jsonObj.getInt("steviloKomentarjev"),
+                    predpogoji,
+                    izvajalci
             );
 
 

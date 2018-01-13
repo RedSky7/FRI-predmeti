@@ -84,7 +84,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         courses = new HashMap<Integer, Course>();
         teachers = new HashMap<Integer, Teacher>();
 
-        fillData(predmeti, 0);
+        fillData(predmeti, 1);
         //TODO: pridobi podatke in jih zapiši v dataSource
 
         try {
@@ -125,28 +125,68 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                         e.printStackTrace();
                     }
 
+                    dataSource.add(course.getIme() + ":201:" + (courseDetails != null ? co.izracunajProcent(courseDetails.getZanimivostOcena()) + "" : "10"));
+                }
+                /*dataSource.add("Računalniška arhitektura:201:97");
+                dataSource.add("Organizacija računalnikov:201:59");
+                dataSource.add("Digitalna vezja:26:51");*/
+            }
+            else if(order == 1)
+            {
+                Course course, courseDetails = null;
+                ClassOverview co = new ClassOverview();
+                //dataSource.add(courses.get(1));
+                for (int i = 0; i < courses.size(); i++) {
+                    course = courses.get(i);
+                    //dataSource.add(course.getIme() + ":201:59");
+
+                    try {
+                        courseDetails = new GetClassDetails().execute(course.getPredmetID()).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
                     dataSource.add(course.getIme() + ":201:" + (courseDetails != null ? co.izracunajProcent(courseDetails.getSplosnaOcena()) + "" : "10"));
                 }
                 /*dataSource.add("Računalniška arhitektura:201:97");
                 dataSource.add("Organizacija računalnikov:201:59");
                 dataSource.add("Digitalna vezja:26:51");*/
             }
-
             else
             {
-                dataSource.add("Digitalna vezja:26:51");
+                Course course, courseDetails = null;
+                ClassOverview co = new ClassOverview();
+                //dataSource.add(courses.get(1));
+                for (int i = 0; i < courses.size(); i++) {
+                    course = courses.get(i);
+                    //dataSource.add(course.getIme() + ":201:59");
+
+                    try {
+                        courseDetails = new GetClassDetails().execute(course.getPredmetID()).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    dataSource.add(course.getIme() + ":201:" + (courseDetails != null ? co.izracunajProcent(courseDetails.getTezavnostOcena()) + "" : "10"));
+                }
+                /*dataSource.add("Računalniška arhitektura:201:97");
                 dataSource.add("Organizacija računalnikov:201:59");
-                dataSource.add("Računalniška arhitektura:201:97");
+                dataSource.add("Digitalna vezja:26:51");*/
             }
         }
         else {
             /*dataSource.add("Luka Kadunc:201:69");
             dataSource.add("Plagiat Kadunc:107:69");
             dataSource.add("Tina Kadunc:23:69");*/
-            for(int i = 0; i < teachers.size(); i++){
-                Teacher t = teachers.get(i);
-                dataSource.add(i, t.getIme() + " " + t.getPriimek().concat(":201:59"));
-            }
+                for (int i = 0; i < teachers.size(); i++) {
+                    Teacher t = teachers.get(i);
+                    dataSource.add(i, t.getIme() + " " + t.getPriimek().concat(":201:59"));
+                }
+
         }
 
     }

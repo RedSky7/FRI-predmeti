@@ -141,6 +141,7 @@ public class TeachersFragment extends Fragment {
 
         //recyclerView.scrollToPosition(0);
         Spinner vrstniRed = (Spinner) getActivity().findViewById(R.id.spinnerSortByTeachers);
+        vrstniRed.setSelection(1);
         vrstniRed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
