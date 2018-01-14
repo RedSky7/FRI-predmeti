@@ -131,30 +131,30 @@ public class ClassOverview extends AppCompatActivity {
         if(celPredmet != null){
             ArrayList<String> data = new ArrayList<>();
             data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
-            data.add(izracunajProcent(celPredmet.getZanimivostOcena()) + "");
+            data.add(izracunajProcent(celPredmet.getZanimivostOcena()) / 20 + "");
             data.add(Integer.toString(celPredmet.getStKomentarjev()));
 
             fillCircle(data, (DonutProgress) findViewById(R.id.zanimivost_progress),
                     (TextView) findViewById(R.id.tvAvgZanimivost),
-                    (TextView) findViewById(R.id.tvNumZanimivost));
+                    (TextView) findViewById(R.id.tvNumZanimivost), true);
 
             data.clear();
             data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + ""); //***to nej bi bla priljubljenost
-            data.add(izracunajProcent(celPredmet.getSplosnaOcena()) + "");
+            data.add(izracunajProcent(celPredmet.getSplosnaOcena()) / 20 + "");
             data.add(Integer.toString(celPredmet.getStKomentarjev()));
 
             fillCircle(data, (DonutProgress) findViewById(R.id.priljubljenost_progress),
                     (TextView) findViewById(R.id.tvAvgPriljubljenost),
-                    (TextView) findViewById(R.id.tvNumPriljubljenost));
+                    (TextView) findViewById(R.id.tvNumPriljubljenost), true);
 
             data.clear();
             data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
-            data.add(izracunajProcent(celPredmet.getTezavnostOcena()) + "");
+            data.add(izracunajProcent(celPredmet.getTezavnostOcena()) / 20  + "");
             data.add(Integer.toString(celPredmet.getStKomentarjev()));
 
             fillCircle(data, (DonutProgress) findViewById(R.id.tezavnost_progress),
                     (TextView) findViewById(R.id.tvAvgTezavnost),
-                    (TextView) findViewById(R.id.tvNumTezavnost));
+                    (TextView) findViewById(R.id.tvNumTezavnost), true);
         }
         /*else {
 
@@ -263,10 +263,13 @@ public class ClassOverview extends AppCompatActivity {
         desc.setText(celPredmet != null ? celPredmet.getOcena() : "To je opis");
     }
 
-    public void fillCircle(ArrayList<String> data, DonutProgress progress, TextView procenti, TextView ljudi)
+    public void fillCircle(ArrayList<String> data, DonutProgress progress, TextView procenti, TextView ljudi, boolean override)
     {
         progress.setProgress(Float.parseFloat(data.get(0)));
-        procenti.setText(data.get(1).substring(0, 2) + "%");
+        if(!override)
+            procenti.setText(data.get(1).substring(0, 2) + "%");
+        else
+            procenti.setText(data.get(1).substring(0, 3).replace(".", ","));
         ljudi.setText("(" + data.get(2) + ")");
     }
 
